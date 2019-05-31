@@ -1,6 +1,15 @@
+#include <QApplication>
+#include <QProcess>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
+#include <QtDebug>
+#include <Plasma/Svg>
+#include <QIcon>
+#include "iconsetter.h"
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -26,6 +35,15 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     }
 }
 
+bool fileExists(QString path)
+{
+    QFileInfo check_file(path);
+    if (check_file.exists() && check_file.isFile()) {
+        return true;
+    } else {
+        return false;
+    }
+}
 int main(int argc, char *argv[])
 {
     qInstallMessageHandler(myMessageOutput);
@@ -36,6 +54,16 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");
     app.setApplicationName("Icon Viewer");
+
+    if (fileExists(QDir::homePath() + "/.iconPreviewTheme")) {
+        QFile file(QDir::homePath() + "/.iconPreviewTheme");
+        if (file.open(QFile::ReadOnly)) {
+            QTextStream in(&file);
+            QIcon::setThemeName(in.readAll().trimmed());
+            qDebug() << in.readAll().trimmed();
+        }
+    }
+    qmlRegisterType<IconSetter>("me.appadeia.IconSetter", 1, 0, "IconSetter");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
