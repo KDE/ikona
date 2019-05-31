@@ -35,27 +35,47 @@ Kirigami.ApplicationWindow {
                     iconSource: "document-open-symbolic"
                     text: "Open SVG"
                     onTriggered: {
-                        fileDialog.open()
+                        picker.open()
                     }
                 }
             ]
     }
-    FileDialog {
-        id: fileDialog
-        title: "Please open an SVG"
-        folder: shortcuts.home
-        selectExisting: true
-        selectFolder:   false
-        selectMultiple: false
+    PlasmaCore.DataSource {
+        id: picker
+        engine: "executable"
+        connectedSources: []
+        property var callbacks: ({})
+        onNewData: {
+            var exitCode = data["exit code"]
+            var stdout = data["stdout"]
 
-        nameFilters: ["Icon Files (*.svg)"]
+            if (exitCode == 0) {
+                root.imageSource = "file:/" + stdout.trim()
+            } else {
 
-        onAccepted: {
-            root.imageSource = fileUrl
+            }
+
+            if (callbacks[sourceName] !== undefined) {
+                callbacks[sourceName](stdout);
+            }
+
+            exited(sourceName, stdout)
+            disconnectSource(sourceName) // cmd finished
         }
-        onRejected: {
+
+        function exec(cmd, onNewDataCallback) {
+            if (onNewDataCallback !== undefined){
+                callbacks[cmd] = onNewDataCallback
+            }
+            connectSource(cmd)
 
         }
+        function open() {
+            picker.exec("kdialog --getopenfilename . 'SVG Icon Files (*.svg)'", function(){});
+        }
+
+        signal exited(string sourceName, string stdout)
+
     }
     Timer {
         interval: 250
