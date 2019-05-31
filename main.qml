@@ -19,6 +19,12 @@ Kirigami.ApplicationWindow {
     minimumWidth: width
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
 
+    Component.onCompleted: {
+        if (Qt.application.arguments[1] != null) {
+            root.imageSource = "file:/" + Qt.application.arguments[1]
+        }
+    }
+
     title: qsTr("Icon Preview")
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
