@@ -45,7 +45,7 @@ Kirigami.ApplicationWindow {
         nameFilters: ["Icon Files (*.svg)"]
 
         onAccepted: {
-
+            root.imageSource = fileUrl
         }
         onRejected: {
 
