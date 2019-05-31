@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(IconViewer LANGUAGES CXX)
+project(kiconviewer LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,3 +14,9 @@ find_package(KF5Kirigami2)
 add_executable(${PROJECT_NAME} "main.cpp" "qml.qrc")
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2)
+
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set (CMAKE_INSTALL_PREFIX "/usr")
+endif()
+
+install(TARGETS kiconviewer DESTINATION bin)
