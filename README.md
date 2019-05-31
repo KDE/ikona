@@ -11,7 +11,7 @@ zypper in "cmake(Qt5Core) cmake(Qt5Quick) cmake(Qt5QuickControls2) cmake(KF5Kiri
 ```
 
 ## installing
-too lazy to make a desktop file or a package, so here's how you do it
+too lazy to package, here's how you do it yourself
 
 ```
 cd $dir_to_this_cloned
@@ -19,7 +19,15 @@ mkdir build
 cd build
 cmake ..
 make
+sudo make install
 ```
-you'll want to copy the fancy binary to somewhere in your $PATH.  
-no desktop file provided.
-if you're using this, you're probably using Plasma. krunner can run commands.
+
+## installing desktop file
+this lets you right click in your file manager and open directly  
+how fun
+
+```
+cd $dir_to_this_cloned
+sudo cp iconviewer.desktop /usr/share/applications/
+sudo update-desktop-database
+```
