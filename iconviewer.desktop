@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=IconViewer
+Exec=/usr/bin/kiconviewer
+Icon=image-x-icon
+Comment=Utility for viewing Icons
+Categories=Qt;System;Documentation
+GenericName=Icon Preview Utiltiy
+MimeType=image/svg+xml
