@@ -51,7 +51,16 @@ Kirigami.ApplicationWindow {
 
         }
     }
-
+    Timer {
+        interval: 250
+        repeat: true
+        running: true
+        onTriggered: {
+            var temp = root.imageSource
+            root.imageSource = ""
+            root.imageSource = temp
+        }
+    }
     Row {
         Item {
             id: light
@@ -73,6 +82,7 @@ Kirigami.ApplicationWindow {
                     height: light.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 32
                         width: 32
@@ -84,6 +94,7 @@ Kirigami.ApplicationWindow {
                     height: light.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 48
                         width: 48
@@ -95,6 +106,7 @@ Kirigami.ApplicationWindow {
                     height: light.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 64
                         width: 64
@@ -188,6 +200,7 @@ Kirigami.ApplicationWindow {
                     height: dark.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 32
                         width: 32
@@ -199,6 +212,7 @@ Kirigami.ApplicationWindow {
                     height: dark.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 48
                         width: 48
@@ -210,6 +224,7 @@ Kirigami.ApplicationWindow {
                     height: dark.height / 3
                     color: "transparent"
                     Image {
+                        cache: false
                         anchors.centerIn: parent
                         height: 64
                         width: 64
