@@ -1,6 +1,9 @@
 # kicon-preview
 a shameless ripoff of GNOME Icon Preview, but using KDE's favorite technologies in crap ways
 
+## screenie
+![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/kicon-preview/blob/master/screen.png?raw=true)
+
 ## build dependencies for openSUSE
 
 ```
