@@ -605,6 +605,7 @@ Kirigami.ApplicationWindow {
                                     height: 48
                                     width: 48
                                     source: root.imageSource
+                                    usesPlasmaTheme: false
                                 }
                             }
                             Rectangle {
@@ -720,6 +721,7 @@ Kirigami.ApplicationWindow {
                                     height: 48
                                     width: 48
                                     source: root.imageSource
+                                    usesPlasmaTheme: false
                                 }
                             }
                             Rectangle {
@@ -776,7 +778,12 @@ Kirigami.ApplicationWindow {
                         id: lightMany
                         Rectangle {
                             anchors.fill: parent
-                            color: "white"
+                            color: root.leftColor
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 500
+                                }
+                            }
                         }
                         Row {
                             id: lightManyRow
@@ -861,7 +868,12 @@ Kirigami.ApplicationWindow {
                         id: darkMany
                         Rectangle {
                             anchors.fill: parent
-                            color: "#121212"
+                            color: root.rightColor
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 500
+                                }
+                            }
                         }
                         Row {
                             id: darkManyRow
