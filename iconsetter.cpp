@@ -1,6 +1,10 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QProcess>
+#include <QDebug>
 #include "iconsetter.h"
 #include <QIcon>
 
@@ -27,4 +31,19 @@ void IconSetter::setIconTheme(QString themeName)
         QTextStream in(&file);
         in << themeName << endl;
     }
+}
+void IconSetter::copy(QString from, QString to)
+{
+    if (QFile::exists(to))
+    {
+        QFile::remove(to);
+    }
+    QFile::copy(from, to);
+}
+void IconSetter::xdgOpen(QString file)
+{
+    QProcess::startDetached("xdg-open \"" + file + "\"");
+
+    // QDesktopServices::openUrl(QUrl(file));
+    // KIO doesn't like QUrl's encoding for whatever reason.
 }

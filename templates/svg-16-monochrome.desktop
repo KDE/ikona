@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=SVG Icon (16x16, mono)...
+Comment=Enter SVG filename:
+Type=Link
+URL=.source/svg-16-monochrome.svg
+Icon=image-svg+xml

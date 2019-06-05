@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>bg.jpg</file>
-        <file>bg-dark.jpg</file>
     </qresource>
 </RCC>

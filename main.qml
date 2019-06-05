@@ -22,6 +22,7 @@ Kirigami.ApplicationWindow {
     property var leftColor: "white"
     property var rightColor: "#121212"
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
+    property string fromIconTemplate: ""
 
     Component.onCompleted: {
         if (Qt.application.arguments[1] != null) {
@@ -44,6 +45,7 @@ Kirigami.ApplicationWindow {
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
             id:    sidebar
+            titleIcon: "kicon-viewer"
             title: "Icon Viewer"
             actions: [
                 Kirigami.Action {
@@ -106,6 +108,52 @@ Kirigami.ApplicationWindow {
                     iconSource: "exchange-positions"
                     text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
                     onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
+                },
+                Kirigami.Action {
+                    iconSource: "document-new-symbolic"
+                    text: "New Icon from Breeze Templates"
+                    Kirigami.Action {
+                        text: "16px Monochrome Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
+                            savePicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "22px Monochrome Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
+                            savePicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "32px Monochrome Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
+                            savePicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "32px Colour Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
+                            savePicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "48px Colour Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
+                            savePicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "64px Colour Icon"
+                        onTriggered: {
+                            root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
+                            savePicker.open()
+                        }
+                    }
                 }
 
             ]
@@ -131,6 +179,45 @@ Kirigami.ApplicationWindow {
         function prompt() {
             iconThemeNameDrawer.open()
         }
+    }
+    PlasmaCore.DataSource {
+        id: savePicker
+        engine: "executable"
+        connectedSources: []
+        property var callbacks: ({})
+        onNewData: {
+            var exitCode = data["exit code"]
+            var stdout = data["stdout"]
+
+            if (exitCode == 0) {
+                setter.copy(root.fromIconTemplate, stdout.trim())
+                root.imageSource = "file:/" + stdout.trim()
+                setter.xdgOpen(stdout.trim())
+            } else {
+
+            }
+
+            if (callbacks[sourceName] !== undefined) {
+                callbacks[sourceName](stdout);
+            }
+
+            exited(sourceName, stdout)
+            disconnectSource(sourceName) // cmd finished
+        }
+
+        function exec(cmd, onNewDataCallback) {
+            if (onNewDataCallback !== undefined){
+                callbacks[cmd] = onNewDataCallback
+            }
+            connectSource(cmd)
+
+        }
+        function open() {
+            savePicker.exec("kdialog --getsavefilename . 'SVG Icon Files (*.svg)'", function(){});
+        }
+
+        signal exited(string sourceName, string stdout)
+
     }
     PlasmaCore.DataSource {
         id: picker
