@@ -7,6 +7,7 @@ import org.kde.kirigami 2.4 as Kirigami
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import QtGraphicalEffects 1.12
 import me.appadeia.IconSetter 1.0
 import Qt.labs.settings 1.1
 
@@ -853,6 +854,12 @@ Kirigami.ApplicationWindow {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
+                            PlasmaComponents.Label {
+                                anchors.horizontalCenter: symDark16.horizontalCenter
+                                anchors.top: symDark16.bottom
+                                color: "white"
+                                text: "8"
+                            }
                             PlasmaCore.IconItem {
                                 id: symDark16
                                 anchors.centerIn: parent
@@ -860,17 +867,29 @@ Kirigami.ApplicationWindow {
                                 width: 8
                                 source: root.imageSource
                             }
-                            PlasmaComponents.Label {
-                                anchors.horizontalCenter: symDark16.horizontalCenter
-                                anchors.top: symDark16.bottom
+                            ColorOverlay{
+                                anchors.fill: symDark16
+                                source: symDark16
                                 color: "white"
-                                text: "8"
+                                antialiasing: true
+                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: 200
+                                    }
+                                }
                             }
                         }
                         Rectangle {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
+                            PlasmaComponents.Label {
+                                anchors.horizontalCenter: symDark22.horizontalCenter
+                                anchors.top: symDark22.bottom
+                                color: "white"
+                                text: "16"
+                            }
                             PlasmaCore.IconItem {
                                 id: symDark22
                                 anchors.centerIn: parent
@@ -878,17 +897,29 @@ Kirigami.ApplicationWindow {
                                 width: 16
                                 source: root.imageSource
                             }
-                            PlasmaComponents.Label {
-                                anchors.horizontalCenter: symDark22.horizontalCenter
-                                anchors.top: symDark22.bottom
+                            ColorOverlay{
+                                anchors.fill: symDark22
+                                source: symDark22
                                 color: "white"
-                                text: "16"
+                                antialiasing: true
+                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: 200
+                                    }
+                                }
                             }
                         }
                         Rectangle {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
+                            PlasmaComponents.Label {
+                                anchors.horizontalCenter: symDark32.horizontalCenter
+                                anchors.top: symDark32.bottom
+                                color: "white"
+                                text: "22"
+                            }
                             PlasmaCore.IconItem {
                                 id: symDark32
                                 anchors.centerIn: parent
@@ -896,15 +927,31 @@ Kirigami.ApplicationWindow {
                                 width: 22
                                 source: root.imageSource
                             }
-                            PlasmaComponents.Label {
-                                anchors.horizontalCenter: symDark32.horizontalCenter
-                                anchors.top: symDark32.bottom
+                            ColorOverlay{
+                                anchors.fill: symDark32
+                                source: symDark32
                                 color: "white"
-                                text: "22"
+                                antialiasing: true
+                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                Behavior on opacity {
+                                    NumberAnimation {
+                                        duration: 200
+                                    }
+                                }
                             }
                         }
                     }
                 }
+            }
+            Switch {
+                id: colorSwitch
+            }
+            PlasmaComponents.Label {
+                anchors.left: colorSwitch.left
+                anchors.leftMargin: 5
+                anchors.top: colorSwitch.bottom
+                text: "Change color of icons on dark to white\n(good for symbolic icons)"
+                color: "black"
             }
         }
     }
