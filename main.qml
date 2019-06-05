@@ -23,6 +23,7 @@ Kirigami.ApplicationWindow {
     property var leftColor: "white"
     property var rightColor: "#121212"
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
+    property var icons: ["utilities-terminal", "accessories-calculator", "yast", "system-file-manager", "kate", "systemsettings", "system-help", "plasmadiscover", "gimp", "kwin", "sublime-merge", "krdc", "juk", "internet-mail", "okteta", "mpv", "calligrastage", "fingerprint-gui", "cantor", "knotes", "applications-science", "user-desktop", "dialog-positive", "dialog-question", "application-x-rdata", "video-x-flv", "image-jpeg2000", "cups"]
     property string fromIconTemplate: ""
 
     Component.onCompleted: {
@@ -155,9 +156,26 @@ Kirigami.ApplicationWindow {
                             savePicker.open()
                         }
                     }
+                },
+                Kirigami.Action {
+                    iconSource: "randomize"
+                    text: "Shuffle Example Icons"
+                    onTriggered: {
+                        root.icons = root.shuffle(root.icons);
+                    }
                 }
 
             ]
+    }
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
     }
     Kirigami.OverlayDrawer {
         id:             iconThemeNameDrawer
@@ -371,7 +389,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "utilities-terminal"
+                                    source: root.icons[0]
                                 }
                             }
                             Rectangle {
@@ -382,7 +400,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "accessories-calculator"
+                                    source: root.icons[1]
                                 }
                             }
                             Rectangle {
@@ -393,7 +411,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "yast"
+                                    source: root.icons[2]
                                 }
                             }
                             Rectangle {
@@ -404,7 +422,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "system-file-manager"
+                                    source: root.icons[3]
                                 }
                             }
                             Rectangle {
@@ -426,7 +444,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "kate"
+                                    source: root.icons[4]
                                 }
                             }
                             Rectangle {
@@ -437,7 +455,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "systemsettings"
+                                    source: root.icons[5]
                                 }
                             }
                             Rectangle {
@@ -448,7 +466,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "system-help"
+                                    source: root.icons[6]
                                 }
                             }
                             Rectangle {
@@ -459,7 +477,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "plasmadiscover"
+                                    source: root.icons[7]
                                 }
                             }
                         }
@@ -486,7 +504,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "utilities-terminal"
+                                    source: root.icons[0]
                                 }
                             }
                             Rectangle {
@@ -497,7 +515,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "accessories-calculator"
+                                    source: root.icons[1]
                                 }
                             }
                             Rectangle {
@@ -508,7 +526,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "yast"
+                                    source: root.icons[2]
                                 }
                             }
                             Rectangle {
@@ -519,7 +537,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "system-file-manager"
+                                    source: root.icons[3]
                                 }
                             }
                             Rectangle {
@@ -541,7 +559,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "kate"
+                                    source: root.icons[4]
                                 }
                             }
                             Rectangle {
@@ -552,7 +570,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "systemsettings"
+                                    source: root.icons[5]
                                 }
                             }
                             Rectangle {
@@ -563,7 +581,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "system-help"
+                                    source: root.icons[6]
                                 }
                             }
                             Rectangle {
@@ -574,7 +592,7 @@ Kirigami.ApplicationWindow {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
-                                    source: "plasmadiscover"
+                                    source: root.icons[7]
                                 }
                             }
                         }
