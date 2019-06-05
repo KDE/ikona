@@ -5,6 +5,8 @@
 #include <QDesktopServices>
 #include <QProcess>
 #include <QDebug>
+#include <QGuiApplication>
+#include <QClipboard>
 #include "iconsetter.h"
 #include <QIcon>
 
@@ -46,4 +48,9 @@ void IconSetter::xdgOpen(QString file)
 
     // QDesktopServices::openUrl(QUrl(file));
     // KIO doesn't like QUrl's encoding for whatever reason.
+}
+void IconSetter::clipboardCopy(QString string)
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(string);
 }

@@ -11,6 +11,7 @@ public:
     Q_INVOKABLE void setIconTheme(QString themeName);
     Q_INVOKABLE void copy(QString from, QString to);
     Q_INVOKABLE void xdgOpen(QString file);
+    Q_INVOKABLE void clipboardCopy(QString string);
 
 private:
     bool fileExists(QString path);

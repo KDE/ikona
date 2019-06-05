@@ -52,57 +52,122 @@ Kirigami.ApplicationWindow {
             actions: [
                 Kirigami.Action {
                     iconSource: "document-open-symbolic"
-                    text: "Open SVG"
+                    text: "Open SVG..."
                     onTriggered: {
                         picker.open()
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "exchange-positions"
-                    text: "Change Icon Theme"
-                    onTriggered: {
-                        iconThemeNameDrawer.prompt()
-                    }
-                },
-                Kirigami.Action {
-                    iconSource: "color-picker"
-                    text: "Change Light Color"
-                    onTriggered: {
-                        leftColorPicker.open()
-                    }
-                },
-                Kirigami.Action {
-                    iconSource: "color-picker"
-                    text: "Change Dark Color"
-                    onTriggered: {
-                        rightColorPicker.open()
-                    }
-                },
-                Kirigami.Action {
-                    iconSource: "color-picker"
-                    text: "Pick Color From Theme"
+                    iconSource: "view-list-icons"
+                    text: "Icons"
                     Kirigami.Action {
-                        iconSource: "color-picker"
-                        text: "Material Colors"
-                        onTriggered: {
-                            root.leftColor = "white"
-                            root.rightColor = "#121212"
+                        iconSource: "document-new-symbolic"
+                        text: "New Icon from Breeze Templates"
+                        Kirigami.Action {
+                            text: "16px Monochrome Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
+                                savePicker.open()
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "22px Monochrome Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
+                                savePicker.open()
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "32px Monochrome Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
+                                savePicker.open()
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "32px Colour Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
+                                savePicker.open()
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "48px Colour Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
+                                savePicker.open()
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "64px Colour Icon"
+                            onTriggered: {
+                                root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
+                                savePicker.open()
+                            }
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "color-picker"
-                        text: "Breeze Colors"
+                        iconSource: "exchange-positions"
+                        text: "Change Icon Theme"
                         onTriggered: {
-                            root.leftColor = "#eff0f1"
-                            root.rightColor = "#31363b"
+                            iconThemeNameDrawer.prompt()
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "color-picker"
-                        text: "Adwaita Colors"
+                        iconSource: "randomize"
+                        text: "Shuffle Example Icons"
                         onTriggered: {
-                            root.leftColor = "#f6f5f4"
-                            root.rightColor = "#353535"
+                            root.icons = root.shuffle(root.icons);
+                        }
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "color-picker"
+                    text: "Set Colors"
+                    Kirigami.Action {
+                        text: "Change Light Color"
+                        onTriggered: {
+                            leftColorPicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "Change Dark Color"
+                        onTriggered: {
+                            rightColorPicker.open()
+                        }
+                    }
+                    Kirigami.Action {
+                        text: "Set Colors From Theme"
+                        Kirigami.Action {
+                            text: "Material Colors"
+                            onTriggered: {
+                                root.leftColor = "white"
+                                root.rightColor = "#121212"
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "Breeze Colors"
+                            onTriggered: {
+                                root.leftColor = "#eff0f1"
+                                root.rightColor = "#31363b"
+                            }
+                        }
+                        Kirigami.Action {
+                            text: "Adwaita Colors"
+                            onTriggered: {
+                                root.leftColor = "#f6f5f4"
+                                root.rightColor = "#353535"
+                            }
+                        }
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "palette-symbolic"
+                    text: "View Palettes"
+                    Kirigami.Action {
+                        text: "Breeze Palette"
+                        onTriggered: {
+                            breezeColorsDrawer.open()
                         }
                     }
                 },
@@ -110,61 +175,7 @@ Kirigami.ApplicationWindow {
                     iconSource: "exchange-positions"
                     text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
                     onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
-                },
-                Kirigami.Action {
-                    iconSource: "document-new-symbolic"
-                    text: "New Icon from Breeze Templates"
-                    Kirigami.Action {
-                        text: "16px Monochrome Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
-                            savePicker.open()
-                        }
-                    }
-                    Kirigami.Action {
-                        text: "22px Monochrome Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
-                            savePicker.open()
-                        }
-                    }
-                    Kirigami.Action {
-                        text: "32px Monochrome Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
-                            savePicker.open()
-                        }
-                    }
-                    Kirigami.Action {
-                        text: "32px Colour Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
-                            savePicker.open()
-                        }
-                    }
-                    Kirigami.Action {
-                        text: "48px Colour Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
-                            savePicker.open()
-                        }
-                    }
-                    Kirigami.Action {
-                        text: "64px Colour Icon"
-                        onTriggered: {
-                            root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
-                            savePicker.open()
-                        }
-                    }
-                },
-                Kirigami.Action {
-                    iconSource: "randomize"
-                    text: "Shuffle Example Icons"
-                    onTriggered: {
-                        root.icons = root.shuffle(root.icons);
-                    }
                 }
-
             ]
     }
     function shuffle(a) {
@@ -176,6 +187,166 @@ Kirigami.ApplicationWindow {
             a[j] = x;
         }
         return a;
+    }
+    Kirigami.OverlayDrawer {
+        id:             breezeColorsDrawer
+        edge:           Qt.BottomEdge
+        height: root.height * 0.9
+
+        contentItem: ScrollView {
+            anchors.fill: parent
+            clip: true
+            Column {
+                Kirigami.Heading {
+                    text: "Breeze Colors"
+                }
+                Kirigami.Heading {
+                    font.pointSize: 12
+                    text: "Neutral Colors"
+                }
+                Flow {
+                    width: 800
+                    ColorSwatch {
+                        swatchColor: "#fcfcfc"
+                        fancyName: "Paper White"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#eff0f1"
+                        fancyName: "Cardboard Grey"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#bdc3c7"
+                        fancyName: "Alternate Grey"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#95a5a6"
+                        fancyName: "Alternate Alternate Grey"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#7f8c8d"
+                        fancyName: "Coastal Fog"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#4d4d4d"
+                        fancyName: "Icon Grey"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#31363b"
+                        fancyName: "Charcoal Grey"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#232627"
+                        fancyName: "Shade Black"
+                    }
+                }
+                Kirigami.Heading {
+                    font.pointSize: 12
+                    text: "Warm Colors"
+                }
+                Flow {
+                    width: 800
+                    ColorSwatch {
+                        swatchColor: "#e74c3c"
+                        fancyName: "Pimpinella"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#da4453"
+                        fancyName: "Icon Red"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#ed1515"
+                        fancyName: "Danger Red"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#c0392b"
+                        fancyName: "Alternate Red"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#f47750"
+                        fancyName: "Icon Orange"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#d35400"
+                        fancyName: "Alternate Orange"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#fdbc4b"
+                        fancyName: "Icon Yellow"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#f67400"
+                        fancyName: "Beware Orange"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#c9ce3b"
+                        fancyName: "Sunbeam Yellow"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#f39c1f"
+                        fancyName: "Alternate Alternate Orange"
+                    }
+                }
+                Kirigami.Heading {
+                    font.pointSize: 12
+                    text: "Cool Colors"
+                }
+                Flow {
+                    width: 800
+                    ColorSwatch {
+                        swatchColor: "#1cdc9a"
+                        fancyName: "Mellow Turquoise"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#11d116"
+                        fancyName: "Verdant Green"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#11d116"
+                        fancyName: "Verdant Green"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#2ecc71"
+                        fancyName: "Icon Green"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#27ae60"
+                        fancyName: "Noble Fir"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#1abc9c"
+                        fancyName: "Teal"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#16a085"
+                        fancyName: "Alternate Teal"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#3498db"
+                        fancyName: "Alternate Blue"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#2980b9"
+                        fancyName: "Abyss Blue"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#3daee9"
+                        fancyName: "Plasma Blue"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#1d99f3"
+                        fancyName: "Icon Blue"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#9b59b6"
+                        fancyName: "Purple"
+                    }
+                    ColorSwatch {
+                        swatchColor: "#8e44ad"
+                        fancyName: "Alternate Purple"
+                    }
+                }
+            }
+        }
     }
     Kirigami.OverlayDrawer {
         id:             iconThemeNameDrawer
