@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle("Desktop");
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");
-    app.setApplicationName("Icon Viewer");
+    app.setApplicationName("Ikona");
 
     if (fileExists(QDir::homePath() + "/.iconPreviewTheme")) {
         QFile file(QDir::homePath() + "/.iconPreviewTheme");
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         }
     }
     qmlRegisterType<IconSetter>("me.appadeia.IconSetter", 1, 0, "IconSetter");
-    app.setWindowIcon(QIcon::fromTheme(QString("kicon-viewer")));
+    app.setWindowIcon(QIcon::fromTheme(QString("ikona")));
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

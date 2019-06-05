@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=KIcon Viewer
-Exec=/usr/bin/kiconviewer
-Icon=kicon-viewer
+Name=Ikona
+Exec=/usr/bin/ikona
+Icon=ikona
 Comment=Utility for viewing Icons
 Categories=Qt;System;Documentation
 GenericName=Icon Preview Utiltiy

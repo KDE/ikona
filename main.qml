@@ -42,12 +42,12 @@ Kirigami.ApplicationWindow {
         id: setter
     }
 
-    title: qsTr("Icon Preview")
+    title: qsTr("Ikona")
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
             id:    sidebar
-            titleIcon: "kicon-viewer"
-            title: "Icon Viewer"
+            titleIcon: "ikona"
+            title: "Ikona"
             actions: [
                 Kirigami.Action {
                     iconSource: "document-open-symbolic"

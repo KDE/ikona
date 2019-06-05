@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(kiconviewer LANGUAGES CXX)
+project(ikona LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -21,4 +21,4 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set (CMAKE_INSTALL_PREFIX "/usr")
 endif()
 
-install(TARGETS kiconviewer DESTINATION bin)
+install(TARGETS ikona DESTINATION bin)
