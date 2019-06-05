@@ -19,18 +19,22 @@ Kirigami.ApplicationWindow {
     maximumWidth: width
     minimumHeight: height
     minimumWidth: width
+    property var leftColor: "white"
+    property var rightColor: "#121212"
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
 
     Component.onCompleted: {
         if (Qt.application.arguments[1] != null) {
             root.imageSource = "file:/" + Qt.application.arguments[1]
         }
-
+        console.log(root.imageSource)
     }
     Settings {
         property alias x: root.x
         property alias y: root.y
         property alias imageSource: root.imageSource
+        property alias leftColor: root.leftColor
+        property alias rightColor: root.rightColor
     }
     IconSetter {
         id: setter
@@ -55,7 +59,50 @@ Kirigami.ApplicationWindow {
                     onTriggered: {
                         iconThemeNameDrawer.prompt()
                     }
+                },
+                Kirigami.Action {
+                    iconSource: "color-picker"
+                    text: "Change Light Color"
+                    onTriggered: {
+                        leftColorPicker.open()
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "color-picker"
+                    text: "Change Dark Color"
+                    onTriggered: {
+                        rightColorPicker.open()
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "color-picker"
+                    text: "Pick Color From Theme"
+                    Kirigami.Action {
+                        iconSource: "color-picker"
+                        text: "Material Colors"
+                        onTriggered: {
+                            root.leftColor = "white"
+                            root.rightColor = "#121212"
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "color-picker"
+                        text: "Breeze Colors"
+                        onTriggered: {
+                            root.leftColor = "#eff0f1"
+                            root.rightColor = "#31363b"
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "color-picker"
+                        text: "Adwaita Colors"
+                        onTriggered: {
+                            root.leftColor = "#f6f5f4"
+                            root.rightColor = "#353535"
+                        }
+                    }
                 }
+
             ]
     }
     Kirigami.OverlayDrawer {
@@ -112,6 +159,80 @@ Kirigami.ApplicationWindow {
         }
         function open() {
             picker.exec("kdialog --getopenfilename . 'SVG Icon Files (*.svg)'", function(){});
+        }
+
+        signal exited(string sourceName, string stdout)
+
+    }
+    PlasmaCore.DataSource {
+        id: leftColorPicker
+        engine: "executable"
+        connectedSources: []
+        property var callbacks: ({})
+        onNewData: {
+            var exitCode = data["exit code"]
+            var stdout = data["stdout"]
+
+            if (exitCode == 0) {
+                root.leftColor = stdout.trim()
+            } else {
+
+            }
+
+            if (callbacks[sourceName] !== undefined) {
+                callbacks[sourceName](stdout);
+            }
+
+            exited(sourceName, stdout)
+            disconnectSource(sourceName) // cmd finished
+        }
+
+        function exec(cmd, onNewDataCallback) {
+            if (onNewDataCallback !== undefined){
+                callbacks[cmd] = onNewDataCallback
+            }
+            connectSource(cmd)
+
+        }
+        function open() {
+            leftColorPicker.exec("kdialog --getcolor", function(){});
+        }
+
+        signal exited(string sourceName, string stdout)
+
+    }
+    PlasmaCore.DataSource {
+        id: rightColorPicker
+        engine: "executable"
+        connectedSources: []
+        property var callbacks: ({})
+        onNewData: {
+            var exitCode = data["exit code"]
+            var stdout = data["stdout"]
+
+            if (exitCode == 0) {
+                root.rightColor = stdout.trim()
+            } else {
+
+            }
+
+            if (callbacks[sourceName] !== undefined) {
+                callbacks[sourceName](stdout);
+            }
+
+            exited(sourceName, stdout)
+            disconnectSource(sourceName) // cmd finished
+        }
+
+        function exec(cmd, onNewDataCallback) {
+            if (onNewDataCallback !== undefined){
+                callbacks[cmd] = onNewDataCallback
+            }
+            connectSource(cmd)
+
+        }
+        function open() {
+            rightColorPicker.exec("kdialog --getcolor", function(){});
         }
 
         signal exited(string sourceName, string stdout)
@@ -370,7 +491,12 @@ Kirigami.ApplicationWindow {
                     id: lightMany
                     Rectangle {
                         anchors.fill: parent
-                        color: "white"
+                        color: root.leftColor
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 300
+                            }
+                        }
                     }
                     Row {
                         id: lightManyRow
@@ -455,7 +581,12 @@ Kirigami.ApplicationWindow {
                     id: darkMany
                     Rectangle {
                         anchors.fill: parent
-                        color: "#121212"
+                        color: root.rightColor
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 300
+                            }
+                        }
                     }
                     Row {
                         id: darkManyRow
