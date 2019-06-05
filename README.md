@@ -1,17 +1,17 @@
-# kicon-preview
-a shameless ripoff of GNOME Icon Preview, but using KDE's favorite technologies in crap ways
+# Ikona
+A companion utility to help see an icon you are editing.
 
 ## screenie
-![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/kicon-preview/blob/master/screen.png?raw=true)
+![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/ikona/raw/master/screen.png)
 
 ## build dependencies for openSUSE
 
 ```
-zypper in "cmake(Qt5Core) cmake(Qt5Quick) cmake(Qt5QuickControls2) cmake(KF5Kirigami2)"
+zypper in "cmake(Qt5Core) cmake(Qt5Quick) cmake(Qt5QuickControls2) cmake(KF5Kirigami2) cmake(KF5Plasma) cmake(KF5PlasmaQuick)"
 ```
 
 ## installing
-too lazy to package, here's how you do it yourself
+for when you're not on openSUSE and need to do it yourself
 
 ```
 cd $dir_to_this_cloned
@@ -28,6 +28,6 @@ how fun
 
 ```
 cd $dir_to_this_cloned
-sudo cp iconviewer.desktop /usr/share/applications/
+sudo cp ikona.desktop /usr/share/applications/
 sudo update-desktop-database
 ```
