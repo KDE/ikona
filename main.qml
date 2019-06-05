@@ -104,7 +104,7 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconSource: "exchange-positions"
-                    text: swipe.currentIndex == 0 ? "Go to Symbolic View" : "Return to Large View"
+                    text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
                     onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
                 }
 
