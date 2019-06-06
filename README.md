@@ -4,7 +4,7 @@ A companion utility to help see an icon you are editing. Note: This uses a lot o
 ## contributors 
 - pontos/appadeia: main application design & programming, alongside original icon
 - noahdvs: input on application & help with making icon more breezy
-- hellcp: input on application design
+- hellcp: input on application design. also name of application.
 
 ## screenie
 ![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/ikona/raw/master/screen.png)
