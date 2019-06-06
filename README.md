@@ -1,5 +1,5 @@
 # Ikona
-A companion utility to help see an icon you are editing.
+A companion utility to help see an icon you are editing. Note: This uses a lot of new Qt things, so this probably won't work on distros with Qt older than 5.12.
 
 ## screenie
 ![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/ikona/raw/master/screen.png)
