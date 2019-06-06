@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(myMessageOutput);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQuickStyle::setStyle("Desktop");
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");

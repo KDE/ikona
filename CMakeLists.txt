@@ -8,7 +8,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Core Quick QuickControls2 REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Core Quick QuickControls2 REQUIRED)
 find_package(KF5Plasma)
 find_package(KF5Kirigami2)
 find_package(KF5PlasmaQuick)

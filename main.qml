@@ -10,6 +10,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtGraphicalEffects 1.12
 import me.appadeia.IconSetter 1.0
 import Qt.labs.settings 1.1
+import Qt.labs.platform 1.1 as QNative
 
 Kirigami.ApplicationWindow {
     id: root
@@ -25,6 +26,164 @@ Kirigami.ApplicationWindow {
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
     property var icons: ["utilities-terminal", "accessories-calculator", "yast", "system-file-manager", "kate", "systemsettings", "system-help", "plasmadiscover", "gimp", "kwin", "sublime-merge", "krdc", "juk", "internet-mail", "okteta", "mpv", "calligrastage", "fingerprint-gui", "cantor", "knotes", "applications-science", "user-desktop", "dialog-positive", "dialog-question", "application-x-rdata", "video-x-flv", "image-jpeg2000", "cups"]
     property string fromIconTemplate: ""
+
+    Shortcut {
+        sequence: StandardKey.Open
+        onActivated: picker.open()
+    }
+    Shortcut {
+        sequence: "Ctrl+R"
+        onActivated: root.icons = root.shuffle(root.icons)
+    }
+    Shortcut {
+        sequence: "Ctrl+L"
+        onActivated: leftColorPicker.open()
+    }
+    Shortcut {
+        sequence: "Ctrl+D"
+        onActivated: rightColorPicker.open()
+    }
+    Shortcut {
+        sequence: StandardKey.NextChild
+        onActivated: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
+    }
+
+    QNative.MenuBar {
+        QNative.Menu {
+            title: "Icon"
+            QNative.MenuItem {
+                iconName: "document-open-symbolic"
+                text: "Open SVG..."
+                onTriggered: picker.open()
+                shortcut: StandardKey.Open
+            }
+            QNative.MenuItem {
+                shortcut: "Ctrl+R"
+                iconName: "randomize"
+                text: "Shuffle Example Icons"
+                onTriggered: root.icons = root.shuffle(root.icons)
+            }
+            QNative.MenuItem {
+                iconName: "exchange-positions"
+                text: "Set Icon Theme (Requires Restart)"
+                onTriggered: iconThemeNameDrawer.prompt()
+            }
+            QNative.MenuSeparator {}
+            QNative.Menu {
+                iconName: "document-new-symbolic"
+                title: "New Icon from Breeze Templates"
+                QNative.MenuItem {
+                    text: "16px Monochrome"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
+                        savePicker.open()
+                    }
+                }
+                QNative.MenuItem {
+                    text: "22px Monochrome"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
+                        savePicker.open()
+                    }
+                }
+                QNative.MenuItem {
+                    text: "32px Monochrome"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
+                        savePicker.open()
+                    }
+                }
+                QNative.MenuItem {
+                    text: "32px Color"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
+                        savePicker.open()
+                    }
+                }
+                QNative.MenuItem {
+                    text: "48px Color"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
+                        savePicker.open()
+                    }
+                }
+                QNative.MenuItem {
+                    text: "64px Color"
+                    onTriggered: {
+                        root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
+                        savePicker.open()
+                    }
+                }
+            }
+        }
+        QNative.Menu {
+            title: "Colors"
+            QNative.MenuItem {
+                shortcut: "Ctrl+L"
+                iconName: "color-picker"
+                text: "Change Light Color"
+                onTriggered: leftColorPicker.open()
+            }
+            QNative.MenuItem {
+                shortcut: "Ctrl+D"
+                iconName: "color-picker"
+                text: "Change Dark Color"
+                onTriggered: rightColorPicker.open()
+            }
+            QNative.MenuSeparator {}
+            QNative.Menu {
+                title: "Pick Colors from Theme"
+                QNative.MenuItem {
+                    text: "Material Design"
+                    onTriggered: {
+                        root.leftColor = "white"
+                        root.rightColor = "#121212"
+                    }
+                }
+                QNative.MenuItem {
+                    text: "Breeze"
+                    onTriggered: {
+                        root.leftColor = "#eff0f1"
+                        root.rightColor = "#31363b"
+                    }
+                }
+                QNative.MenuItem {
+                    text: "Adwaita"
+                    onTriggered: {
+                        root.leftColor = "#f6f5f4"
+                        root.rightColor = "#353535"
+                    }
+                }
+            }
+        }
+        QNative.Menu {
+            title: "Palettes"
+            QNative.MenuItem {
+                iconName: "palette-symbolic"
+                text: "View Breeze Colors"
+                onTriggered: breezeColorsDrawer.open()
+            }
+        }
+        QNative.Menu {
+            title: "View"
+            QNative.MenuItem {
+                shortcut: StandardKey.NextChild
+                iconName: "exchange-positions"
+                text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
+                onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
+            }
+            QNative.MenuItem {
+                onTriggered: root.toggleColorChecked()
+                text: "Toggle White Effect on Symbolic Icons on Dark"
+            }
+        }
+    }
+
+    function toggleColorChecked() {
+        if (colorSwitch.checked) {
+            colorSwitch.checked = false
+        }
+    }
 
     Component.onCompleted: {
         if (Qt.application.arguments[1] != null) {
@@ -1073,7 +1232,7 @@ Kirigami.ApplicationWindow {
                                 source: symDark16
                                 color: "white"
                                 antialiasing: true
-                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                opacity: colorSwitch.checked
                                 Behavior on opacity {
                                     NumberAnimation {
                                         duration: 200
@@ -1103,7 +1262,7 @@ Kirigami.ApplicationWindow {
                                 source: symDark22
                                 color: "white"
                                 antialiasing: true
-                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                opacity: colorSwitch.checked
                                 Behavior on opacity {
                                     NumberAnimation {
                                         duration: 200
@@ -1133,7 +1292,7 @@ Kirigami.ApplicationWindow {
                                 source: symDark32
                                 color: "white"
                                 antialiasing: true
-                                opacity: colorSwitch.position > 0.5 ? 1 : 0
+                                opacity: colorSwitch.checked
                                 Behavior on opacity {
                                     NumberAnimation {
                                         duration: 200
@@ -1144,7 +1303,7 @@ Kirigami.ApplicationWindow {
                     }
                 }
             }
-            Switch {
+            PlasmaComponents.CheckBox {
                 id: colorSwitch
             }
             PlasmaComponents.Label {
