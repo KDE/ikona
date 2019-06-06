@@ -1,6 +1,11 @@
 # Ikona
 A companion utility to help see an icon you are editing. Note: This uses a lot of new Qt things, so this probably won't work on distros with Qt older than 5.12.
 
+## contributors 
+- pontos/appadeia: main application design & programming, alongside original icon
+- noahdvs: input on application & help with making icon more breezy
+- hellcp: input on application design
+
 ## screenie
 ![a screenshot of the icon previewer. probably not of much use to you if you're blind and need this.](https://github.com/Appadeia/ikona/raw/master/screen.png)
 
@@ -21,6 +26,9 @@ cmake ..
 make
 sudo make install
 ```
+
+## templates
+copy `templates/` and merge with `/usr/share/templates`
 
 ## installing desktop file
 this lets you right click in your file manager and open directly  
