@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication app(argc, argv);
-    QQuickStyle::setStyle("Desktop");
+    QQuickStyle::setStyle("Plasma");
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");
     app.setApplicationName("Ikona");
@@ -63,7 +63,16 @@ int main(int argc, char *argv[])
             qDebug() << in.readAll().trimmed();
         }
     }
+    QDir dir(QDir::homePath() + "/.ikona");
+    if (!dir.exists()) {
+        dir.mkdir(QDir::homePath() + "/.ikona");
+    }
+
     qmlRegisterType<IconSetter>("me.appadeia.IconSetter", 1, 0, "IconSetter");
+
+    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << QDir::homePath() + "/.ikona");
+    qDebug() << QIcon::fallbackSearchPaths();
+
     app.setWindowIcon(QIcon::fromTheme(QString("ikona")));
 
     QQmlApplicationEngine engine;

@@ -42,6 +42,16 @@ void IconSetter::copy(QString from, QString to)
     }
     QFile::copy(from, to);
 }
+void IconSetter::linkIcon(QString from)
+{
+    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << QDir::homePath() + "/.ikona");
+    QString to = QDir::homePath() + "/.ikona/" + "ikonapreviewicon.svg";
+    if (QFile::exists(to))
+    {
+        QFile::remove(to);
+    }
+    QFile::link(from, to);
+}
 void IconSetter::xdgOpen(QString file)
 {
     QProcess::startDetached("xdg-open \"" + file + "\"");

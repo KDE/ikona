@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>ColorSwatch.qml</file>
+        <file>LightIcon.qml</file>
+        <file>DarkIcon.qml</file>
     </qresource>
 </RCC>

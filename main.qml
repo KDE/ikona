@@ -23,7 +23,7 @@ Kirigami.ApplicationWindow {
     minimumWidth: width
     property var leftColor: "white"
     property var rightColor: "#121212"
-    property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
+    property string imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
     property var icons: ["utilities-terminal", "accessories-calculator", "yast", "system-file-manager", "kate", "systemsettings", "system-help", "plasmadiscover", "gimp", "kwin", "sublime-merge", "krdc", "juk", "internet-mail", "okteta", "mpv", "calligrastage", "fingerprint-gui", "cantor", "knotes", "applications-science", "user-desktop", "dialog-positive", "dialog-question", "application-x-rdata", "video-x-flv", "image-jpeg2000", "cups"]
     property string fromIconTemplate: ""
 
@@ -172,16 +172,6 @@ Kirigami.ApplicationWindow {
                 text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
                 onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
             }
-            QNative.MenuItem {
-                onTriggered: root.toggleColorChecked()
-                text: "Toggle White Effect on Symbolic Icons on Dark"
-            }
-        }
-    }
-
-    function toggleColorChecked() {
-        if (colorSwitch.checked) {
-            colorSwitch.checked = false
         }
     }
 
@@ -579,6 +569,8 @@ Kirigami.ApplicationWindow {
 
             if (exitCode == 0) {
                 root.imageSource = "file:/" + stdout.trim()
+                setter.linkIcon(stdout.trim())
+                root.imageSource = "ikonapreviewicon";
             } else {
 
             }
@@ -759,12 +751,11 @@ Kirigami.ApplicationWindow {
                                 width: light.width / 3
                                 height: light.height / 3
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                LightIcon {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
                                     source: root.imageSource
-                                    usesPlasmaTheme: false
                                 }
                             }
                             Rectangle {
@@ -875,12 +866,11 @@ Kirigami.ApplicationWindow {
                                 width: dark.width / 3
                                 height: dark.height / 3
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                DarkIcon {
                                     anchors.centerIn: parent
                                     height: 48
                                     width: 48
                                     source: root.imageSource
-                                    usesPlasmaTheme: false
                                 }
                             }
                             Rectangle {
@@ -951,7 +941,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                LightIcon {
                                     id: light16
                                     anchors.centerIn: parent
                                     height: 16
@@ -969,7 +959,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                LightIcon {
                                     id: light22
                                     anchors.centerIn: parent
                                     height: 22
@@ -987,7 +977,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                LightIcon {
                                     id: light32
                                     anchors.centerIn: parent
                                     height: 32
@@ -1005,7 +995,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                LightIcon {
                                     id: light48
                                     anchors.centerIn: parent
                                     height: 48
@@ -1041,7 +1031,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                DarkIcon {
                                     id: dark16
                                     anchors.centerIn: parent
                                     height: 16
@@ -1059,7 +1049,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                DarkIcon {
                                     id: dark22
                                     anchors.centerIn: parent
                                     height: 22
@@ -1077,7 +1067,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                DarkIcon {
                                     id: dark32
                                     anchors.centerIn: parent
                                     height: 32
@@ -1095,7 +1085,7 @@ Kirigami.ApplicationWindow {
                                 width: parent.width / 4
                                 height: parent.height
                                 color: "transparent"
-                                PlasmaCore.IconItem {
+                                DarkIcon {
                                     id: dark48
                                     anchors.centerIn: parent
                                     height: 48
@@ -1151,7 +1141,7 @@ Kirigami.ApplicationWindow {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
-                            PlasmaCore.IconItem {
+                            LightIcon {
                                 id: symLight16
                                 anchors.centerIn: parent
                                 height: 8
@@ -1169,7 +1159,7 @@ Kirigami.ApplicationWindow {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
-                            PlasmaCore.IconItem {
+                            LightIcon {
                                 id: symLight22
                                 anchors.centerIn: parent
                                 height: 16
@@ -1187,7 +1177,7 @@ Kirigami.ApplicationWindow {
                             width: parent.width / 3
                             height: parent.height
                             color: "transparent"
-                            PlasmaCore.IconItem {
+                            LightIcon {
                                 id: symLight32
                                 anchors.centerIn: parent
                                 height: 22
@@ -1220,24 +1210,12 @@ Kirigami.ApplicationWindow {
                                 color: "white"
                                 text: "8"
                             }
-                            PlasmaCore.IconItem {
+                            DarkIcon {
                                 id: symDark16
                                 anchors.centerIn: parent
                                 height: 8
                                 width: 8
                                 source: root.imageSource
-                            }
-                            ColorOverlay{
-                                anchors.fill: symDark16
-                                source: symDark16
-                                color: "white"
-                                antialiasing: true
-                                opacity: colorSwitch.checked
-                                Behavior on opacity {
-                                    NumberAnimation {
-                                        duration: 200
-                                    }
-                                }
                             }
                         }
                         Rectangle {
@@ -1250,24 +1228,12 @@ Kirigami.ApplicationWindow {
                                 color: "white"
                                 text: "16"
                             }
-                            PlasmaCore.IconItem {
+                            DarkIcon {
                                 id: symDark22
                                 anchors.centerIn: parent
                                 height: 16
                                 width: 16
                                 source: root.imageSource
-                            }
-                            ColorOverlay{
-                                anchors.fill: symDark22
-                                source: symDark22
-                                color: "white"
-                                antialiasing: true
-                                opacity: colorSwitch.checked
-                                Behavior on opacity {
-                                    NumberAnimation {
-                                        duration: 200
-                                    }
-                                }
                             }
                         }
                         Rectangle {
@@ -1280,38 +1246,16 @@ Kirigami.ApplicationWindow {
                                 color: "white"
                                 text: "22"
                             }
-                            PlasmaCore.IconItem {
+                            DarkIcon {
                                 id: symDark32
                                 anchors.centerIn: parent
                                 height: 22
                                 width: 22
                                 source: root.imageSource
                             }
-                            ColorOverlay{
-                                anchors.fill: symDark32
-                                source: symDark32
-                                color: "white"
-                                antialiasing: true
-                                opacity: colorSwitch.checked
-                                Behavior on opacity {
-                                    NumberAnimation {
-                                        duration: 200
-                                    }
-                                }
-                            }
                         }
                     }
                 }
-            }
-            PlasmaComponents.CheckBox {
-                id: colorSwitch
-            }
-            PlasmaComponents.Label {
-                anchors.left: colorSwitch.left
-                anchors.leftMargin: 5
-                anchors.top: colorSwitch.bottom
-                text: "Change color of icons on dark to white\n(good for symbolic icons)"
-                color: "black"
             }
         }
     }
