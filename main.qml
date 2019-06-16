@@ -23,7 +23,7 @@ Kirigami.ApplicationWindow {
     minimumWidth: width
     property var leftColor: "white"
     property var rightColor: "#121212"
-    property string imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
+    property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
     property var icons: ["utilities-terminal", "accessories-calculator", "yast", "system-file-manager", "kate", "systemsettings", "system-help", "plasmadiscover", "gimp", "kwin", "sublime-merge", "krdc", "juk", "internet-mail", "okteta", "mpv", "calligrastage", "fingerprint-gui", "cantor", "knotes", "applications-science", "user-desktop", "dialog-positive", "dialog-question", "application-x-rdata", "video-x-flv", "image-jpeg2000", "cups"]
     property string fromIconTemplate: ""
 
@@ -450,10 +450,6 @@ Kirigami.ApplicationWindow {
                         fancyName: "Verdant Green"
                     }
                     ColorSwatch {
-                        swatchColor: "#11d116"
-                        fancyName: "Verdant Green"
-                    }
-                    ColorSwatch {
                         swatchColor: "#2ecc71"
                         fancyName: "Icon Green"
                     }
@@ -569,8 +565,8 @@ Kirigami.ApplicationWindow {
 
             if (exitCode == 0) {
                 root.imageSource = "file:/" + stdout.trim()
-                setter.linkIcon(stdout.trim())
-                root.imageSource = "ikonapreviewicon";
+                // setter.linkIcon(stdout.trim())
+                // root.imageSource = "ikonapreviewicon";
             } else {
 
             }
@@ -1216,6 +1212,7 @@ Kirigami.ApplicationWindow {
                                 height: 8
                                 width: 8
                                 source: root.imageSource
+                                overlayWhite: overlayCheck.checked
                             }
                         }
                         Rectangle {
@@ -1234,6 +1231,7 @@ Kirigami.ApplicationWindow {
                                 height: 16
                                 width: 16
                                 source: root.imageSource
+                                overlayWhite: overlayCheck.checked
                             }
                         }
                         Rectangle {
@@ -1252,10 +1250,25 @@ Kirigami.ApplicationWindow {
                                 height: 22
                                 width: 22
                                 source: root.imageSource
+                                overlayWhite: overlayCheck.checked
                             }
                         }
                     }
                 }
+            }
+            PlasmaComponents.CheckBox {
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                id: overlayCheck
+            }
+            PlasmaComponents.Label {
+                anchors.left: overlayCheck.right
+                anchors.leftMargin: 5
+                color: "black"
+                anchors.verticalCenter: overlayCheck.verticalCenter
+                text: "Enable white effect on icons on dark"
             }
         }
     }

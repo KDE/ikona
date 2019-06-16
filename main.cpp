@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication app(argc, argv);
-    QQuickStyle::setStyle("Plasma");
+    // QQuickStyle::setStyle("Plasma");
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");
     app.setApplicationName("Ikona");

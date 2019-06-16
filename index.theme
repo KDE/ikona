@@ -1,0 +1,13 @@
+[Icon Theme]
+Name=Ikona
+Comment=Ikona internal icon theme
+Hidden=true
+Inherits=breeze,hicolor,oxygen
+FollowsColorScheme=true
+
+[ikona-icons]
+MinSize=1
+Size=128
+MaxSize=256
+Context=Applications
+Type=Scalable
