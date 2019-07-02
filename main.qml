@@ -11,16 +11,15 @@ import QtGraphicalEffects 1.12
 import me.appadeia.IconSetter 1.0
 import Qt.labs.settings 1.1
 import Qt.labs.platform 1.1 as QNative
+import QtWebEngine 1.9
 
 Kirigami.ApplicationWindow {
     id: root
     visible: true
     width: 800
     height: 400 + (400 * 1/3)
-    maximumHeight: height
-    maximumWidth: width
-    minimumHeight: height
-    minimumWidth: width
+    minimumHeight: 400 + (400 * 1/3)
+    minimumWidth: 800
     property var leftColor: "white"
     property var rightColor: "#121212"
     property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
@@ -179,11 +178,13 @@ Kirigami.ApplicationWindow {
         if (Qt.application.arguments[1] != null) {
             root.imageSource = "file:/" + Qt.application.arguments[1]
         }
-        console.log(root.imageSource)
     }
+
     Settings {
         property alias x: root.x
         property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
         property alias imageSource: root.imageSource
         property alias leftColor: root.leftColor
         property alias rightColor: root.rightColor
@@ -192,7 +193,7 @@ Kirigami.ApplicationWindow {
         id: setter
     }
 
-    title: qsTr("Ikona")
+    title: qsTr("Ikona Design Companion")
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
             id:    sidebar
@@ -346,6 +347,7 @@ Kirigami.ApplicationWindow {
             anchors.fill: parent
             clip: true
             Column {
+                width: root.width
                 Kirigami.Heading {
                     text: "Breeze Colors"
                 }
@@ -354,7 +356,7 @@ Kirigami.ApplicationWindow {
                     text: "Neutral Colors"
                 }
                 Flow {
-                    width: 800
+                    width: parent.width
                     ColorSwatch {
                         swatchColor: "#fcfcfc"
                         fancyName: "Paper White"
@@ -393,7 +395,7 @@ Kirigami.ApplicationWindow {
                     text: "Warm Colors"
                 }
                 Flow {
-                    width: 800
+                    width: parent.width
                     ColorSwatch {
                         swatchColor: "#e74c3c"
                         fancyName: "Pimpinella"
@@ -440,7 +442,7 @@ Kirigami.ApplicationWindow {
                     text: "Cool Colors"
                 }
                 Flow {
-                    width: 800
+                    width: parent.width
                     ColorSwatch {
                         swatchColor: "#1cdc9a"
                         fancyName: "Mellow Turquoise"
@@ -681,420 +683,426 @@ Kirigami.ApplicationWindow {
     SwipeView {
         id: swipe
         anchors.fill: parent
-        Item {
-            Column {
-                Row {
-                    Item {
-                        id: light
-                        clip: true
-                        height: 400
-                        width: 400
-                        Image {
-                            anchors.fill: parent
-                            source: "qrc:/bg.jpg"
-                            fillMode: Image.PreserveAspectCrop
-                        }
-                        GridLayout {
-                            columnSpacing: 0
-                            rowSpacing: 0
-                            columns: 3
-                            rows: 3
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[0]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[1]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[2]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[3]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                LightIcon {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.imageSource
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[4]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[5]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[6]
-                                }
-                            }
-                            Rectangle {
-                                width: light.width / 3
-                                height: light.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[7]
-                                }
-                            }
+        GridLayout {
+            id: pageOne
+            columns: 2
+            rows: 2
+            rowSpacing: 0
+            columnSpacing: 0
+            Item {
+                id: light
+                clip: true
+                Layout.fillHeight: true
+                width: root.width / 2
+                Image {
+                    anchors.fill: parent
+                    source: "qrc:/bg.jpg"
+                    fillMode: Image.PreserveAspectCrop
+                }
+                GridLayout {
+                    width: light.width
+                    height: light.height
+                    columnSpacing: 0
+                    rowSpacing: 0
+                    columns: 3
+                    rows: 3
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[0]
                         }
                     }
-                    Item {
-                        id: dark
-                        height: 400
-                        width: 400
-                        Image {
-                            anchors.fill: parent
-                            source: "qrc:/bg-dark.jpg"
-                            fillMode: Image.PreserveAspectCrop
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[1]
                         }
-                        GridLayout {
-                            columnSpacing: 0
-                            rowSpacing: 0
-                            columns: 3
-                            rows: 3
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[0]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[1]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[2]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[3]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                DarkIcon {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.imageSource
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[4]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[5]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[6]
-                                }
-                            }
-                            Rectangle {
-                                width: dark.width / 3
-                                height: dark.height / 3
-                                color: "transparent"
-                                PlasmaCore.IconItem {
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.icons[7]
-                                }
-                            }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[2]
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[3]
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        LightIcon {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.imageSource
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[4]
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[5]
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[6]
+                        }
+                    }
+                    Rectangle {
+                        width: light.width / 3
+                        height: light.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[7]
+                        }
+                    }
+                }
+            }
+            Item {
+                id: dark
+                Layout.fillHeight: true
+                width: root.width / 2
+                Image {
+                    anchors.fill: parent
+                    source: "qrc:/bg-dark.jpg"
+                    fillMode: Image.PreserveAspectCrop
+                }
+                GridLayout {
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    height: dark.height
+                    width: dark.width
+                    columnSpacing: 0
+                    rowSpacing: 0
+                    columns: 3
+                    rows: 3
+                    Rectangle {
+                        width: parent.width / 3
+                        height: parent.height / 3
+                        color: "cyan"
+                        border.color: "pink"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[0]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[1]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[2]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[3]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        DarkIcon {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.imageSource
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[4]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[5]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[6]
+                        }
+                    }
+                    Rectangle {
+                        width: dark.width / 3
+                        height: dark.height / 3
+                        color: "transparent"
+                        PlasmaCore.IconItem {
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.icons[7]
+                        }
+                    }
+                }
+            }
+            Item {
+                height: 400 * 1/3
+                width: root.width / 2
+                id: lightMany
+                Rectangle {
+                    anchors.fill: parent
+                    color: root.leftColor
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 500
                         }
                     }
                 }
                 Row {
-                    Item {
-                        height: 400 * 1/3
-                        width: 400
-                        id: lightMany
-                        Rectangle {
-                            anchors.fill: parent
-                            color: root.leftColor
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 500
-                                }
-                            }
+                    id: lightManyRow
+                    anchors.fill: parent
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        LightIcon {
+                            id: light16
+                            anchors.centerIn: parent
+                            height: 16
+                            width: 16
+                            source: root.imageSource
                         }
-                        Row {
-                            id: lightManyRow
-                            anchors.fill: parent
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                LightIcon {
-                                    id: light16
-                                    anchors.centerIn: parent
-                                    height: 16
-                                    width: 16
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: light16.horizontalCenter
-                                    anchors.top: light16.bottom
-                                    color: "black"
-                                    text: "16"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                LightIcon {
-                                    id: light22
-                                    anchors.centerIn: parent
-                                    height: 22
-                                    width: 22
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: light22.horizontalCenter
-                                    anchors.top: light22.bottom
-                                    color: "black"
-                                    text: "22"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                LightIcon {
-                                    id: light32
-                                    anchors.centerIn: parent
-                                    height: 32
-                                    width: 32
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: light32.horizontalCenter
-                                    anchors.top: light32.bottom
-                                    color: "black"
-                                    text: "32"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                LightIcon {
-                                    id: light48
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: light48.horizontalCenter
-                                    anchors.top: light48.bottom
-                                    color: "black"
-                                    text: "48"
-                                }
-                            }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: light16.horizontalCenter
+                            anchors.top: light16.bottom
+                            color: "black"
+                            text: "16"
                         }
                     }
-                    Item {
-                        height: 400 * 1/3
-                        width: 400
-                        id: darkMany
-                        Rectangle {
-                            anchors.fill: parent
-                            color: root.rightColor
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 500
-                                }
-                            }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        LightIcon {
+                            id: light22
+                            anchors.centerIn: parent
+                            height: 22
+                            width: 22
+                            source: root.imageSource
                         }
-                        Row {
-                            id: darkManyRow
-                            anchors.fill: parent
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                DarkIcon {
-                                    id: dark16
-                                    anchors.centerIn: parent
-                                    height: 16
-                                    width: 16
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: dark16.horizontalCenter
-                                    anchors.top: dark16.bottom
-                                    color: "white"
-                                    text: "16"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                DarkIcon {
-                                    id: dark22
-                                    anchors.centerIn: parent
-                                    height: 22
-                                    width: 22
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: dark22.horizontalCenter
-                                    anchors.top: dark22.bottom
-                                    color: "white"
-                                    text: "22"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                DarkIcon {
-                                    id: dark32
-                                    anchors.centerIn: parent
-                                    height: 32
-                                    width: 32
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: dark32.horizontalCenter
-                                    anchors.top: dark32.bottom
-                                    color: "white"
-                                    text: "32"
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width / 4
-                                height: parent.height
-                                color: "transparent"
-                                DarkIcon {
-                                    id: dark48
-                                    anchors.centerIn: parent
-                                    height: 48
-                                    width: 48
-                                    source: root.imageSource
-                                }
-                                PlasmaComponents.Label {
-                                    anchors.horizontalCenter: dark48.horizontalCenter
-                                    anchors.top: dark48.bottom
-                                    color: "white"
-                                    text: "48"
-                                }
-                            }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: light22.horizontalCenter
+                            anchors.top: light22.bottom
+                            color: "black"
+                            text: "22"
+                        }
+                    }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        LightIcon {
+                            id: light32
+                            anchors.centerIn: parent
+                            height: 32
+                            width: 32
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: light32.horizontalCenter
+                            anchors.top: light32.bottom
+                            color: "black"
+                            text: "32"
+                        }
+                    }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        LightIcon {
+                            id: light48
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: light48.horizontalCenter
+                            anchors.top: light48.bottom
+                            color: "black"
+                            text: "48"
+                        }
+                    }
+                }
+            }
+            Item {
+                height: 400 * 1/3
+                width: root.width / 2
+                id: darkMany
+                Rectangle {
+                    anchors.fill: parent
+                    color: root.rightColor
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 500
+                        }
+                    }
+                }
+                Row {
+                    id: darkManyRow
+                    anchors.fill: parent
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        DarkIcon {
+                            id: dark16
+                            anchors.centerIn: parent
+                            height: 16
+                            width: 16
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: dark16.horizontalCenter
+                            anchors.top: dark16.bottom
+                            color: "white"
+                            text: "16"
+                        }
+                    }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        DarkIcon {
+                            id: dark22
+                            anchors.centerIn: parent
+                            height: 22
+                            width: 22
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: dark22.horizontalCenter
+                            anchors.top: dark22.bottom
+                            color: "white"
+                            text: "22"
+                        }
+                    }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        DarkIcon {
+                            id: dark32
+                            anchors.centerIn: parent
+                            height: 32
+                            width: 32
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: dark32.horizontalCenter
+                            anchors.top: dark32.bottom
+                            color: "white"
+                            text: "32"
+                        }
+                    }
+                    Rectangle {
+                        width: parent.width / 4
+                        height: parent.height
+                        color: "transparent"
+                        DarkIcon {
+                            id: dark48
+                            anchors.centerIn: parent
+                            height: 48
+                            width: 48
+                            source: root.imageSource
+                        }
+                        PlasmaComponents.Label {
+                            anchors.horizontalCenter: dark48.horizontalCenter
+                            anchors.top: dark48.bottom
+                            color: "white"
+                            text: "48"
                         }
                     }
                 }
@@ -1269,6 +1277,135 @@ Kirigami.ApplicationWindow {
                 color: "black"
                 anchors.verticalCenter: overlayCheck.verticalCenter
                 text: "Enable white effect on icons on dark"
+            }
+        }
+        Item {
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+                Rectangle {
+                    height: 32
+                    Layout.fillWidth: true
+                    Kirigami.Theme.colorSet: Kirigami.Theme.Window
+                    color: Kirigami.Theme.backgroundColor
+                    RowLayout {
+                        anchors.fill: parent
+                        PlasmaComponents.ToolButton {
+                            enabled: webView.canGoBack
+                            iconName: "draw-arrow-back"
+                            text: "Go Back"
+                            onClicked: {
+                                webView.goBack()
+                            }
+                        }
+                        PlasmaComponents.ToolButton {
+                            id: forwardBtn
+                            enabled: webView.canGoForward
+                            iconName: "draw-arrow-forward"
+                            text: "Go Forward"
+                            onClicked: {
+                                webView.goForward()
+                            }
+                        }
+                        PlasmaComponents.TextField {
+                            height: forwardBtn.height
+                            Layout.fillWidth: true
+                            text: webView.url
+                            enabled: false
+                        }
+                        PlasmaComponents.ToolButton {
+                            iconName: "go-home"
+                            text: "Return to HIG Home"
+                            onClicked: {
+                                webView.url = "https://hig.kde.org/"
+                            }
+                        }
+                    }
+                }
+                WebEngineView {
+                    id: webView
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    url: "https://hig.kde.org/"
+                }
+            }
+            Column {
+                id: iconColumn
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                Rectangle {
+                    height: 64
+                    width: 64
+                    color: root.leftColor
+                    LightIcon {
+                        anchors.centerIn: parent
+                        height: 48
+                        width: 48
+                        source: root.imageSource
+                    }
+                }
+                Rectangle {
+                    height: 64
+                    width: 64
+                    color: root.rightColor
+                    DarkIcon {
+                        anchors.centerIn: parent
+                        height: 48
+                        width: 48
+                        source: root.imageSource
+                    }
+                }
+            }
+            DropShadow {
+                anchors.fill: iconColumn
+                radius: 8.0
+                samples: 17
+                color: "#80000000"
+                source: iconColumn
+            }
+        }
+        Row {
+            spacing: 0
+            Rectangle {
+                height: parent.height
+                width: parent.width / 2
+                color: root.leftColor
+                LightIcon {
+                    anchors.centerIn: parent
+                    width: parent.width - (Kirigami.Units.largeSpacing * 2)
+                    height: width
+                    source: root.imageSource
+                }
+            }
+            Rectangle {
+                height: parent.height
+                width: parent.width / 2
+                color: root.rightColor
+                DarkIcon {
+                    anchors.centerIn: parent
+                    width: parent.width - (Kirigami.Units.largeSpacing * 2)
+                    height: width
+                    source: root.imageSource
+                }
+            }
+        }
+    }
+    PageIndicator {
+        id: indicator
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        currentIndex: swipe.currentIndex
+        count: swipe.count
+        delegate: Rectangle {
+            height: 16
+            width: 16
+            color: "grey"
+            opacity: index == indicator.currentIndex ? 1 : 0.25
+            radius: index == indicator.currentIndex ? 0 : width
+            Behavior on radius {
+                NumberAnimation {
+                    duration: Kirigami.Units.longDuration
+                }
             }
         }
     }

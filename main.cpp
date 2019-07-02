@@ -9,6 +9,7 @@
 #include <QtDebug>
 #include <Plasma/Svg>
 #include <QIcon>
+#include <QtWebEngine>
 #include "iconsetter.h"
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -54,6 +55,8 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Appadeia");
     app.setOrganizationDomain("me.appadeia");
     app.setApplicationName("Ikona");
+
+    QtWebEngine::initialize();
 
     if (fileExists(QDir::homePath() + "/.iconPreviewTheme")) {
         QFile file(QDir::homePath() + "/.iconPreviewTheme");

@@ -9,10 +9,51 @@ Item {
     id: itemRoot
     property var swatchColor: "#ffffff"
     property string fancyName: "Fancy Name"
-    height: 32
-    width: swatch.width /*+ 3 + name.width + 3 + label.width*/
+    height: width * (3/7)
+    width: parent.width / 6
     IconSetter {
         id: iconSetter
+    }
+    Rectangle {
+        id: swatch
+        width: parent.width
+        height: parent.height
+        color: parent.swatchColor
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+                fancyname.opacity = 1
+            }
+            onExited: {
+                fancyname.opacity = 0
+            }
+            onClicked: {
+                fade.restart()
+            }
+        }
+
+        Rectangle {
+            anchors.fill: label
+            color: "black"
+            opacity: 0.5
+        }
+        PlasmaComponents.Label {
+            id: label
+            anchors.centerIn: parent
+            height: width
+            width: parent.width * (3/7)
+            text: itemRoot.swatchColor
+            horizontalAlignment: Text.AlignHCenter
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    iconSetter.clipboardCopy(itemRoot.swatchColor)
+                    fade.restart()
+                }
+            }
+        }
     }
     Rectangle {
         anchors.fill: fancyname
@@ -27,6 +68,7 @@ Item {
         font.pointSize: 10
         opacity: 0
         anchors.bottom: swatch.top
+        anchors.bottomMargin: -height
         anchors.horizontalCenter: swatch.horizontalCenter
         Behavior on opacity {
             NumberAnimation {
@@ -48,6 +90,7 @@ Item {
         font.pointSize: 10
         opacity: 0
         anchors.bottom: swatch.top
+        anchors.bottomMargin: -height
         anchors.horizontalCenter: swatch.horizontalCenter
         SequentialAnimation {
             id: fade
@@ -76,47 +119,6 @@ Item {
             ScriptAction {
                 script: {
                     fancyname.visible = true
-                }
-            }
-        }
-    }
-    Rectangle {
-        id: swatch
-        width: 200
-        height: 32
-        color: parent.swatchColor
-
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                fancyname.opacity = 1
-            }
-            onExited: {
-                fancyname.opacity = 0
-            }
-            onClicked: {
-                fade.restart()
-            }
-        }
-
-        Rectangle {
-            anchors.fill: label
-            color: "black"
-            opacity: 0.5
-        }
-        PlasmaComponents.Label {
-            id: label
-            anchors.centerIn: parent
-            height: parent.height
-            width: parent.width * (3/7)
-            text: itemRoot.swatchColor
-            horizontalAlignment: Text.AlignHCenter
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    iconSetter.clipboardCopy(itemRoot.swatchColor)
-                    fade.restart()
                 }
             }
         }
