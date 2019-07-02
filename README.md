@@ -12,7 +12,7 @@ A companion utility to help see an icon you are editing. Note: This uses a lot o
 ## build dependencies for openSUSE
 
 ```
-zypper in "cmake(Qt5Core) cmake(Qt5Quick) cmake(Qt5QuickControls2) cmake(KF5Kirigami2) cmake(KF5Plasma) cmake(KF5PlasmaQuick)"
+zypper in "cmake(Qt5Core) cmake(Qt5Quick) cmake(Qt5WebEngine) cmake(Qt5QuickControls2) cmake(KF5Kirigami2) cmake(KF5Plasma) cmake(KF5PlasmaQuick)"
 ```
 
 ## installing
