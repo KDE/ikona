@@ -4,5 +4,10 @@
         <file>ColorSwatch.qml</file>
         <file>LightIcon.qml</file>
         <file>DarkIcon.qml</file>
+        <file>GridRect.qml</file>
+        <file>SmallGridRect.qml</file>
+        <file>Spacer.qml</file>
+        <file>RowSpacer.qml</file>
+        <file>DropDown.qml</file>
     </qresource>
 </RCC>
