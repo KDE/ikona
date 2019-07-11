@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Ikona
-Exec=/usr/bin/ikona
+Exec=ikona
 Icon=ikona
 Comment=Utility for viewing Icons
 Categories=Qt;System;Documentation
