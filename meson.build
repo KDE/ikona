@@ -2,9 +2,9 @@ project('ikona', 'cpp')
 
 qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Widgets', 'Core', 'Quick', 'QuickControls2', 'WebEngine'])
-kde_deps = [dependency('KF5Plasma'),
-            dependency('KF5PlasmaQuick'),
-            dependency('KF5Kirigami2')]
+kf5plasma_dep = dependency('KF5Plasma')
+kf5plasmaquick_dep = dependency('KF5PlasmaQuick')
+kf5kirigami2_dep = dependency('KF5Kirigami2')
 
 inc = include_directories('src')
 
