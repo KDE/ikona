@@ -10,7 +10,7 @@ inc = include_directories('src')
 
 qresource_files = ['qrc/images.qrc', 'qrc/qml.qrc']
 
-processed_files = qt5.preprocess(moc_headers: ['include/iconsetter.h'],
+processed_files = qt5.preprocess(moc_headers: ['src/iconsetter.h'],
                                  include_directories: inc,
                                  qresources: qresource_files)
 
