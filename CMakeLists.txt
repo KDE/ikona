@@ -13,7 +13,7 @@ find_package(KF5Plasma)
 find_package(KF5Kirigami2)
 find_package(KF5PlasmaQuick)
 
-add_executable(${PROJECT_NAME} "main.cpp" "qml.qrc" "images.qrc" "iconsetter.cpp" "iconsetter.h")
+add_executable(${PROJECT_NAME} "src/main.cpp" "qrc/qml.qrc" "qrc/images.qrc" "src/iconsetter.cpp" "src/iconsetter.h")
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick)
 
@@ -22,3 +22,6 @@ if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 install(TARGETS ikona DESTINATION bin)
+install(FILES data/ikona.desktop DESTINATION applications)
+install(FILES data/ikona.svg DESTINATION icons/hicolor/scalable/apps)
+install(DIRECTORY data/templates DESTINATION ${CMAKE_INSTALL_PREFIX})
