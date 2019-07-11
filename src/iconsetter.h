@@ -1,6 +1,3 @@
-#ifndef ICONSETTER_H
-#define ICONSETTER_H
-
 #include <QObject>
 
 class IconSetter : public QObject
@@ -20,5 +17,3 @@ signals:
 
 public slots:
 };
-
-#endif // ICONSETTER_H

@@ -6,7 +6,7 @@ kde_deps = [dependency('KF5Plasma'),
             dependency('KF5PlasmaQuick'),
             dependency('KF5Kirigami2')]
 
-inc = include_directories('include')
+inc = include_directories('src')
 
 qresource_files = ['qrc/images.qrc', 'qrc/qml.qrc']
 
