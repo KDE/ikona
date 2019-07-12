@@ -1,0 +1,27 @@
+{
+    "app-id" : "me.appadeia.QDiscord",
+    "runtime" : "org.kde.Platform",
+    "runtime-version" : "5.12",
+    "sdk" : "org.kde.Sdk",
+    "command" : "desucordo",
+    "finish-args" : [
+            "--share=ipc", 
+            "--device=dri", 
+            "--socket=x11", 
+            "--socket=wayland",
+            "--filesystem=xdg-config/kdeglobals:ro"
+    ],
+    "modules" : [
+        {
+            "name" : "ikona",
+            "buildsystem" : "cmake",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/Appadeia/qdiscord/releases/download/0.2/qdiscord-0.2.tar.gz",
+                    "sha256" : "6f13354db730882e42154b67ff406f6adab7fe1ee40e6e24ab02658cd8065f05"
+                }
+            ]
+        }
+    ]
+}
