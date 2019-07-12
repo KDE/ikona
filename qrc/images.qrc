@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>bg.jpg</file>
         <file>bg-dark.jpg</file>
+        <file>ikona.svg</file>
     </qresource>
 </RCC>

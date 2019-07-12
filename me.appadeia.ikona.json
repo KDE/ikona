@@ -14,6 +14,17 @@
     ],
     "modules" : [
         {
+            "name" : "kdialog",
+            "buildsystem" : "cmake",
+            "sources": [
+                {
+                    "type" : "archive",
+                    "url": "https://github.com/KDE/kdialog/archive/v19.04.3.tar.gz",
+                    "sha256" : "9a36e576127b103f7d4bc3508e373d836426cf09d7a1a049571906600787f240"
+                }
+            ]
+        },
+        {
             "name" : "ikona",
             "buildsystem" : "cmake",
             "sources" : [

@@ -22,7 +22,7 @@ Kirigami.ApplicationWindow {
     minimumWidth: 800
     property var leftColor: "white"
     property var rightColor: "#121212"
-    property url imageSource: "file://usr/share/icons/hicolor/scalable/apps/yast-isns.svg"
+    property url imageSource: "qrc:/ikona.svg"
     property var icons: ["utilities-terminal", "accessories-calculator", "yast", "system-file-manager", "kate", "systemsettings", "system-help", "plasmadiscover", "gimp", "kwin", "sublime-merge", "krdc", "juk", "internet-mail", "okteta", "mpv", "calligrastage", "fingerprint-gui", "cantor", "knotes", "applications-science", "user-desktop", "dialog-positive", "dialog-question", "application-x-rdata", "video-x-flv", "image-jpeg2000", "cups"]
     property var symIcons: ["checkbox", "go-previous", "edit-clear-list", "edit-find", "games-achievements", "go-down-search", "process-stop", "draw-brush"]
     property string fromIconTemplate: ""
