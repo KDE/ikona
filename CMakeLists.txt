@@ -17,11 +17,7 @@ add_executable(${PROJECT_NAME} "src/main.cpp" "qrc/qml.qrc" "qrc/images.qrc" "sr
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick)
 
-if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set (CMAKE_INSTALL_PREFIX "/usr")
-endif()
-
 install(TARGETS ikona DESTINATION bin)
-install(FILES data/ikona.desktop DESTINATION share/applications)
-install(FILES data/ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
+install(FILES data/me.appadeia.ikona.desktop DESTINATION share/applications)
+install(FILES data/me.appadeia.ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
 install(DIRECTORY data/templates DESTINATION share)
