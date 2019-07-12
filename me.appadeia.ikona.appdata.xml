@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Carson Black -->
+<component type="desktop-application">
+    <id>me.appadeia.ikona</id>
+    <name>Ikona</name>
+    <summary>Ikona is a design companion to help you design icons</summary>
+    <description>
+        <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
+    </description>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-2.0-or-later</project_license>
+    <releases>
+        <release version="0.5.2.2" date="2019-07-12" urgency="high">
+            <description>
+                <p>This is the initial version.</p>
+            </description>
+        </release>
+    </releases>
+    <translation type="qt">Ikona</translation>
+    <screenshots>
+        <screenshot>
+            <caption>Ikona Main View</caption>
+            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Ikona Small View</caption>
+            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen2.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Ikona HIG View</caption>
+            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen3.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Ikona Large View</caption>
+            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen4.png</image>
+        </screenshot>
+    </screenshots>
+    <update_contact>
+        uhhadd@gmail.com
+    </update_contact>
+    <url type="homepage">https://github.com/Appadeia/ikona</url>
+</component>
