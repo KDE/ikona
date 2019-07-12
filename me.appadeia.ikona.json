@@ -9,6 +9,7 @@
             "--device=dri", 
             "--socket=x11", 
             "--socket=wayland",
+            "--share=network",
             "--filesystem=xdg-config/kdeglobals:ro"
     ],
     "modules" : [
@@ -18,8 +19,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/Appadeia/ikona/archive/0.5.2.2.tar.gz",
-                    "sha256" : "113619dce8ab859cd0b4fd2237ce9d223b795248ec370d3945b9c8c1038b0eb1"
+                    "url" : "https://github.com/Appadeia/ikona/archive/0.5.2.3.tar.gz",
+                    "sha256" : "87aeea9027bce66d2bccd730e10e672c0d573773a5f27e8d02f1cd463d66c6e9"
                 }
             ]
         }
