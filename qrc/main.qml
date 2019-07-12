@@ -11,7 +11,7 @@ import QtGraphicalEffects 1.12
 import me.appadeia.IconSetter 1.0
 import Qt.labs.settings 1.1
 import Qt.labs.platform 1.1 as QNative
-import QtWebEngine 1.9
+import QtWebEngine 1.1
 
 Kirigami.ApplicationWindow {
     id: root

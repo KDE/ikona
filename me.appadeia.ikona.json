@@ -1,9 +1,9 @@
 {
-    "app-id" : "me.appadeia.QDiscord",
+    "app-id" : "me.appadeia.Ikona",
     "runtime" : "org.kde.Platform",
     "runtime-version" : "5.12",
     "sdk" : "org.kde.Sdk",
-    "command" : "desucordo",
+    "command" : "ikona",
     "finish-args" : [
             "--share=ipc", 
             "--device=dri", 
@@ -18,8 +18,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/Appadeia/qdiscord/releases/download/0.2/qdiscord-0.2.tar.gz",
-                    "sha256" : "6f13354db730882e42154b67ff406f6adab7fe1ee40e6e24ab02658cd8065f05"
+                    "url" : "https://github.com/Appadeia/ikona/archive/0.5.2.2.tar.gz",
+                    "sha256" : "113619dce8ab859cd0b4fd2237ce9d223b795248ec370d3945b9c8c1038b0eb1"
                 }
             ]
         }
