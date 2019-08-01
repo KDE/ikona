@@ -1,5 +1,5 @@
-install_data('ikona.desktop', install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'applications'))
-install_data('ikona.svg', install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps'))
+install_data('me.appadeia.ikona.desktop', install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'applications'))
+install_data('me.appadeia.ikona.svg', install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps'))
 
 template_files = ['templates/svg-22-monochrome.desktop',
                   'templates/svg-32-monochrome.desktop',
