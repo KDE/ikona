@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.12
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.0 as Kirigami
-import me.appadeia.IconSetter 1.0
+import me.appadeia.Ikona 1.0
 
 Item {
     id: itemRoot

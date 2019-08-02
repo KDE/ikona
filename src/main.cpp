@@ -11,6 +11,7 @@
 #include <QIcon>
 #include <QtWebEngine>
 #include "iconsetter.h"
+#include "iconmanipulator.h"
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -71,7 +72,8 @@ int main(int argc, char *argv[])
         dir.mkdir(QDir::homePath() + "/.ikona");
     }
 
-    qmlRegisterType<IconSetter>("me.appadeia.IconSetter", 1, 0, "IconSetter");
+    qmlRegisterType<IconSetter>("me.appadeia.Ikona", 1, 0, "IconSetter");
+    qmlRegisterType<IconManipulator>("me.appadeia.Ikona", 1, 0, "IconManipulator");
 
     QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << QDir::homePath() + "/.ikona");
     qDebug() << QIcon::fallbackSearchPaths();

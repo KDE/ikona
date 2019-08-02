@@ -8,7 +8,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtGraphicalEffects 1.12
-import me.appadeia.IconSetter 1.0
+import me.appadeia.Ikona 1.0
 import Qt.labs.settings 1.1
 import Qt.labs.platform 1.1 as QNative
 import QtWebEngine 1.1
@@ -193,6 +193,9 @@ Kirigami.ApplicationWindow {
     IconSetter {
         id: setter
     }
+    IconManipulator {
+        id: manipulator
+    }
 
     title: qsTr("Ikona Design Companion")
     color: Kirigami.Theme.backgroundColor
@@ -315,6 +318,43 @@ Kirigami.ApplicationWindow {
                             onTriggered: {
                                 root.leftColor = "#f6f5f4"
                                 root.rightColor = "#353535"
+                            }
+                        }
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "editimage"
+                    text: "Modify Icon"
+                    Kirigami.Action {
+                        iconSource: "edit-clear-all"
+                        text: "Tidy Icon"
+                        onTriggered: {
+                            if (manipulator.tidyIcon(imageSource)) {
+                                root.showPassiveNotification("Your icon has been cleaned.")
+                            } else {
+                                root.showPassiveNotification("Something went wrong cleaning your icon.")
+                            }
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "gtk-convert"
+                        text: "Convert Icon Colors to Classes"
+                        onTriggered: {
+                            if (manipulator.classIcon(imageSource)) {
+                                root.showPassiveNotification("Your icon has been converted. You should inject stylesheets if they have not already been injected..")
+                            } else {
+                                root.showPassiveNotification("Something went wrong converting your icon.")
+                            }
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "insert-image"
+                        text: "Inject Stylesheets"
+                        onTriggered: {
+                            if (manipulator.injectStylesheet(imageSource)) {
+                                root.showPassiveNotification("Stylesheets have been added to your icon.")
+                            } else {
+                                root.showPassiveNotification("Something went wrong adding stylesheets to your icon.")
                             }
                         }
                     }

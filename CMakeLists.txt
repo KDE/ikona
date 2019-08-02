@@ -13,7 +13,7 @@ find_package(KF5Plasma)
 find_package(KF5Kirigami2)
 find_package(KF5PlasmaQuick)
 
-add_executable(${PROJECT_NAME} "src/main.cpp" "qrc/qml.qrc" "qrc/images.qrc" "src/iconsetter.cpp" "src/iconsetter.h")
+add_executable(${PROJECT_NAME} "src/main.cpp" "qrc/qml.qrc" "qrc/images.qrc" "src/iconsetter.cpp" "src/iconsetter.h" "src/iconmanipulator.cpp" "src/iconmanipulator.h")
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick)
 
