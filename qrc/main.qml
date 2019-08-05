@@ -348,7 +348,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "insert-image"
+                        iconSource: "code-context"
                         text: "Inject Stylesheets"
                         onTriggered: {
                             if (manipulator.injectStylesheet(imageSource)) {
