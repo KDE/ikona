@@ -8,6 +8,8 @@ public:
     Q_INVOKABLE bool tidyIcon(QString inputPath);
     Q_INVOKABLE bool classIcon(QString inputPath);
     Q_INVOKABLE bool injectStylesheet(QString inputPath);
+    Q_INVOKABLE bool toDark(QString inputPath);
+    Q_INVOKABLE bool toLight(QString inputPath);
 
 signals:
 

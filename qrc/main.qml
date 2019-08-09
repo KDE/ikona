@@ -27,6 +27,14 @@ Kirigami.ApplicationWindow {
     property var symIcons: ["checkbox", "go-previous", "edit-clear-list", "edit-find", "games-achievements", "go-down-search", "process-stop", "draw-brush"]
     property string fromIconTemplate: ""
 
+    QNative.SystemTrayIcon {
+        id: sysTray
+        visible: false
+        icon.source: imageSource
+    }
+    onClosing: {
+        sysTray.visible = false
+    }
     Shortcut {
         sequence: StandardKey.Open
         onActivated: picker.open()
@@ -196,7 +204,6 @@ Kirigami.ApplicationWindow {
     IconManipulator {
         id: manipulator
     }
-
     title: qsTr("Ikona Design Companion")
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
@@ -341,7 +348,7 @@ Kirigami.ApplicationWindow {
                         text: "Convert Icon Colors to Classes"
                         onTriggered: {
                             if (manipulator.classIcon(imageSource)) {
-                                root.showPassiveNotification("Your icon has been converted. You should inject stylesheets if they have not already been injected..")
+                                root.showPassiveNotification("Your icon has been converted. You should inject stylesheets if they have not already been injected.")
                             } else {
                                 root.showPassiveNotification("Something went wrong converting your icon.")
                             }
@@ -355,6 +362,28 @@ Kirigami.ApplicationWindow {
                                 root.showPassiveNotification("Stylesheets have been added to your icon.")
                             } else {
                                 root.showPassiveNotification("Something went wrong adding stylesheets to your icon.")
+                            }
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "color-picker-black"
+                        text: "Change Icon to Light Mode"
+                        onTriggered: {
+                            if (manipulator.toDark(imageSource)) {
+                                root.showPassiveNotification("Your icon has been converted.")
+                            } else {
+                                root.showPassiveNotification("Something went wrong converting your icon.")
+                            }
+                        }
+                    }
+                    Kirigami.Action {
+                        iconSource: "color-picker-white"
+                        text: "Change Icon to Dark Mode"
+                        onTriggered: {
+                            if (manipulator.toLight(imageSource)) {
+                                root.showPassiveNotification("Your icon has been converted.")
+                            } else {
+                                root.showPassiveNotification("Something went wrong converting your icon.")
                             }
                         }
                     }
@@ -420,8 +449,12 @@ Kirigami.ApplicationWindow {
                     iconName: hud.visible ? "view-hidden" : "view-visible"
                     text: hud.visible ? "Close HUD" : "Open HUD"
                     onTriggered: hud.visible = !hud.visible
+                },
+                Kirigami.Action {
+                    iconName: sysTray.visible ? "view-hidden" : "view-visible"
+                    text: sysTray.visible ? "Hide Icon in Tray" : "Show Icon in Tray"
+                    onTriggered: sysTray.visible = !sysTray.visible
                 }
-
             ]
     }
     function shuffle(a) {

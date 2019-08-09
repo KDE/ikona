@@ -73,6 +73,60 @@ bool IconManipulator::classIcon(QString inputPath)
     }
     return false;
 }
+bool IconManipulator::toDark(QString inputPath)
+{
+    QString path;
+    if (inputPath.startsWith("file://")) {
+        path = inputPath.replace("file://", "");
+    }
+    QFile icon(path);
+    if (icon.open( QFile::ReadWrite ))
+    {
+        QByteArray iconData = icon.readAll();
+        QString text(iconData);
+
+        text.replace("fill=\"#232629\"", "fill=\"#eff0f1\"");
+        text.replace("fill=\"#eff0f1\"", "fill=\"#31363b\"");
+        text.replace("fill=\"#fcfcfc\"", "fill=\"#232629\"");
+        text.replace("color:#232629", "color:#eff0f1");
+        text.replace("color:#eff0f1", "color:#31363b");
+        text.replace("color:#fcfcfc", "color:#232629");
+
+        icon.seek(0);
+        icon.write(text.toUtf8());
+
+        icon.close();
+        return true;
+    }
+    return false;
+}
+bool IconManipulator::toLight(QString inputPath)
+{
+    QString path;
+    if (inputPath.startsWith("file://")) {
+        path = inputPath.replace("file://", "");
+    }
+    QFile icon(path);
+    if (icon.open( QFile::ReadWrite ))
+    {
+        QByteArray iconData = icon.readAll();
+        QString text(iconData);
+
+        text.replace("fill=\"#eff0f1\"", "fill=\"#232629\"");
+        text.replace("fill=\"#31363b\"", "fill=\"#eff0f1\"");
+        text.replace("fill=\"#232629\"", "fill=\"#fcfcfc\"");
+        text.replace("color:#eff0f1", "color:#232629");
+        text.replace("color:#31363b", "color:#eff0f1");
+        text.replace("color:#232629", "color:#fcfcfc");
+
+        icon.seek(0);
+        icon.write(text.toUtf8());
+
+        icon.close();
+        return true;
+    }
+    return false;
+}
 bool IconManipulator::injectStylesheet(QString inputPath)
 {
     QString path;
