@@ -26,16 +26,3 @@ cmake ..
 make
 sudo make install
 ```
-
-## templates
-copy `templates/` and merge with `/usr/share/templates`
-
-## installing desktop file
-this lets you right click in your file manager and open directly  
-how fun
-
-```
-cd $dir_to_this_cloned
-sudo cp ikona.desktop /usr/share/applications/
-sudo update-desktop-database
-```
