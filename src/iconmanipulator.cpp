@@ -148,7 +148,7 @@ bool IconManipulator::injectStylesheet(QString inputPath)
 
         int endOffset = match.capturedEnd();
         
-        text.insert(endOffset, "<style type=\"text/css\" id=\"current-color-scheme\">.ColorScheme-Text {color:#232629;}. ColorScheme-Background {color:#eff0f1;}. ColorScheme-ViewBackground {color:#fcfcfc;}. ColorScheme-ButtonFocus {color:#3daee9;}. ColorScheme-PositiveText {color:#27ae60;}. ColorScheme-NeutralText {color:#f67400;}. ColorScheme-NegativeText {color:#da4453;}. </style>");
+        text.insert(endOffset, "<style type=\"text/css\" id=\"current-color-scheme\"> .ColorScheme-Text {color:#232629;} .ColorScheme-Background {color:#eff0f1;} .ColorScheme-ViewBackground {color:#fcfcfc;} .ColorScheme-ButtonFocus {color:#3daee9;} .ColorScheme-PositiveText {color:#27ae60;} .ColorScheme-NeutralText {color:#f67400;} .ColorScheme-NegativeText {color:#da4453;} </style>");
 
         icon.seek(0);
         icon.write(text.toUtf8());
