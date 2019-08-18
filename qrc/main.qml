@@ -1297,7 +1297,8 @@ Kirigami.ApplicationWindow {
                 }
             }
             Column {
-                id: iconColumn
+		id: iconColumn
+		LayoutMirroring.enabled: false
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 Rectangle {
