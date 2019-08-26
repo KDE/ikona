@@ -20,23 +20,26 @@
     <screenshots>
         <screenshot>
             <caption>Ikona Main View</caption>
-            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen.png</image>
+            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen.png</image>
         </screenshot>
         <screenshot>
             <caption>Ikona Small View</caption>
-            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen2.png</image>
+            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen2.png</image>
         </screenshot>
         <screenshot>
             <caption>Ikona HIG View</caption>
-            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen3.png</image>
+            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen3.png</image>
         </screenshot>
         <screenshot>
             <caption>Ikona Large View</caption>
-            <image type="source">https://raw.githubusercontent.com/Appadeia/ikona/master/screen4.png</image>
+            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen4.png</image>
         </screenshot>
     </screenshots>
     <update_contact>
         uhhadd@gmail.com
     </update_contact>
-    <url type="homepage">https://github.com/Appadeia/ikona</url>
+    <url type="homepage">https://invent.kde.org/kde/ikona</url>
+    <categories>
+        <category>Graphics</category>
+    </categories>
 </component>
