@@ -1,4 +1,4 @@
-ikona_sources = ['iconsetter.cpp', 'main.cpp']
+ikona_sources = ['iconsetter.cpp', 'main.cpp', 'iconmanipulator.cpp']
 
 ikona = executable('ikona',
                    ikona_sources,
