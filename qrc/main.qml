@@ -81,44 +81,23 @@ Kirigami.ApplicationWindow {
                 iconName: "document-new-symbolic"
                 title: "New Icon from Breeze Templates"
                 QNative.MenuItem {
-                    text: "16px Monochrome"
+                    text: "16px Action/Status/Filetype"
                     onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
+                        root.fromIconTemplate = ":templates/mono-16.svg"
                         savePicker.open()
                     }
                 }
                 QNative.MenuItem {
-                    text: "22px Monochrome"
+                    text: "22px Action/Status/Filetype"
                     onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
+                        root.fromIconTemplate = ":templates/mono-22.svg"
                         savePicker.open()
                     }
                 }
                 QNative.MenuItem {
-                    text: "32px Monochrome"
+                    text: "Application/Large Filetype"
                     onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
-                        savePicker.open()
-                    }
-                }
-                QNative.MenuItem {
-                    text: "32px Color"
-                    onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
-                        savePicker.open()
-                    }
-                }
-                QNative.MenuItem {
-                    text: "48px Color"
-                    onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
-                        savePicker.open()
-                    }
-                }
-                QNative.MenuItem {
-                    text: "64px Color"
-                    onTriggered: {
-                        root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
+                        root.fromIconTemplate = ":/templates/colorful.svg"
                         savePicker.open()
                     }
                 }
@@ -232,44 +211,23 @@ Kirigami.ApplicationWindow {
                         iconSource: "document-new-symbolic"
                         text: "New Icon from Breeze Templates"
                         Kirigami.Action {
-                            text: "16px Monochrome Icon"
+                            text: "16px Action/Status/Filetype"
                             onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-16-monochrome.svg"
+                                root.fromIconTemplate = ":templates/mono-16.svg"
                                 savePicker.open()
                             }
                         }
                         Kirigami.Action {
-                            text: "22px Monochrome Icon"
+                            text: "22px Action/Status/Filetype"
                             onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-22-monochrome.svg"
+                                root.fromIconTemplate = ":templates/mono-22.svg"
                                 savePicker.open()
                             }
                         }
                         Kirigami.Action {
-                            text: "32px Monochrome Icon"
+                            text: "48px Application/Large Filetype"
                             onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-32-monochrome.svg"
-                                savePicker.open()
-                            }
-                        }
-                        Kirigami.Action {
-                            text: "32px Colour Icon"
-                            onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-32-color.svg"
-                                savePicker.open()
-                            }
-                        }
-                        Kirigami.Action {
-                            text: "48px Colour Icon"
-                            onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-48-color.svg"
-                                savePicker.open()
-                            }
-                        }
-                        Kirigami.Action {
-                            text: "64px Colour Icon"
-                            onTriggered: {
-                                root.fromIconTemplate = "/usr/share/templates/.source/svg-64-color.svg"
+                                root.fromIconTemplate = ":/templates/colorful.svg"
                                 savePicker.open()
                             }
                         }
@@ -656,8 +614,10 @@ Kirigami.ApplicationWindow {
             var stdout = data["stdout"]
 
             if (exitCode == 0) {
+                print(stdout.trim())
                 setter.copy(root.fromIconTemplate, stdout.trim())
-                root.imageSource = "file:/" + stdout.trim()
+                root.imageSource = "file:" + stdout.trim()
+                print(root.imageSource)
                 setter.xdgOpen(stdout.trim())
             } else {
 

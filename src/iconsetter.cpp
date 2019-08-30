@@ -36,11 +36,12 @@ void IconSetter::setIconTheme(QString themeName)
 }
 void IconSetter::copy(QString from, QString to)
 {
+    QFile fromfile(from);
     if (QFile::exists(to))
     {
         QFile::remove(to);
     }
-    QFile::copy(from, to);
+    fromfile.copy(to);
 }
 void IconSetter::linkIcon(QString from)
 {

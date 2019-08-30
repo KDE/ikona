@@ -3,5 +3,8 @@
         <file>bg.jpg</file>
         <file>bg-dark.jpg</file>
         <file>ikona.svg</file>
+        <file>templates/colorful.svg</file>
+        <file>templates/mono-16.svg</file>
+        <file>templates/mono-22.svg</file>
     </qresource>
 </RCC>
