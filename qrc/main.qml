@@ -360,7 +360,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     iconName: "go-home"
                     text: "Regular View"
-                    enabled: swipe.currentIndex != 0
+                    checked: swipe.currentIndex == 0
                     onTriggered: {
                         swipe.currentIndex = 0
                     }
@@ -368,7 +368,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     iconName: "zoom-out"
                     text: "Small View"
-                    enabled: swipe.currentIndex != 1
+                    checked: swipe.currentIndex == 1
                     onTriggered: {
                         swipe.currentIndex = 1
                     }
@@ -376,7 +376,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     iconName: "internet-services"
                     text: "HIG View"
-                    enabled: swipe.currentIndex != 2
+                    checked: swipe.currentIndex == 2
                     onTriggered: {
                         swipe.currentIndex = 2
                     }
@@ -384,7 +384,7 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     iconName: "zoom-in"
                     text: "Large View"
-                    enabled: swipe.currentIndex != 3
+                    checked: swipe.currentIndex == 3
                     onTriggered: {
                         swipe.currentIndex = 3
                     }
