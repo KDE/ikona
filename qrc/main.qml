@@ -1119,7 +1119,7 @@ Kirigami.ApplicationWindow {
                             iconName: "go-home"
                             text: "Return to HIG Home"
                             onClicked: {
-                                webView.url = "https://hig.kde.org/"
+                                webView.url = "https://hig.kde.org/style/icon.html"
                             }
                         }
                     }
@@ -1128,7 +1128,7 @@ Kirigami.ApplicationWindow {
                     id: webView
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    url: "https://hig.kde.org/"
+                    url: "https://hig.kde.org/style/icon.html"
                 }
             }
             Column {
