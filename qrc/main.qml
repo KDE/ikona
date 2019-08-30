@@ -1,12 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Dialogs 1.0
+import QtQuick.Dialogs 1.3
 import QtQuick.Layouts 1.12
 import org.kde.kirigami 2.5 as Kirigami
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtGraphicalEffects 1.12
 import me.appadeia.Ikona 1.0
 import Qt.labs.settings 1.1
@@ -604,158 +602,35 @@ Kirigami.ApplicationWindow {
             iconThemeNameDrawer.open()
         }
     }
-    PlasmaCore.DataSource {
+    FileDialog {
         id: savePicker
-        engine: "executable"
-        connectedSources: []
-        property var callbacks: ({})
-        onNewData: {
-            var exitCode = data["exit code"]
-            var stdout = data["stdout"]
-
-            if (exitCode == 0) {
-                print(stdout.trim())
-                setter.copy(root.fromIconTemplate, stdout.trim())
-                root.imageSource = "file:" + stdout.trim()
-                print(root.imageSource)
-                setter.xdgOpen(stdout.trim())
-            } else {
-
-            }
-
-            if (callbacks[sourceName] !== undefined) {
-                callbacks[sourceName](stdout);
-            }
-
-            exited(sourceName, stdout)
-            disconnectSource(sourceName) // cmd finished
+        selectExisting: false
+        selectMultiple: false
+        selectFolder: false
+        onAccepted: {
+            setter.copy(root.fromIconTemplate, savePicker.fileUrl)
+            root.imageSource = savePicker.fileUrl
         }
-
-        function exec(cmd, onNewDataCallback) {
-            if (onNewDataCallback !== undefined){
-                callbacks[cmd] = onNewDataCallback
-            }
-            connectSource(cmd)
-
-        }
-        function open() {
-            savePicker.exec("kdialog --getsavefilename . 'SVG Icon Files (*.svg)'", function(){});
-        }
-
-        signal exited(string sourceName, string stdout)
-
+        nameFilters: ["Icon SVGs (*.svg)"]
     }
-    PlasmaCore.DataSource {
+    FileDialog {
         id: picker
-        engine: "executable"
-        connectedSources: []
-        property var callbacks: ({})
-        onNewData: {
-            var exitCode = data["exit code"]
-            var stdout = data["stdout"]
-
-            if (exitCode == 0) {
-                root.imageSource = "file:" + stdout.trim()
-                console.log(stdout.trim())
-            } else {
-
-            }
-
-            if (callbacks[sourceName] !== undefined) {
-                callbacks[sourceName](stdout);
-            }
-
-            exited(sourceName, stdout)
-            disconnectSource(sourceName) // cmd finished
+        onAccepted: {
+            root.imageSource = picker.fileUrl
         }
-
-        function exec(cmd, onNewDataCallback) {
-            if (onNewDataCallback !== undefined){
-                callbacks[cmd] = onNewDataCallback
-            }
-            connectSource(cmd)
-
-        }
-        function open() {
-            picker.exec("kdialog --getopenfilename . 'SVG Icon Files (*.svg)'", function(){});
-        }
-
-        signal exited(string sourceName, string stdout)
-
+        nameFilters: ["Icon SVGs (*.svg)"]
     }
-    PlasmaCore.DataSource {
+    ColorDialog {
         id: leftColorPicker
-        engine: "executable"
-        connectedSources: []
-        property var callbacks: ({})
-        onNewData: {
-            var exitCode = data["exit code"]
-            var stdout = data["stdout"]
-
-            if (exitCode == 0) {
-                root.leftColor = stdout.trim()
-            } else {
-
-            }
-
-            if (callbacks[sourceName] !== undefined) {
-                callbacks[sourceName](stdout);
-            }
-
-            exited(sourceName, stdout)
-            disconnectSource(sourceName) // cmd finished
+        onAccepted: {
+            root.leftColor = leftColorPicker.color
         }
-
-        function exec(cmd, onNewDataCallback) {
-            if (onNewDataCallback !== undefined){
-                callbacks[cmd] = onNewDataCallback
-            }
-            connectSource(cmd)
-
-        }
-        function open() {
-            leftColorPicker.exec("kdialog --getcolor", function(){});
-        }
-
-        signal exited(string sourceName, string stdout)
-
     }
-    PlasmaCore.DataSource {
+    ColorDialog {
         id: rightColorPicker
-        engine: "executable"
-        connectedSources: []
-        property var callbacks: ({})
-        onNewData: {
-            var exitCode = data["exit code"]
-            var stdout = data["stdout"]
-
-            if (exitCode == 0) {
-                root.rightColor = stdout.trim()
-            } else {
-
-            }
-
-            if (callbacks[sourceName] !== undefined) {
-                callbacks[sourceName](stdout);
-            }
-
-            exited(sourceName, stdout)
-            disconnectSource(sourceName) // cmd finished
+        onAccepted: {
+            root.rightColor = rightColorPicker.color
         }
-
-        function exec(cmd, onNewDataCallback) {
-            if (onNewDataCallback !== undefined){
-                callbacks[cmd] = onNewDataCallback
-            }
-            connectSource(cmd)
-
-        }
-        function open() {
-            rightColorPicker.exec("kdialog --getcolor", function(){});
-        }
-
-        signal exited(string sourceName, string stdout)
-
     }
     Timer {
         interval: 250
