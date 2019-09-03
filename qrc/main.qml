@@ -167,8 +167,24 @@ Kirigami.ApplicationWindow {
     }
 
     Component.onCompleted: {
-        if (Qt.application.arguments[1] != null) {
-            root.imageSource = "file:/" + Qt.application.arguments[1]
+        var argus = Qt.application.arguments
+        console.log(argus)
+        if (argus[1] == null) {
+            return
+        }
+        if (argus[1].startsWith("/")) {
+            root.imageSource = "file:" + Qt.application.arguments[1]
+        } else if (argus[1].toLowerCase() == "md" || argus[1].toLowerCase() == "montage-default" ) {
+            var old = root.imageSource
+            root.imageSource = argus[2]
+            colorShot.clisave(argus[3])
+            root.imageSource = old
+        }
+        else if (argus[1].toLowerCase() == "ms" || argus[1].toLowerCase() == "montage-small" ) {
+            var old = root.imageSource
+            root.imageSource = argus[2]
+            monoShot.clisave(argus[3])
+            root.imageSource = old
         }
     }
 

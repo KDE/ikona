@@ -10,6 +10,12 @@ Item {
     visible: false
     width: 800
     height: 400 + (400 * 1/3)
+    function clisave(loc) {
+        screenRoot.grabToImage(function(result) {
+            result.saveToFile(loc);
+            Qt.quit();
+        });
+    }
     Item {
         anchors.fill: parent
         Row {

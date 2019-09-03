@@ -184,6 +184,12 @@ Item {
     function open() {
         screenshotSavePicker.open()
     }
+    function clisave(loc) {
+        screenRoot.grabToImage(function(result) {
+            result.saveToFile(loc);
+            Qt.quit();
+        });
+    }
     FileDialog {
         id: screenshotSavePicker
         selectExisting: false
