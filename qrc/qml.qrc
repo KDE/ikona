@@ -9,5 +9,7 @@
         <file>Spacer.qml</file>
         <file>RowSpacer.qml</file>
         <file>DropDown.qml</file>
+        <file>Screenshot.qml</file>
+        <file>MonochromaticScreenshot.qml</file>
     </qresource>
 </RCC>

@@ -10,6 +10,7 @@ public:
     Q_INVOKABLE bool injectStylesheet(QString inputPath);
     Q_INVOKABLE bool toDark(QString inputPath);
     Q_INVOKABLE bool toLight(QString inputPath);
+    Q_INVOKABLE bool prepMono(QString inputPath);
 
 signals:
 

@@ -12,6 +12,8 @@ import Qt.labs.platform 1.1 as QNative
 import QtWebEngine 1.1
 
 Kirigami.ApplicationWindow {
+    Screenshot { id: colorShot }
+    MonochromaticScreenshot { id: monoShot }
     id: root
     visible: true
     width: 800
@@ -150,12 +152,16 @@ Kirigami.ApplicationWindow {
             }
         }
         QNative.Menu {
-            title: "View"
+            title: "Screenshot"
             QNative.MenuItem {
-                shortcut: StandardKey.NextChild
-                iconName: "exchange-positions"
-                text: swipe.currentIndex == 0 ? "Go to Small View" : "Return to Large View"
-                onTriggered: swipe.currentIndex == 0 ? swipe.incrementCurrentIndex() : swipe.decrementCurrentIndex()
+                iconName: "camera-photo-symbolic"
+                text: "Take Screenshot (Default View)"
+                onTriggered: colorShot.open()
+            }
+            QNative.MenuItem {
+                iconName: "camera-photo-symbolic"
+                text: "Take Screenshot (Small View)"
+                onTriggered: monoShot.open()
             }
         }
     }
@@ -342,6 +348,18 @@ Kirigami.ApplicationWindow {
                                 root.showPassiveNotification("Something went wrong converting your icon.")
                             }
                         }
+                    }
+                },
+                Kirigami.Action {
+                    iconSource: "camera-photo-symbolic"
+                    text: "Export Montage"
+                    Kirigami.Action {
+                        text: "Default View"
+                        onTriggered: colorShot.open()
+                    }
+                    Kirigami.Action {
+                        text: "Small View"
+                        onTriggered: monoShot.open()
                     }
                 },
                 Kirigami.Action {

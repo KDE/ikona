@@ -16,11 +16,43 @@ IconManipulator::IconManipulator(QObject *parent) : QObject(parent)
 {
 
 }
+bool IconManipulator::prepMono(QString inputPath)
+{
+    QString path;
+    if (inputPath.startsWith("file://")) {
+        path = inputPath.replace("file://", "");
+    } else {
+        path = inputPath;
+    }
+    QFile file(path);
+
+    if (QFile::exists("/tmp/ikonalight.svg"))
+        QFile::remove("/tmp/ikonalight.svg");
+
+    if (QFile::exists("/tmp/ikonadark.svg"))
+        QFile::remove("/tmp/ikonadark.svg");
+
+    file.copy("/tmp/ikonalight.svg");
+    file.copy("/tmp/ikonadark.svg");
+
+    this->injectStylesheet("file:///tmp/ikonalight.svg");
+    this->injectStylesheet("file:///tmp/ikonadark.svg");    
+
+    this->classIcon("file:///tmp/ikonalight.svg");
+    this->classIcon("file:///tmp/ikonadark.svg");
+
+    this->toDark("file:///tmp/ikonalight.svg");
+    this->toLight("file:///tmp/ikonadark.svg");
+
+    return true;
+}
 bool IconManipulator::tidyIcon(QString inputPath)
 {
     QString path;
     if (inputPath.startsWith("file://")) {
         path = inputPath.replace("file://", "");
+    } else {
+        path = inputPath;
     }
     QStringList args = { "--set-precision=8", "--enable-viewboxing", "--enable-comment-stripping", "--remove-descriptive-elements", "--create-groups", "--strip-xml-space", "--nindent=4", path };
     QProcess *proc = new QProcess();
@@ -50,6 +82,8 @@ bool IconManipulator::classIcon(QString inputPath)
     QString path;
     if (inputPath.startsWith("file://")) {
         path = inputPath.replace("file://", "");
+    } else {
+        path = inputPath;
     }
     QFile icon(path);
     if (icon.open( QFile::ReadWrite ))
@@ -78,6 +112,8 @@ bool IconManipulator::toDark(QString inputPath)
     QString path;
     if (inputPath.startsWith("file://")) {
         path = inputPath.replace("file://", "");
+    } else {
+        path = inputPath;
     }
     QFile icon(path);
     if (icon.open( QFile::ReadWrite ))
