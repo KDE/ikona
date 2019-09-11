@@ -2,6 +2,7 @@
 <!-- Copyright 2019 Carson Black -->
 <component type="desktop-application">
     <id>me.appadeia.ikona</id>
+    <icon type="remote" width="48" height="48" >https://invent.kde.org/kde/ikona/raw/master/data/me.appadeia.ikona.svg</icon>
     <name>Ikona</name>
     <summary>Ikona is a design companion to help you design icons</summary>
     <description>
