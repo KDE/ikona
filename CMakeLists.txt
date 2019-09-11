@@ -28,7 +28,6 @@ install(TARGETS ikona DESTINATION bin)
 install(FILES data/me.appadeia.ikona.desktop DESTINATION share/applications)
 install(FILES data/me.appadeia.ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
 install(FILES data/me.appadeia.ikona.appdata.xml DESTINATION share/metainfo)
-install(DIRECTORY data/templates DESTINATION share)
 
 message(STATUS "")
 message(STATUS "if you're developing this, you should use the ${Green}meson.build${ColourReset} instead.")
