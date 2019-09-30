@@ -178,7 +178,7 @@ Item {
         Label {
             anchors.verticalCenter: parent.verticalCenter
             color: root.rightColor
-            text: "Montage made with Ikona"
+            text: i18n("Montage made with Ikona")
         }
     }
     function open() {

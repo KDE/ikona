@@ -19,10 +19,11 @@ find_package(Qt5 COMPONENTS Widgets Core Quick QuickControls2 WebEngine REQUIRED
 find_package(KF5Plasma)
 find_package(KF5Kirigami2)
 find_package(KF5PlasmaQuick)
+find_package(KF5I18n)
 
 add_executable(${PROJECT_NAME} "src/main.cpp" "qrc/qml.qrc" "qrc/images.qrc" "src/iconsetter.cpp" "src/iconsetter.h" "src/iconmanipulator.cpp" "src/iconmanipulator.h")
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick KF5::I18n)
 
 install(TARGETS ikona DESTINATION bin)
 install(FILES data/me.appadeia.ikona.desktop DESTINATION share/applications)

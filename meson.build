@@ -5,6 +5,7 @@ qt5_dep = dependency('qt5', modules: ['Widgets', 'Core', 'Quick', 'QuickControls
 kf5plasma_dep = dependency('KF5Plasma')
 kf5plasmaquick_dep = dependency('KF5PlasmaQuick')
 kf5kirigami2_dep = dependency('KF5Kirigami2')
+kf5i18n_dep = dependency('KF5I18n')
 
 inc = include_directories('src')
 

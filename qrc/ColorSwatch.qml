@@ -85,7 +85,7 @@ Item {
     PlasmaComponents.Label {
         color: "white"
         id: copied
-        text: "Copied!"
+        text: i18nc("This color has just been copied!", "Copied!")
         font.bold: false
         font.pointSize: 10
         opacity: 0

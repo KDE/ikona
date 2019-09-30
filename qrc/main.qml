@@ -58,44 +58,50 @@ Kirigami.ApplicationWindow {
 
     QNative.MenuBar {
         QNative.Menu {
-            title: "Icon"
+            title: i18nc("Top-level menu called Icon, equivalent to File in purpose but for icons", "Icon")
             QNative.MenuItem {
                 iconName: "document-open-symbolic"
-                text: "Open SVG..."
+                text: i18nc("Open a dialog that picks an SVG file", "Open SVG...")
                 onTriggered: picker.open()
                 shortcut: StandardKey.Open
             }
             QNative.MenuItem {
                 shortcut: "Ctrl+R"
                 iconName: "randomize"
-                text: "Shuffle Example Icons"
+                text: i18nc("Shuffle the order of the example icons displayed around the user's icon",
+                            "Shuffle Example Icons")
                 onTriggered: root.icons = root.shuffle(root.icons)
             }
             QNative.MenuItem {
                 iconName: "exchange-positions"
-                text: "Set Icon Theme (Requires Restart)"
+                text: i18nc("Set Ikona's icon theme, which requires a restart",
+                            "Set Icon Theme (Requires Restart)")
                 onTriggered: iconThemeNameDrawer.prompt()
             }
             QNative.MenuSeparator {}
             QNative.Menu {
                 iconName: "document-new-symbolic"
-                title: "New Icon from Breeze Templates"
+                title: i18nc("Create a new icon from Breeze icon templates...",
+                             "New Icon from Breeze Templates")
                 QNative.MenuItem {
-                    text: "16px Action/Status/Filetype"
+                    text: i18nc("... create a new icon from Breeze icon templates of type 16px Action/Status/Filetype.",
+                                "16px Action/Status/Filetype")
                     onTriggered: {
                         root.fromIconTemplate = ":templates/mono-16.svg"
                         savePicker.open()
                     }
                 }
                 QNative.MenuItem {
-                    text: "22px Action/Status/Filetype"
+                    text: i18nc("... create a new icon from Breeze icon templates of type 22px Action/Status/Filetype",
+                                "22px Action/Status/Filetype")
                     onTriggered: {
                         root.fromIconTemplate = ":templates/mono-22.svg"
                         savePicker.open()
                     }
                 }
                 QNative.MenuItem {
-                    text: "Application/Large Filetype"
+                    text: i18nc("... create a new icon from Breeze icon templates of type Application/Large Filetype",
+                                "Application/Large Filetype")
                     onTriggered: {
                         root.fromIconTemplate = ":/templates/colorful.svg"
                         savePicker.open()
@@ -104,38 +110,44 @@ Kirigami.ApplicationWindow {
             }
         }
         QNative.Menu {
-            title: "Colors"
+            title: i18nc("Top level menu with items related to all things colors", "Colors")
             QNative.MenuItem {
                 shortcut: "Ctrl+L"
                 iconName: "color-picker"
-                text: "Change Light Color"
+                text: i18nc("Change the color of the light side of the preview",
+                            "Change Light Color")
                 onTriggered: leftColorPicker.open()
             }
             QNative.MenuItem {
                 shortcut: "Ctrl+D"
                 iconName: "color-picker"
-                text: "Change Dark Color"
+                text: i18nc("Change the color of the dark side of the preview",
+                            "Change Dark Color")
                 onTriggered: rightColorPicker.open()
             }
             QNative.MenuSeparator {}
             QNative.Menu {
-                title: "Pick Colors from Theme"
+                title: i18nc("Change the colors of both sides according to a preset colorscheme",
+                             "Pick Colors from Theme")
                 QNative.MenuItem {
-                    text: "Material Design"
+                    text: i18nc("Change the colors of both sides according to Material colours",
+                                "Material Design")
                     onTriggered: {
                         root.leftColor = "white"
                         root.rightColor = "#121212"
                     }
                 }
                 QNative.MenuItem {
-                    text: "Breeze"
+                    text: i18nc("Change the colors of both sides according to Breeze colors",
+                                "Breeze")
                     onTriggered: {
                         root.leftColor = "#eff0f1"
                         root.rightColor = "#31363b"
                     }
                 }
                 QNative.MenuItem {
-                    text: "Adwaita"
+                    text: i18nc("Change the colors of both sides according to Adwaita colors",
+                                "Adwaita")
                     onTriggered: {
                         root.leftColor = "#f6f5f4"
                         root.rightColor = "#353535"
@@ -144,23 +156,28 @@ Kirigami.ApplicationWindow {
             }
         }
         QNative.Menu {
-            title: "Palettes"
+            title: i18nc("Top level menu with items related to viewing colour palettes",
+                         "Palettes")
             QNative.MenuItem {
                 iconName: "palette-symbolic"
-                text: "View Breeze Colors"
+                text: i18nc("View the Breeze colour palette",
+                            "View Breeze Colors")
                 onTriggered: breezeColorsDrawer.open()
             }
         }
         QNative.Menu {
-            title: "Screenshot"
+            title: i18nc("Top level menu with items related to taking screenshots",
+                         "Screenshot")
             QNative.MenuItem {
                 iconName: "camera-photo-symbolic"
-                text: "Take Screenshot (Default View)"
+                text: i18nc("Take a screenshot of the default home view",
+                            "Take Screenshot (Default View)")
                 onTriggered: colorShot.open()
             }
             QNative.MenuItem {
                 iconName: "camera-photo-symbolic"
-                text: "Take Screenshot (Small View)"
+                text: i18nc("Take a screenshot of the small icon view",
+                            "Take Screenshot (Small View)")
                 onTriggered: monoShot.open()
             }
         }
@@ -203,7 +220,7 @@ Kirigami.ApplicationWindow {
     IconManipulator {
         id: manipulator
     }
-    title: qsTr("Ikona Design Companion")
+    title: i18nc("Application name displayed in the titlebar", "Ikona Design Companion")
     color: Kirigami.Theme.backgroundColor
     Kirigami.GlobalDrawer {
             modal: false
@@ -211,7 +228,7 @@ Kirigami.ApplicationWindow {
             collapsible: true
             id:    sidebar
             titleIcon: "ikona"
-            title: "Ikona"
+            title: i18n("Ikona")
             Component.onCompleted: {
                 console.log(sidebar.collapsedSize)
             }
@@ -219,33 +236,37 @@ Kirigami.ApplicationWindow {
             actions: [
                 Kirigami.Action {
                     iconSource: "document-open-symbolic"
-                    text: "Open SVG..."
+                    text: i18n("Open SVG...")
                     onTriggered: {
                         picker.open()
                     }
                 },
                 Kirigami.Action {
                     iconSource: "view-list-icons"
-                    text: "Icons"
+                    text: i18nc("Actions related to icons", "Icons")
                     Kirigami.Action {
                         iconSource: "document-new-symbolic"
-                        text: "New Icon from Breeze Templates"
+                        text: i18nc("Create a new icon template",
+                                    "New Icon from Breeze Templates")
                         Kirigami.Action {
-                            text: "16px Action/Status/Filetype"
+                            text: i18nc("Create an icon of this type",
+                                        "16px Action/Status/Filetype")
                             onTriggered: {
                                 root.fromIconTemplate = ":templates/mono-16.svg"
                                 savePicker.open()
                             }
                         }
                         Kirigami.Action {
-                            text: "22px Action/Status/Filetype"
+                            text: i18nc("Create an icon of this type",
+                                        "22px Action/Status/Filetype")
                             onTriggered: {
                                 root.fromIconTemplate = ":templates/mono-22.svg"
                                 savePicker.open()
                             }
                         }
                         Kirigami.Action {
-                            text: "48px Application/Large Filetype"
+                            text: i18nc("Create an icon of this type",
+                                        "48px Application/Large Filetype")
                             onTriggered: {
                                 root.fromIconTemplate = ":/templates/colorful.svg"
                                 savePicker.open()
@@ -254,14 +275,14 @@ Kirigami.ApplicationWindow {
                     }
                     Kirigami.Action {
                         iconSource: "exchange-positions"
-                        text: "Change Icon Theme"
+                        text: i18n("Change Icon Theme")
                         onTriggered: {
                             iconThemeNameDrawer.prompt()
                         }
                     }
                     Kirigami.Action {
                         iconSource: "randomize"
-                        text: "Shuffle Example Icons"
+                        text: i18n("Shuffle Example Icons")
                         onTriggered: {
                             root.icons = root.shuffle(root.icons);
                         }
@@ -269,37 +290,40 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconSource: "color-picker"
-                    text: "Set Colors"
+                    text: i18n("Set Colors")
                     Kirigami.Action {
-                        text: "Change Light Color"
+                        text: i18n("Change Light Color")
                         onTriggered: {
                             leftColorPicker.open()
                         }
                     }
                     Kirigami.Action {
-                        text: "Change Dark Color"
+                        text: i18n("Change Dark Color")
                         onTriggered: {
                             rightColorPicker.open()
                         }
                     }
                     Kirigami.Action {
-                        text: "Set Colors From Theme"
+                        text: i18n("Set Colors From Theme")
                         Kirigami.Action {
-                            text: "Material Colors"
+                            text: i18nc("Set colours from this theme",
+                                        "Material Colors")
                             onTriggered: {
                                 root.leftColor = "white"
                                 root.rightColor = "#121212"
                             }
                         }
                         Kirigami.Action {
-                            text: "Breeze Colors"
+                            text: i18nc("Set colours from this theme",
+                                        "Breeze Colors")
                             onTriggered: {
                                 root.leftColor = "#eff0f1"
                                 root.rightColor = "#31363b"
                             }
                         }
                         Kirigami.Action {
-                            text: "Adwaita Colors"
+                            text: i18nc("Set colours from this theme",
+                                        "Adwaita Colors")
                             onTriggered: {
                                 root.leftColor = "#f6f5f4"
                                 root.rightColor = "#353535"
@@ -309,80 +333,88 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconSource: "editimage"
-                    text: "Modify Icon"
+                    text: i18n("Modify Icon")
                     Kirigami.Action {
                         iconSource: "edit-clear-all"
-                        text: "Tidy Icon"
+                        text: i18nc("Remove excess metadata not related to how the icon looks",
+                                   "Tidy Icon")
                         onTriggered: {
                             if (manipulator.tidyIcon(imageSource)) {
-                                root.showPassiveNotification("Your icon has been cleaned.")
+                                root.showPassiveNotification(i18n("Your icon has been cleaned."))
                             } else {
-                                root.showPassiveNotification("Something went wrong cleaning your icon.")
+                                root.showPassiveNotification(i18n("Something went wrong cleaning your icon."))
                             }
                         }
                     }
                     Kirigami.Action {
                         iconSource: "gtk-convert"
-                        text: "Convert Icon Colors to Classes"
+                        text: i18nc("Change hardcoded colours to CSS classes",
+                                    "Convert Icon Colors to Classes")
                         onTriggered: {
                             if (manipulator.classIcon(imageSource)) {
-                                root.showPassiveNotification("Your icon has been converted. You should inject stylesheets if they have not already been injected.")
+                                root.showPassiveNotification(i18n("Your icon has been converted. You should inject stylesheets if they have not already been injected."))
                             } else {
-                                root.showPassiveNotification("Something went wrong converting your icon.")
+                                root.showPassiveNotification(i18n("Something went wrong converting your icon."))
                             }
                         }
                     }
                     Kirigami.Action {
                         iconSource: "code-context"
-                        text: "Inject Stylesheets"
+                        text: i18nc("Add CSS stylesheets to an icon",
+                                    "Inject Stylesheets")
                         onTriggered: {
                             if (manipulator.injectStylesheet(imageSource)) {
-                                root.showPassiveNotification("Stylesheets have been added to your icon.")
+                                root.showPassiveNotification(i18n("Stylesheets have been added to your icon."))
                             } else {
-                                root.showPassiveNotification("Something went wrong adding stylesheets to your icon.")
+                                root.showPassiveNotification(i18n("Something went wrong adding stylesheets to your icon."))
                             }
                         }
                     }
                     Kirigami.Action {
                         iconSource: "color-picker-black"
-                        text: "Change Icon to Light Mode"
+                        text: i18nc("Change an icon's colors from being white to be displayed on dark surfaces to being black to be displayed on light surfaces",
+                                    "Change Icon to Light Mode")
                         onTriggered: {
                             if (manipulator.toDark(imageSource)) {
-                                root.showPassiveNotification("Your icon has been converted.")
+                                root.showPassiveNotification(i18n("Your icon has been converted."))
                             } else {
-                                root.showPassiveNotification("Something went wrong converting your icon.")
+                                root.showPassiveNotification(i18n("Something went wrong converting your icon."))
                             }
                         }
                     }
                     Kirigami.Action {
                         iconSource: "color-picker-white"
-                        text: "Change Icon to Dark Mode"
+                        text: i18nc("Change an icon's colours from being black to be displayed on light surfaces to being white to be displayed on dark surfaces",
+                                    "Change Icon to Dark Mode")
                         onTriggered: {
                             if (manipulator.toLight(imageSource)) {
-                                root.showPassiveNotification("Your icon has been converted.")
+                                root.showPassiveNotification(i18n("Your icon has been converted."))
                             } else {
-                                root.showPassiveNotification("Something went wrong converting your icon.")
+                                root.showPassiveNotification(i18n("Something went wrong converting your icon."))
                             }
                         }
                     }
                 },
                 Kirigami.Action {
                     iconSource: "camera-photo-symbolic"
-                    text: "Export Montage"
+                    text: i18nc("Export a montage of icons", "Export Montage")
                     Kirigami.Action {
-                        text: "Default View"
+                        text: i18nc("Export a montage of this view",
+                                    "Default View")
                         onTriggered: colorShot.open()
                     }
                     Kirigami.Action {
-                        text: "Small View"
+                        text: i18nc("Export a montage of this view",
+                                    "Small View")
                         onTriggered: monoShot.open()
                     }
                 },
                 Kirigami.Action {
                     iconSource: "palette-symbolic"
-                    text: "View Palettes"
+                    text: i18n("View Palettes")
                     Kirigami.Action {
-                        text: "Breeze Palette"
+                        text: i18nc("View this colour palette",
+                                    "Breeze Palette")
                         onTriggered: {
                             breezeColorsDrawer.open()
                         }
@@ -393,7 +425,8 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconName: "go-home"
-                    text: "Regular View"
+                    text: i18nc("Switch to this view",
+                                "Regular View")
                     checked: swipe.currentIndex == 0
                     onTriggered: {
                         swipe.currentIndex = 0
@@ -401,7 +434,8 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconName: "zoom-out"
-                    text: "Small View"
+                    text: i18nc("Switch to this view",
+                                "Small View")
                     checked: swipe.currentIndex == 1
                     onTriggered: {
                         swipe.currentIndex = 1
@@ -409,7 +443,8 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconName: "internet-services"
-                    text: "HIG View"
+                    text: i18nc("Switch to this view",
+                                "HIG View")
                     checked: swipe.currentIndex == 2
                     onTriggered: {
                         swipe.currentIndex = 2
@@ -417,7 +452,8 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconName: "zoom-in"
-                    text: "Large View"
+                    text: i18nc("Switch to this view",
+                                "Large View")
                     checked: swipe.currentIndex == 3
                     onTriggered: {
                         swipe.currentIndex = 3
@@ -429,7 +465,8 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     id: pullDown
                     iconName: checked ? "window-shade" : "window-unshade"
-                    text: "Pull Down Drawers"
+                    text: i18nc("Expand the rectangles at the top to cover the background behind the icon",
+                                "Pull Down Drawers")
                     checkable: true
                 },
                 Kirigami.Action {
@@ -437,12 +474,12 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     iconName: hud.visible ? "view-hidden" : "view-visible"
-                    text: hud.visible ? "Close HUD" : "Open HUD"
+                    text: hud.visible ? i18n("Close HUD") : i18n("Open HUD")
                     onTriggered: hud.visible = !hud.visible
                 },
                 Kirigami.Action {
                     iconName: sysTray.visible ? "view-hidden" : "view-visible"
-                    text: sysTray.visible ? "Hide Icon in Tray" : "Show Icon in Tray"
+                    text: sysTray.visible ? i18n("Hide Icon in Tray") : i18n("Show Icon in Tray")
                     onTriggered: sysTray.visible = !sysTray.visible
                 }
             ]
@@ -468,11 +505,11 @@ Kirigami.ApplicationWindow {
             Column {
                 width: root.width
                 Kirigami.Heading {
-                    text: "Breeze Colors"
+                    text: i18n("Breeze Colors")
                 }
                 Kirigami.Heading {
                     font.pointSize: 12
-                    text: "Neutral Colors"
+                    text: i18n("Neutral Colors")
                 }
                 Flow {
                     width: parent.width
@@ -511,7 +548,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Heading {
                     font.pointSize: 12
-                    text: "Warm Colors"
+                    text: i18n("Warm Colors")
                 }
                 Flow {
                     width: parent.width
@@ -558,7 +595,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Heading {
                     font.pointSize: 12
-                    text: "Cool Colors"
+                    text: i18n("Cool Colors")
                 }
                 Flow {
                     width: parent.width
@@ -620,7 +657,7 @@ Kirigami.ApplicationWindow {
         contentItem: ColumnLayout {
                         Kirigami.Heading {
                             id: textPromptLabel
-                            text: "Enter the name of the icon theme"
+                            text: i18n("Enter the name of the icon theme")
                         }
                         PlasmaComponents.TextField {
                             Layout.fillWidth: true
@@ -712,7 +749,7 @@ Kirigami.ApplicationWindow {
                 color: Kirigami.Theme.backgroundColor
                 Label {
                     color: Kirigami.Theme.textColor
-                    text: "HUD"
+                    text: i18nc("The title name of the HUD window", "HUD")
                     anchors.centerIn: parent
                 }
                 PlasmaComponents.ToolButton {
@@ -1112,7 +1149,7 @@ Kirigami.ApplicationWindow {
                 anchors.leftMargin: 5
                 color: "black"
                 anchors.verticalCenter: overlayCheck.verticalCenter
-                text: "Enable white effect on icons on dark"
+                text: i18n("Enable white effect on icons on dark")
             }
         }
         Item {
@@ -1129,7 +1166,7 @@ Kirigami.ApplicationWindow {
                         PlasmaComponents.ToolButton {
                             enabled: webView.canGoBack
                             iconName: "draw-arrow-back"
-                            text: "Go Back"
+                            text: i18n("Go Back")
                             onClicked: {
                                 webView.goBack()
                             }
@@ -1138,7 +1175,7 @@ Kirigami.ApplicationWindow {
                             id: forwardBtn
                             enabled: webView.canGoForward
                             iconName: "draw-arrow-forward"
-                            text: "Go Forward"
+                            text: i18n("Go Forward")
                             onClicked: {
                                 webView.goForward()
                             }
@@ -1151,7 +1188,7 @@ Kirigami.ApplicationWindow {
                         }
                         PlasmaComponents.ToolButton {
                             iconName: "go-home"
-                            text: "Return to HIG Home"
+                            text: i18n("Return to HIG Home")
                             onClicked: {
                                 webView.url = "https://hig.kde.org/style/icons/index.html"
                             }

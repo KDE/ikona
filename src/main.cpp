@@ -10,6 +10,7 @@
 #include <Plasma/Svg>
 #include <QIcon>
 #include <QtWebEngine>
+#include <KLocalizedContext>
 #include "iconsetter.h"
 #include "iconmanipulator.h"
 
@@ -84,6 +85,8 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
+
+    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
 
     return app.exec();
 }
