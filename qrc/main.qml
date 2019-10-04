@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 import org.kde.kirigami 2.5 as Kirigami
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import QtGraphicalEffects 1.12
-import me.appadeia.Ikona 1.0
+import org.kde.Ikona 1.0
 import Qt.labs.settings 1.1
 import Qt.labs.platform 1.1 as QNative
 import QtWebEngine 1.1

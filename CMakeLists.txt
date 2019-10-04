@@ -26,9 +26,9 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONF
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::WebEngine Qt5::Core Qt5::Quick Qt5::QuickControls2 KF5::Kirigami2 KF5::Plasma KF5::PlasmaQuick KF5::I18n)
 
 install(TARGETS ikona DESTINATION bin)
-install(FILES data/me.appadeia.ikona.desktop DESTINATION share/applications)
-install(FILES data/me.appadeia.ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
-install(FILES data/me.appadeia.ikona.appdata.xml DESTINATION share/metainfo)
+install(FILES data/org.kde.Ikona.desktop DESTINATION share/applications)
+install(FILES data/org.kde.Ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
+install(FILES data/org.kde.Ikona.appdata.xml DESTINATION share/metainfo)
 
 message(STATUS "")
 message(STATUS "if you're developing this, you should use the ${Green}meson.build${ColourReset} instead.")

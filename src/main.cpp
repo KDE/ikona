@@ -11,6 +11,7 @@
 #include <QIcon>
 #include <QtWebEngine>
 #include <KLocalizedContext>
+#include <KLocalizedString>
 #include "iconsetter.h"
 #include "iconmanipulator.h"
 
@@ -55,8 +56,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     // QQuickStyle::setStyle("Plasma");
     app.setOrganizationName("Appadeia");
-    app.setOrganizationDomain("me.appadeia");
+    app.setOrganizationDomain("org.kde");
     app.setApplicationName("Ikona");
+
+    KLocalizedString::setApplicationDomain("ikona");
 
     QtWebEngine::initialize();
 
@@ -73,8 +76,8 @@ int main(int argc, char *argv[])
         dir.mkdir(QDir::homePath() + "/.ikona");
     }
 
-    qmlRegisterType<IconSetter>("me.appadeia.Ikona", 1, 0, "IconSetter");
-    qmlRegisterType<IconManipulator>("me.appadeia.Ikona", 1, 0, "IconManipulator");
+    qmlRegisterType<IconSetter>("org.kde.Ikona", 1, 0, "IconSetter");
+    qmlRegisterType<IconManipulator>("org.kde.Ikona", 1, 0, "IconManipulator");
 
     QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << QDir::homePath() + "/.ikona");
     qDebug() << QIcon::fallbackSearchPaths();

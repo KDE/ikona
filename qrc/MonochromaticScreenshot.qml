@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.12
 import org.kde.kirigami 2.5 as Kirigami
 import QtQuick.Controls 2.5
 import QtQuick.Dialogs 1.3
-import me.appadeia.Ikona 1.0
+import org.kde.Ikona 1.0
 
 Item {
     id: screenRoot
