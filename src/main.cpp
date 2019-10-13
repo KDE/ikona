@@ -39,7 +39,7 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     }
 }
 
-bool fileExists(QString path)
+bool fileExists(const QString &path)
 {
     QFileInfo check_file(path);
     if (check_file.exists() && check_file.isFile()) {
