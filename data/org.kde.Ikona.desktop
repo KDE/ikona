@@ -4,6 +4,6 @@ Name=Ikona
 Exec=ikona
 Comment=Utility for viewing Icons
 Categories=Qt;System;Documentation
-GenericName=Icon Preview Utiltiy
+GenericName=Icon Preview Utility
 MimeType=image/svg+xml
 Icon=org.kde.Ikona
