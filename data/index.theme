@@ -1,6 +1,18 @@
 [Icon Theme]
 Name=Ikona
+Name[ca]=Ikona
+Name[nl]=Ikona
+Name[pt]=Ikona
+Name[sk]=Ikona
+Name[uk]=Ikona
+Name[x-test]=xxIkonaxx
 Comment=Ikona internal icon theme
+Comment[ca]=Tema d'icones intern de l'Ikona
+Comment[nl]=Ikona intern pictogramthema
+Comment[pt]=Tema de ícones interno do Ikona
+Comment[sk]=Vnútorná téma ikon Ikona
+Comment[uk]=Вбудована тема піктограм Ikona
+Comment[x-test]=xxIkona internal icon themexx
 Hidden=true
 Inherits=breeze,hicolor,oxygen
 FollowsColorScheme=true
