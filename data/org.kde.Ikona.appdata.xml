@@ -1,46 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2019 Carson Black -->
 <component type="desktop-application">
-    <id>org.kde.Ikona</id>
-    <icon type="remote" width="48" height="48" >https://invent.kde.org/kde/ikona/raw/master/data/org.kde.Ikona.svg</icon>
-    <name>Ikona</name>
-    <summary>Ikona is a design companion to help you design icons</summary>
-    <description>
-        <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
-    </description>
-    <metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-2.0-or-later</project_license>
-    <releases>
-        <release version="0.5.2.2" date="2019-07-12" urgency="high">
-            <description>
-                <p>This is the initial version.</p>
-            </description>
-        </release>
-    </releases>
-    <translation type="qt">Ikona</translation>
-    <screenshots>
-        <screenshot>
-            <caption>Ikona Main View</caption>
-            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Ikona Small View</caption>
-            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen2.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Ikona HIG View</caption>
-            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen3.png</image>
-        </screenshot>
-        <screenshot>
-            <caption>Ikona Large View</caption>
-            <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen4.png</image>
-        </screenshot>
-    </screenshots>
-    <update_contact>
+  <id>org.kde.Ikona</id>
+  <icon type="remote" width="48" height="48">https://invent.kde.org/kde/ikona/raw/master/data/org.kde.Ikona.svg</icon>
+  <name>Ikona</name>
+  <name xml:lang="ca">Ikona</name>
+  <name xml:lang="nl">Ikona</name>
+  <name xml:lang="pt">Ikona</name>
+  <name xml:lang="sk">Ikona</name>
+  <name xml:lang="uk">Ikona</name>
+  <name xml:lang="x-test">xxIkonaxx</name>
+  <summary>Ikona is a design companion to help you design icons</summary>
+  <summary xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
+  <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
+  <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
+  <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
+  <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
+  <description>
+    <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
+    <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
+    <p xml:lang="nl">Ikona is een ontwerphulp om u te helpen pictogrammen te ontwerpen. Het is ontworpen om te integreren in het KDE Plasma bureaublad.</p>
+    <p xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones. Está desenhado para se integrar com o ambiente de trabalho Plasma do KDE.</p>
+    <p xml:lang="uk">Ikona — допоміжна програма для створення піктограм. Її інтегровано із стільничним середовищем Плазми KDE.</p>
+    <p xml:lang="x-test">xxIkona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.xx</p>
+  </description>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <releases>
+    <release version="0.5.2.2" date="2019-07-12" urgency="high">
+      <description>
+        <p>This is the initial version.</p>
+      </description>
+    </release>
+  </releases>
+  <translation type="qt">Ikona</translation>
+  <screenshots>
+    <screenshot>
+      <caption>Ikona Main View</caption>
+      <caption xml:lang="ca">Vista principal de l'Ikona</caption>
+      <caption xml:lang="nl">Ikona hoofdweergave</caption>
+      <caption xml:lang="pt">Área Principal do Ikona</caption>
+      <caption xml:lang="sk">Hlavný pohľad Ikona</caption>
+      <caption xml:lang="uk">Основне вікно Ikona</caption>
+      <caption xml:lang="x-test">xxIkona Main Viewxx</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Ikona Small View</caption>
+      <caption xml:lang="ca">Vista petita de l'Ikona</caption>
+      <caption xml:lang="nl">Ikona kleine weergave</caption>
+      <caption xml:lang="pt">Área Pequena do Ikona</caption>
+      <caption xml:lang="sk">Malý pohľad Ikona</caption>
+      <caption xml:lang="uk">Панель зменшеного перегляду Ikona</caption>
+      <caption xml:lang="x-test">xxIkona Small Viewxx</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen2.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Ikona HIG View</caption>
+      <caption xml:lang="ca">Vista més gran de l'Ikona</caption>
+      <caption xml:lang="nl">Ikona HIG weergave</caption>
+      <caption xml:lang="pt">Área HIG do Ikona</caption>
+      <caption xml:lang="sk">HIG pohľad Ikona</caption>
+      <caption xml:lang="uk">Панель перегляду настанов Ikona</caption>
+      <caption xml:lang="x-test">xxIkona HIG Viewxx</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen3.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Ikona Large View</caption>
+      <caption xml:lang="ca">Vista gran de l'Ikona</caption>
+      <caption xml:lang="nl">Ikona grote weergave</caption>
+      <caption xml:lang="pt">Área Grande do Ikona</caption>
+      <caption xml:lang="sk">Veľký pohľad Ikona</caption>
+      <caption xml:lang="uk">Панель збільшеного перегляду Ikona</caption>
+      <caption xml:lang="x-test">xxIkona Large Viewxx</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen4.png</image>
+    </screenshot>
+  </screenshots>
+  <update_contact>
         uhhadd@gmail.com
     </update_contact>
-    <url type="homepage">https://invent.kde.org/kde/ikona</url>
-    <categories>
-        <category>Graphics</category>
-    </categories>
+  <url type="homepage">https://invent.kde.org/kde/ikona</url>
+  <categories>
+    <category>Graphics</category>
+  </categories>
 </component>
