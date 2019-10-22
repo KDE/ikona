@@ -1,6 +1,7 @@
 [Icon Theme]
 Name=Ikona
 Name[ca]=Ikona
+Name[it]=Ikona
 Name[nl]=Ikona
 Name[pt]=Ikona
 Name[ru]=Ikona
@@ -9,6 +10,7 @@ Name[uk]=Ikona
 Name[x-test]=xxIkonaxx
 Comment=Ikona internal icon theme
 Comment[ca]=Tema d'icones intern de l'Ikona
+Comment[it]=Tema di icone interno di Ikona
 Comment[nl]=Ikona intern pictogramthema
 Comment[pt]=Tema de ícones interno do Ikona
 Comment[sk]=Vnútorná téma ikon Ikona
