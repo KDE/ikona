@@ -6,6 +6,7 @@
   <name>Ikona</name>
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="id">Ikona</name>
+  <name xml:lang="it">Ikona</name>
   <name xml:lang="nl">Ikona</name>
   <name xml:lang="pt">Ikona</name>
   <name xml:lang="ru">Ikona</name>
@@ -15,6 +16,7 @@
   <summary>Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
+  <summary xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone</summary>
   <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
   <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
@@ -23,6 +25,7 @@
     <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
     <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon. Ini dirancang untuk mengintegrasikan dengan desktop KDE Plasma.</p>
+    <p xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone. È progettato per integrarsi con il desktop KDE Plasma.</p>
     <p xml:lang="nl">Ikona is een ontwerphulp om u te helpen pictogrammen te ontwerpen. Het is ontworpen om te integreren in het KDE Plasma bureaublad.</p>
     <p xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones. Está desenhado para se integrar com o ambiente de trabalho Plasma do KDE.</p>
     <p xml:lang="uk">Ikona — допоміжна програма для створення піктограм. Її інтегровано із стільничним середовищем Плазми KDE.</p>
@@ -43,6 +46,7 @@
       <caption>Ikona Main View</caption>
       <caption xml:lang="ca">Vista principal de l'Ikona</caption>
       <caption xml:lang="id">Tampilan Utama Ikona</caption>
+      <caption xml:lang="it">Vista principale di Ikona</caption>
       <caption xml:lang="nl">Ikona hoofdweergave</caption>
       <caption xml:lang="pt">Área Principal do Ikona</caption>
       <caption xml:lang="sk">Hlavný pohľad Ikona</caption>
@@ -54,6 +58,7 @@
       <caption>Ikona Small View</caption>
       <caption xml:lang="ca">Vista petita de l'Ikona</caption>
       <caption xml:lang="id">Tampilan Kecil Ikona</caption>
+      <caption xml:lang="it">Vista piccola di Ikona</caption>
       <caption xml:lang="nl">Ikona kleine weergave</caption>
       <caption xml:lang="pt">Área Pequena do Ikona</caption>
       <caption xml:lang="sk">Malý pohľad Ikona</caption>
@@ -65,6 +70,7 @@
       <caption>Ikona HIG View</caption>
       <caption xml:lang="ca">Vista més gran de l'Ikona</caption>
       <caption xml:lang="id">Tampilan HIG Ikona</caption>
+      <caption xml:lang="it">Vista HIG di Ikona</caption>
       <caption xml:lang="nl">Ikona HIG weergave</caption>
       <caption xml:lang="pt">Área HIG do Ikona</caption>
       <caption xml:lang="sk">HIG pohľad Ikona</caption>
@@ -76,6 +82,7 @@
       <caption>Ikona Large View</caption>
       <caption xml:lang="ca">Vista gran de l'Ikona</caption>
       <caption xml:lang="id">Tampilan Besar Ikona</caption>
+      <caption xml:lang="it">Vista grande di Ikona</caption>
       <caption xml:lang="nl">Ikona grote weergave</caption>
       <caption xml:lang="pt">Área Grande do Ikona</caption>
       <caption xml:lang="sk">Veľký pohľad Ikona</caption>
