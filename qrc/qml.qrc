@@ -1,12 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>BreezePalette.qml</file>
+        <file>HUD.qml</file>
+        <file>RegularView.qml</file>
+        <file>MonochromeView.qml</file>
+        <file>HIGView.qml</file>
+        <file>GigaView.qml</file>
         <file>ColorSwatch.qml</file>
         <file>LightIcon.qml</file>
         <file>DarkIcon.qml</file>
         <file>GridRect.qml</file>
         <file>SmallGridRect.qml</file>
-        <file>Spacer.qml</file>
+        <file>Spacer.qml</file> 
         <file>RowSpacer.qml</file>
         <file>DropDown.qml</file>
         <file>Screenshot.qml</file>

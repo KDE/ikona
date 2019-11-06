@@ -235,17 +235,17 @@ Kirigami.ApplicationWindow {
 
             actions: [
                 Kirigami.Action {
-                    iconSource: "document-open-symbolic"
+                    iconName: "document-open"
                     text: i18n("Open SVG...")
                     onTriggered: {
                         picker.open()
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "view-list-icons"
+                    iconName: "view-list-icons"
                     text: i18nc("Actions related to icons", "Icons")
                     Kirigami.Action {
-                        iconSource: "document-new-symbolic"
+                        iconSource: "document-new"
                         text: i18nc("Create a new icon template",
                                     "New Icon from Breeze Templates")
                         Kirigami.Action {
@@ -274,14 +274,14 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "exchange-positions"
+                        iconName: "exchange-positions"
                         text: i18n("Change Icon Theme")
                         onTriggered: {
                             iconThemeNameDrawer.prompt()
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "randomize"
+                        iconName: "randomize"
                         text: i18n("Shuffle Example Icons")
                         onTriggered: {
                             root.icons = root.shuffle(root.icons);
@@ -289,7 +289,7 @@ Kirigami.ApplicationWindow {
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "color-picker"
+                    iconName: "color-picker"
                     text: i18n("Set Colors")
                     Kirigami.Action {
                         text: i18n("Change Light Color")
@@ -332,10 +332,10 @@ Kirigami.ApplicationWindow {
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "editimage"
+                    iconName: "document-edit"
                     text: i18n("Modify Icon")
                     Kirigami.Action {
-                        iconSource: "edit-clear-all"
+                        iconName: "edit-clear-all"
                         text: i18nc("Remove excess metadata not related to how the icon looks",
                                    "Tidy Icon")
                         onTriggered: {
@@ -347,7 +347,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "gtk-convert"
+                        iconName: "gtk-convert"
                         text: i18nc("Change hardcoded colours to CSS classes",
                                     "Convert Icon Colors to Classes")
                         onTriggered: {
@@ -359,7 +359,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "code-context"
+                        iconName: "code-context"
                         text: i18nc("Add CSS stylesheets to an icon",
                                     "Inject Stylesheets")
                         onTriggered: {
@@ -371,7 +371,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "color-picker-black"
+                        iconName: "color-picker-black"
                         text: i18nc("Change an icon's colors from being white to be displayed on dark surfaces to being black to be displayed on light surfaces",
                                     "Change Icon to Light Mode")
                         onTriggered: {
@@ -383,7 +383,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     Kirigami.Action {
-                        iconSource: "color-picker-white"
+                        iconName: "color-picker-white"
                         text: i18nc("Change an icon's colours from being black to be displayed on light surfaces to being white to be displayed on dark surfaces",
                                     "Change Icon to Dark Mode")
                         onTriggered: {
@@ -396,7 +396,7 @@ Kirigami.ApplicationWindow {
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "camera-photo-symbolic"
+                    iconName: "camera-photo-symbolic"
                     text: i18nc("Export a montage of icons", "Export Montage")
                     Kirigami.Action {
                         text: i18nc("Export a montage of this view",
@@ -410,7 +410,7 @@ Kirigami.ApplicationWindow {
                     }
                 },
                 Kirigami.Action {
-                    iconSource: "palette-symbolic"
+                    iconName: "palette-symbolic"
                     text: i18n("View Palettes")
                     Kirigami.Action {
                         text: i18nc("View this colour palette",
@@ -494,162 +494,8 @@ Kirigami.ApplicationWindow {
         }
         return a;
     }
-    Kirigami.OverlayDrawer {
-        id:             breezeColorsDrawer
-        edge:           Qt.BottomEdge
-        height: root.height * 0.9
-
-        contentItem: ScrollView {
-            anchors.fill: parent
-            clip: true
-            Column {
-                width: root.width
-                Kirigami.Heading {
-                    text: i18n("Breeze Colors")
-                }
-                Kirigami.Heading {
-                    font.pointSize: 12
-                    text: i18n("Neutral Colors")
-                }
-                Flow {
-                    width: parent.width
-                    ColorSwatch {
-                        swatchColor: "#fcfcfc"
-                        fancyName: "Paper White"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#eff0f1"
-                        fancyName: "Cardboard Grey"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#bdc3c7"
-                        fancyName: "Alternate Grey"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#95a5a6"
-                        fancyName: "Alternate Alternate Grey"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#7f8c8d"
-                        fancyName: "Coastal Fog"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#4d4d4d"
-                        fancyName: "Icon Grey"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#31363b"
-                        fancyName: "Charcoal Grey"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#232627"
-                        fancyName: "Shade Black"
-                    }
-                }
-                Kirigami.Heading {
-                    font.pointSize: 12
-                    text: i18n("Warm Colors")
-                }
-                Flow {
-                    width: parent.width
-                    ColorSwatch {
-                        swatchColor: "#e74c3c"
-                        fancyName: "Pimpinella"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#da4453"
-                        fancyName: "Icon Red"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#ed1515"
-                        fancyName: "Danger Red"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#c0392b"
-                        fancyName: "Alternate Red"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#f47750"
-                        fancyName: "Icon Orange"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#d35400"
-                        fancyName: "Alternate Orange"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#fdbc4b"
-                        fancyName: "Icon Yellow"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#f67400"
-                        fancyName: "Beware Orange"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#c9ce3b"
-                        fancyName: "Sunbeam Yellow"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#f39c1f"
-                        fancyName: "Alternate Alternate Orange"
-                    }
-                }
-                Kirigami.Heading {
-                    font.pointSize: 12
-                    text: i18n("Cool Colors")
-                }
-                Flow {
-                    width: parent.width
-                    ColorSwatch {
-                        swatchColor: "#1cdc9a"
-                        fancyName: "Mellow Turquoise"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#11d116"
-                        fancyName: "Verdant Green"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#2ecc71"
-                        fancyName: "Icon Green"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#27ae60"
-                        fancyName: "Noble Fir"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#1abc9c"
-                        fancyName: "Teal"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#16a085"
-                        fancyName: "Alternate Teal"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#3498db"
-                        fancyName: "Alternate Blue"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#2980b9"
-                        fancyName: "Abyss Blue"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#3daee9"
-                        fancyName: "Plasma Blue"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#1d99f3"
-                        fancyName: "Icon Blue"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#9b59b6"
-                        fancyName: "Purple"
-                    }
-                    ColorSwatch {
-                        swatchColor: "#8e44ad"
-                        fancyName: "Alternate Purple"
-                    }
-                }
-            }
-        }
+    BreezePalette {
+        id: breezeColorsDrawer
     }
     Kirigami.OverlayDrawer {
         id:             iconThemeNameDrawer
@@ -729,83 +575,8 @@ Kirigami.ApplicationWindow {
         ListElement { size: 48 }
         ListElement { size: 64 }
     }
-    Kirigami.ApplicationWindow {
+    HUD {
         id: hud
-        height: 256 + (Kirigami.Units.largeSpacing * 4)
-        flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
-        visible: false
-        width: 128
-        title: "HUD"
-        maximumHeight: height
-        maximumWidth: width
-        minimumHeight: height
-        minimumWidth: width
-        Column {
-            spacing: 0
-            Rectangle {
-                height: Kirigami.Units.largeSpacing * 4
-                width: 128
-                Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                color: Kirigami.Theme.backgroundColor
-                Label {
-                    color: Kirigami.Theme.textColor
-                    text: i18nc("The title name of the HUD window", "HUD")
-                    anchors.centerIn: parent
-                }
-                PlasmaComponents.ToolButton {
-                    iconName: "tab-close-other"
-                    height: parent.height * (3/4)
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: Kirigami.Units.smallSpacing
-                    anchors.verticalCenter: parent.verticalCenter
-                    onClicked: {
-                        hud.visible = false
-                    }
-                }
-                MouseArea {
-                    id: mouseRegion
-                    anchors.fill: parent;
-                    property int mouseXWin: 0
-                    property int mouseYWin: 0
-
-                    onPressed: {
-                        mouseXWin = mouse.x
-                        mouseYWin = mouse.y
-                        cursorShape = Qt.SizeAllCursor
-                    }
-                    onReleased: {
-                        cursorShape = Qt.ArrowCursor
-                    }
-                    onPositionChanged: {
-                        var xdelta = mouse.x - mouseXWin
-                        var ydelta = mouse.y - mouseYWin
-                        hud.x = hud.x + xdelta
-                        hud.y = hud.y + ydelta
-                    }
-                }
-            }
-            Rectangle {
-                height: 128
-                width: 128
-                color: root.leftColor
-                LightIcon {
-                    anchors.centerIn: parent
-                    size: 48
-                    source: root.imageSource
-                }
-            }
-            Rectangle {
-                height: 128
-                width: 128
-                color: root.rightColor
-                DarkIcon {
-                    anchors.centerIn: parent
-                    size: 48
-                    source: root.imageSource
-                }
-            }
-        }
     }
     SwipeView {
         id: swipe
@@ -813,453 +584,9 @@ Kirigami.ApplicationWindow {
         anchors.left: parent.left
         anchors.leftMargin: sidebar.collapsedSize
         height: root.height
-        Item {
-            Row {
-                anchors.fill: parent
-                ColumnLayout {
-                    spacing: 0
-                    height: parent.height
-                    width: parent.width / 2
-                    Image {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        source: "qrc:/bg.jpg"
-                        DropDown {
-                            pulledDown: pullDown.checked
-                            color: root.leftColor
-                        }
-                        Grid {
-                            anchors.fill: parent
-                            columns: 3
-                            rows: 3
-                            Repeater {
-                                model: 4
-                                GridRect {
-                                    LightIcon {
-                                        anchors.centerIn: parent
-                                        source: root.icons[index]
-                                    }
-                                }
-                            }
-                            GridRect {
-                                LightIcon {
-                                    anchors.centerIn: parent
-                                    source: root.imageSource
-                                }
-                            }
-                            Repeater {
-                                model: 4
-                                GridRect {
-                                    LightIcon {
-                                        anchors.centerIn: parent
-                                        source: root.icons[index+4]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Rectangle {
-                        height: 400 * 1/3
-                        Layout.fillWidth: true
-                        color: root.leftColor
-                        Grid {
-                            anchors.fill: parent
-                            columns: 4
-                            rows: 2
-                            Repeater {
-                                model: sizesModel
-                                SmallGridRect {
-                                    LightIcon {
-                                        anchors.bottomMargin: -Kirigami.Units.largeSpacing
-                                        anchors.bottom: parent.bottom
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        source: root.imageSource
-                                        size: model["size"]
-                                    }
-                                }
-                            }
-                            Repeater {
-                                model: sizesModel
-                                SmallGridRect {
-                                    Label {
-                                        anchors.centerIn: parent
-                                        color: root.rightColor
-                                        text: model["size"]
-                                    }
-                                }
-                            }
-                        }
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: Kirigami.Units.longDuration
-                            }
-                        }
-                    }
-                }
-                ColumnLayout {
-                    spacing: 0
-                    height: parent.height
-                    width: parent.width / 2
-                    Image {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        source: "qrc:/bg-dark.jpg"
-                        DropDown {
-                            pulledDown: pullDown.checked
-                            color: root.rightColor
-                        }
-                        Grid {
-                            anchors.fill: parent
-                            columns: 3
-                            rows: 3
-                            Repeater {
-                                model: 4
-                                GridRect {
-                                    DarkIcon {
-                                        anchors.centerIn: parent
-                                        source: root.icons[index]
-                                    }
-                                }
-                            }
-                            GridRect {
-                                DarkIcon {
-                                    anchors.centerIn: parent
-                                    source: root.imageSource
-                                }
-                            }
-                            Repeater {
-                                model: 4
-                                GridRect {
-                                    DarkIcon {
-                                        anchors.centerIn: parent
-                                        source: root.icons[index+4]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Rectangle {
-                        color: root.rightColor
-                        height: 400 * 1/3
-                        Layout.fillWidth: true
-                        Grid {
-                            anchors.fill: parent
-                            columns: 4
-                            rows: 2
-                            Repeater {
-                                model: sizesModel
-                                SmallGridRect {
-                                    DarkIcon {
-                                        anchors.bottomMargin: -Kirigami.Units.largeSpacing
-                                        anchors.bottom: parent.bottom
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        source: root.imageSource
-                                        size: model["size"]
-                                    }
-                                }
-                            }
-                            Repeater {
-                                model: sizesModel
-                                SmallGridRect {
-                                    Label {
-                                        anchors.centerIn: parent
-                                        color: root.leftColor
-                                        text: model["size"]
-                                    }
-                                }
-                            }
-                        }
-                        Behavior on color {
-                            ColorAnimation {
-                                duration: Kirigami.Units.longDuration
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        Item {
-            Row {
-                anchors.fill: parent
-                Rectangle {
-                    height: parent.height
-                    width: parent.width / 2
-                    color: root.leftColor
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 500
-                        }
-                    }
-                }
-                Rectangle {
-                    height: parent.height
-                    width: parent.width / 2
-                    color: root.rightColor
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 500
-                        }
-                    }
-                }
-            }
-            Row {
-                anchors.fill: parent
-                spacing: 0
-                Column {
-                    width: parent.width / 2
-                    anchors.verticalCenter: parent.verticalCenter
-                    Spacer {}
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            LightIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.imageSource
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            LightIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[0]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            LightIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[1]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            LightIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[2]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            LightIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[3]
-                            }
-                        }
-                    }
-                }
-                Column {
-                    width: parent.width / 2
-                    anchors.verticalCenter: parent.verticalCenter
-                    Spacer {}
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            DarkIcon {
-                                overlayWhite: overlayCheck.checked
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.imageSource
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            DarkIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[0]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            DarkIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[1]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            DarkIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[2]
-                            }
-                        }
-                    }
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 16
-                        Repeater {
-                            model: symSizesModel
-                            DarkIcon {
-                                size: model["size"]
-                                anchors.bottom: parent.bottom
-                                source: root.symIcons[3]
-                            }
-                        }
-                    }
-                }
-            }
-            PlasmaComponents.CheckBox {
-                anchors.top: parent.top
-                anchors.topMargin: 10
-                anchors.left: parent.left
-                anchors.leftMargin: 10
-                id: overlayCheck
-            }
-            PlasmaComponents.Label {
-                anchors.left: overlayCheck.right
-                anchors.leftMargin: 5
-                color: "black"
-                anchors.verticalCenter: overlayCheck.verticalCenter
-                text: i18n("Enable white effect on icons on dark")
-            }
-        }
-        Item {
-            ColumnLayout {
-                anchors.fill: parent
-                spacing: 0
-                Rectangle {
-                    height: 32
-                    Layout.fillWidth: true
-                    Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                    color: Kirigami.Theme.backgroundColor
-                    RowLayout {
-                        anchors.fill: parent
-                        PlasmaComponents.ToolButton {
-                            enabled: webView.canGoBack
-                            iconName: "draw-arrow-back"
-                            text: i18n("Go Back")
-                            onClicked: {
-                                webView.goBack()
-                            }
-                        }
-                        PlasmaComponents.ToolButton {
-                            id: forwardBtn
-                            enabled: webView.canGoForward
-                            iconName: "draw-arrow-forward"
-                            text: i18n("Go Forward")
-                            onClicked: {
-                                webView.goForward()
-                            }
-                        }
-                        PlasmaComponents.TextField {
-                            height: forwardBtn.height
-                            Layout.fillWidth: true
-                            text: webView.url
-                            enabled: false
-                        }
-                        PlasmaComponents.ToolButton {
-                            iconName: "go-home"
-                            text: i18n("Return to HIG Home")
-                            onClicked: {
-                                webView.url = "https://hig.kde.org/style/icons/index.html"
-                            }
-                        }
-                    }
-                }
-                WebEngineView {
-                    id: webView
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    url: "https://hig.kde.org/style/icons/index.html"
-                }
-            }
-            Column {
-		id: iconColumn
-		LayoutMirroring.enabled: false
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                Rectangle {
-                    height: 64
-                    width: 64
-                    color: root.leftColor
-                    LightIcon {
-                        anchors.centerIn: parent
-                        height: 48
-                        width: 48
-                        source: root.imageSource
-                    }
-                }
-                Rectangle {
-                    height: 64
-                    width: 64
-                    color: root.rightColor
-                    DarkIcon {
-                        anchors.centerIn: parent
-                        height: 48
-                        width: 48
-                        source: root.imageSource
-                    }
-                }
-            }
-            DropShadow {
-                anchors.fill: iconColumn
-                radius: 8.0
-                samples: 17
-                color: "#80000000"
-                source: iconColumn
-            }
-        }
-        Row {
-            spacing: 0
-            Rectangle {
-                height: parent.height
-                width: parent.width / 2
-                color: root.leftColor
-                LightIcon {
-                    anchors.centerIn: parent
-                    size: parent.width - (Kirigami.Units.largeSpacing * 2)
-                    source: root.imageSource
-                }
-            }
-            Rectangle {
-                height: parent.height
-                width: parent.width / 2
-                color: root.rightColor
-                DarkIcon {
-                    anchors.centerIn: parent
-                    size: parent.width - (Kirigami.Units.largeSpacing * 2)
-                    source: root.imageSource
-                }
-            }
-        }
+        RegularView {}
+        MonochromeView {}
+        HIGView {}
+        GigaView {}
     }
 }
