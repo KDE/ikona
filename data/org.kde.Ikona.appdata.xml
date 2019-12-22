@@ -7,6 +7,7 @@
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="cs">Ikona</name>
   <name xml:lang="es">Ikona</name>
+  <name xml:lang="fr">Ikona</name>
   <name xml:lang="id">Ikona</name>
   <name xml:lang="it">Ikona</name>
   <name xml:lang="nl">Ikona</name>
@@ -56,6 +57,7 @@
       <caption>Ikona Main View</caption>
       <caption xml:lang="ca">Vista principal de l'Ikona</caption>
       <caption xml:lang="es">Vista principal de Ikona</caption>
+      <caption xml:lang="fr">Vue principale d'Ikona</caption>
       <caption xml:lang="id">Tampilan Utama Ikona</caption>
       <caption xml:lang="it">Vista principale di Ikona</caption>
       <caption xml:lang="nl">Ikona hoofdweergave</caption>
