@@ -25,8 +25,8 @@
 #include <QQmlContext>
 
 #include <KColorSchemeManager>
-#include <KLocalizedString>
 #include <KLocalizedContext>
+#include <KLocalizedString>
 
 #include "icon.h"
 #include "manager.h"
@@ -34,8 +34,8 @@
 void messageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
-    const char *file = context.file ? context.file : "";
-    const char *function = context.function ? context.function : "";
+    const char *file = context.file != nullptr ? context.file : "";
+    const char *function = context.function != nullptr ? context.function : "";
     switch (type) {
     case QtDebugMsg:
         fprintf(stderr, "Debug:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
@@ -57,7 +57,7 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
 
 QApplication* app;
 
-int main(int argc, char *argv[])
+auto main(int argc, char *argv[]) -> int
 {
     qInstallMessageHandler(messageOutput);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("ikona");
 
-    KColorSchemeManager *manager = new KColorSchemeManager(app);
+    auto *manager = new KColorSchemeManager(app);
     manager->activateScheme(manager->indexForScheme("Breeze Light"));
     delete manager;
 
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
 
-        ColourSchemeManager *obj = new ColourSchemeManager(app);
+        auto *obj = new ColourSchemeManager(app);
         return obj;
     });
     qmlRegisterSingletonType<Icon>("org.kde.Ikona", 1, 0, "Ikoner", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
@@ -85,21 +85,22 @@ int main(int argc, char *argv[])
         return obj;
     });
 
-    app->setWindowIcon(QIcon::fromTheme(QString("org.kde.Ikona")));
+    QApplication::setWindowIcon(QIcon::fromTheme(QString("org.kde.Ikona")));
 
-    app->setOrganizationName("KDE");
-    app->setOrganizationDomain("org.kde");
-    app->setApplicationName("Ikona");
+    QApplication::setOrganizationName("KDE");
+    QApplication::setOrganizationDomain("org.kde");
+    QApplication::setApplicationName("Ikona");
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
+        if ((obj == nullptr) && url == objUrl) {
             QCoreApplication::exit(-1);
+        }
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    return app->exec();
+    return QApplication::exec();
 }

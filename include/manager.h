@@ -9,7 +9,7 @@ class ColourSchemeManager : public QObject {
 public:
     explicit ColourSchemeManager(QObject *parent = nullptr);
     Q_INVOKABLE void set(const QString& scheme);
-    Q_INVOKABLE void copy(QColor colour);
+    Q_INVOKABLE void copy(const QColor& colour);
 private:
     KColorSchemeManager* manager;
 };

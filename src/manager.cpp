@@ -16,10 +16,10 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <QModelIndex>
-#include <QColor>
-#include <QClipboard>
 #include <QApplication>
+#include <QClipboard>
+#include <QColor>
+#include <QModelIndex>
 
 #include <KColorSchemeManager>
 
@@ -33,7 +33,7 @@ void ColourSchemeManager::set(const QString& scheme) {
     this->manager->activateScheme(this->manager->indexForScheme(scheme));
 }
 
-void ColourSchemeManager::copy(QColor colour) {
+void ColourSchemeManager::copy(const QColor& colour) {
     QClipboard *clip = QApplication::clipboard();
     clip->setText(colour.name(QColor::NameFormat::HexRgb));
 }

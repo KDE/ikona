@@ -16,10 +16,10 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "icon.h"
+#include <QDebug>
 #include <QFile>
 #include <QTextStream>
-#include <QDebug>
-#include "icon.h"
 
 void writeFile(const QString& path, const QString& data) {
     QFile of(path);
@@ -30,7 +30,7 @@ void writeFile(const QString& path, const QString& data) {
     }
 }
 
-QString readFile(const QString& path) {
+auto readFile(const QString& path) -> QString {
     QFile iF(path);
     if (iF.open( QFile::ReadOnly )) {
         return QString(iF.readAll());
