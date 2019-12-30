@@ -1,8 +1,9 @@
 import QtQuick 2.0
-import org.kde.kirigami 2.4 as Kirigami
-import org.kde.plasma.core 2.0 as PlasmaCore
 
-PlasmaCore.IconItem {
+import org.kde.kirigami 2.5 as Kirigami
+
+Kirigami.Icon {
+    id: icon
     Kirigami.Theme.inherit: false
     Kirigami.Theme.textColor: "#232629"
     Kirigami.Theme.backgroundColor: "#eff0f1"
@@ -11,4 +12,7 @@ PlasmaCore.IconItem {
     Kirigami.Theme.positiveTextColor: "#27ae60"
     Kirigami.Theme.neutralTextColor: "#f67400"
     Kirigami.Theme.negativeTextColor: "#da4453"
+    property int size: 48
+    height: size
+    width: size
 }

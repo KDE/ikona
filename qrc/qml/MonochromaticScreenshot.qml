@@ -10,12 +10,7 @@ Item {
     visible: false
     width: 800
     height: 400 + (400 * 1/3)
-    function clisave(loc) {
-        screenRoot.grabToImage(function(result) {
-            result.saveToFile(loc);
-            Qt.quit();
-        });
-    }
+
     Item {
         anchors.fill: parent
         Row {
@@ -23,22 +18,12 @@ Item {
             Rectangle {
                 height: parent.height
                 width: parent.width / 2
-                color: root.leftColor
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 500
-                    }
-                }
+                color: "#eff0f1"
             }
             Rectangle {
                 height: parent.height
                 width: parent.width / 2
-                color: root.rightColor
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 500
-                    }
-                }
+                color: "#232629"
             }
         }
         Row {
@@ -47,16 +32,15 @@ Item {
             Column {
                 width: parent.width / 2
                 anchors.verticalCenter: parent.verticalCenter
-                Spacer {}
                 Row {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         LightIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
-                            source: "file:/tmp/ikonalight.svg"
+                            source: root.darkPath
                         }
                     }
                 }
@@ -64,9 +48,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         LightIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[0]
                         }
@@ -76,9 +60,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         LightIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[1]
                         }
@@ -88,9 +72,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         LightIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[2]
                         }
@@ -100,9 +84,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         LightIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[3]
                         }
@@ -112,16 +96,15 @@ Item {
             Column {
                 width: parent.width / 2
                 anchors.verticalCenter: parent.verticalCenter
-                Spacer {}
                 Row {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         DarkIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
-                            source: "file:/tmp/ikonadark.svg"
+                            source: root.lightPath
                         }
                     }
                 }
@@ -129,9 +112,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         DarkIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[0]
                         }
@@ -141,9 +124,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         DarkIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[1]
                         }
@@ -153,9 +136,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         DarkIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[2]
                         }
@@ -165,9 +148,9 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
                     Repeater {
-                        model: symSizesModel
+                        model: [8, 16, 22, 32, 48, 64]
                         DarkIcon {
-                            size: model["size"]
+                            size: modelData
                             anchors.bottom: parent.bottom
                             source: root.symIcons[3]
                         }
@@ -182,19 +165,15 @@ Item {
         anchors.margins: Kirigami.Units.smallSpacing
         LightIcon {
             size: 32
-            source: "qrc:/ikona.svg"
+            source: "org.kde.Ikona"
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            color: root.rightColor
-            text: i18n("Montage made with Ikona")
+            color: "#232629"
+            text: i18nc("Overlaid on top of an image to indicate that it was made with Ikona", "Montage made with Ikona")
         }
     }
-    IconManipulator {
-        id: manip
-    }
-    function open() {
-        manip.prepMono(root.imageSource);
+    function shot() {
         screenshotSavePicker.open()
     }
     FileDialog {
@@ -203,9 +182,12 @@ Item {
         selectMultiple: false
         selectFolder: false
         onAccepted: {
+            print("accepted")
             screenRoot.grabToImage(function(result) {
+                print("got result")
+                print("url", screenshotSavePicker.fileUrl.toString().slice(7))
                 res = result.saveToFile(screenshotSavePicker.fileUrl.toString().slice(7));
-                console.log(res);
+                print("res", res)
             });
         }
         nameFilters: [ "PNG screenshot files (*.png)" ]

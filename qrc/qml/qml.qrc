@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Welcome.qml</file>
+        <file>ColourView.qml</file>
+        <file>PlasmaMaterial.qml</file>
+        <file>DisplayIcon.qml</file>
+        <file>MonoView.qml</file>
+        <file>MonochromaticScreenshot.qml</file>
+        <file>Screenshot.qml</file>
+        <file>LightIcon.qml</file>
+        <file>DarkIcon.qml</file>
+        <file>ColourPalette.qml</file>
+        <file>ColorBlock.qml</file>
+    </qresource>
+</RCC>

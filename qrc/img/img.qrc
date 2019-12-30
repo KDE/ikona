@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>dark.jpg</file>
+        <file>light.jpg</file>
+        <file>ikona.svg</file>
+    </qresource>
+</RCC>

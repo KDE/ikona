@@ -1,95 +1,86 @@
 #include <QApplication>
-#include <QProcess>
-#include <QDir>
-#include <QFile>
-#include <QTextStream>
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQuickStyle>
-#include <QtDebug>
-#include <Plasma/Svg>
+#include <QCoreApplication>
 #include <QIcon>
-#include <QtWebEngine>
-#include <KLocalizedContext>
-#include <KLocalizedString>
-#include "iconsetter.h"
-#include "iconmanipulator.h"
+#include <QModelIndex>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
-void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+#include <KColorSchemeManager>
+#include <KLocalizedString>
+#include <KLocalizedContext>
+
+#include "icon.h"
+#include "manager.h"
+
+void messageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
     const char *file = context.file ? context.file : "";
     const char *function = context.function ? context.function : "";
     switch (type) {
     case QtDebugMsg:
-        fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "Debug:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtInfoMsg:
-        fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "Info:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtWarningMsg:
-        fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "Warning:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtCriticalMsg:
-        fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "Critical:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtFatalMsg:
-        fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "Fatal:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     }
 }
 
-bool fileExists(const QString &path)
-{
-    QFileInfo check_file(path);
-    if (check_file.exists() && check_file.isFile()) {
-        return true;
-    } else {
-        return false;
-    }
-}
+QApplication* app;
+
 int main(int argc, char *argv[])
 {
-    qInstallMessageHandler(myMessageOutput);
+    qInstallMessageHandler(messageOutput);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QApplication app(argc, argv);
-    // QQuickStyle::setStyle("Plasma");
-    app.setOrganizationName("Appadeia");
-    app.setOrganizationDomain("org.kde");
-    app.setApplicationName("Ikona");
+    app = new QApplication(argc, argv);
 
     KLocalizedString::setApplicationDomain("ikona");
 
-    QtWebEngine::initialize();
+    KColorSchemeManager *manager = new KColorSchemeManager(app);
+    manager->activateScheme(manager->indexForScheme("Breeze Light"));
+    delete manager;
 
-    if (fileExists(QDir::homePath() + "/.iconPreviewTheme")) {
-        QFile file(QDir::homePath() + "/.iconPreviewTheme");
-        if (file.open(QFile::ReadOnly)) {
-            QTextStream in(&file);
-            QIcon::setThemeName(in.readAll().trimmed());
-            qDebug() << in.readAll().trimmed();
-        }
-    }
-    QDir dir(QDir::homePath() + "/.ikona");
-    if (!dir.exists()) {
-        dir.mkdir(QDir::homePath() + "/.ikona");
-    }
+    qmlRegisterSingletonType<ColourSchemeManager>("org.kde.Ikona", 1, 0, "ColourScheme", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
 
-    qmlRegisterType<IconSetter>("org.kde.Ikona", 1, 0, "IconSetter");
-    qmlRegisterType<IconManipulator>("org.kde.Ikona", 1, 0, "IconManipulator");
+        ColourSchemeManager *obj = new ColourSchemeManager(app);
+        return obj;
+    });
+    qmlRegisterSingletonType<Icon>("org.kde.Ikona", 1, 0, "Ikoner", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
 
-    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << QDir::homePath() + "/.ikona");
-    qDebug() << QIcon::fallbackSearchPaths();
+        Icon *obj = new Icon();
+        return obj;
+    });
 
-    app.setWindowIcon(QIcon::fromTheme(QString("ikona")));
+    app->setWindowIcon(QIcon::fromTheme(QString("org.kde.Ikona")));
+
+    app->setOrganizationName("KDE");
+    app->setOrganizationDomain("org.kde");
+    app->setApplicationName("Ikona");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
-
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
 
-    return app.exec();
+    return app->exec();
 }
