@@ -54,70 +54,28 @@
   <translation type="qt">Ikona</translation>
   <screenshots>
     <screenshot>
-      <caption>Ikona Main View</caption>
-      <caption xml:lang="ca">Vista principal de l'Ikona</caption>
-      <caption xml:lang="es">Vista principal de Ikona</caption>
-      <caption xml:lang="fr">Vue principale d'Ikona</caption>
-      <caption xml:lang="id">Tampilan Utama Ikona</caption>
-      <caption xml:lang="it">Vista principale di Ikona</caption>
-      <caption xml:lang="nl">Ikona hoofdweergave</caption>
-      <caption xml:lang="pl">Główny widok Ikony</caption>
-      <caption xml:lang="pt">Área Principal do Ikona</caption>
-      <caption xml:lang="sk">Hlavný pohľad Ikona</caption>
-      <caption xml:lang="sv">Ikona huvudvy</caption>
-      <caption xml:lang="uk">Основне вікно Ikona</caption>
-      <caption xml:lang="x-test">xxIkona Main Viewxx</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen.png</image>
+      <caption>The welcome screen of Ikona</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/home-screenshot.png</image>
     </screenshot>
     <screenshot>
-      <caption>Ikona Small View</caption>
-      <caption xml:lang="ca">Vista petita de l'Ikona</caption>
-      <caption xml:lang="es">Vista pequeña de Ikona</caption>
-      <caption xml:lang="id">Tampilan Kecil Ikona</caption>
-      <caption xml:lang="it">Vista piccola di Ikona</caption>
-      <caption xml:lang="nl">Ikona kleine weergave</caption>
-      <caption xml:lang="pl">Mały widok Ikony</caption>
-      <caption xml:lang="pt">Área Pequena do Ikona</caption>
-      <caption xml:lang="sk">Malý pohľad Ikona</caption>
-      <caption xml:lang="sv">Ikona liten vy</caption>
-      <caption xml:lang="uk">Панель зменшеного перегляду Ikona</caption>
-      <caption xml:lang="x-test">xxIkona Small Viewxx</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen2.png</image>
+      <caption>The colourful icon view of Ikona</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot.png</image>
     </screenshot>
     <screenshot>
-      <caption>Ikona HIG View</caption>
-      <caption xml:lang="ca">Vista més gran de l'Ikona</caption>
-      <caption xml:lang="es">Vista HIG de Ikona</caption>
-      <caption xml:lang="id">Tampilan HIG Ikona</caption>
-      <caption xml:lang="it">Vista HIG di Ikona</caption>
-      <caption xml:lang="nl">Ikona HIG weergave</caption>
-      <caption xml:lang="pl">Widok HIG Ikony</caption>
-      <caption xml:lang="pt">Área HIG do Ikona</caption>
-      <caption xml:lang="sk">HIG pohľad Ikona</caption>
-      <caption xml:lang="sv">Ikona HIG-vy</caption>
-      <caption xml:lang="uk">Панель перегляду настанов Ikona</caption>
-      <caption xml:lang="x-test">xxIkona HIG Viewxx</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen3.png</image>
+      <caption>The colourful icon view of Ikona in dark mode</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot-dark.png</image>
     </screenshot>
     <screenshot>
-      <caption>Ikona Large View</caption>
-      <caption xml:lang="ca">Vista gran de l'Ikona</caption>
-      <caption xml:lang="es">Vista grande de Ikona</caption>
-      <caption xml:lang="id">Tampilan Besar Ikona</caption>
-      <caption xml:lang="it">Vista grande di Ikona</caption>
-      <caption xml:lang="nl">Ikona grote weergave</caption>
-      <caption xml:lang="pl">Duży widok Ikony</caption>
-      <caption xml:lang="pt">Área Grande do Ikona</caption>
-      <caption xml:lang="sk">Veľký pohľad Ikona</caption>
-      <caption xml:lang="sv">Ikona stor vy</caption>
-      <caption xml:lang="uk">Панель збільшеного перегляду Ikona</caption>
-      <caption xml:lang="x-test">xxIkona Large Viewxx</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/screen4.png</image>
+      <caption>The monochromatic icon view of Ikona</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/monochrome-screenshot.png</image>
     </screenshot>
+    <screenshot>
+      <caption>The colour palette of Ikona</caption>
+      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-palette-screenshot.png</image>
   </screenshots>
   <update_contact>
         uhhadd@gmail.com
-    </update_contact>
+  </update_contact>
   <url type="homepage">https://invent.kde.org/kde/ikona</url>
   <categories>
     <category>Graphics</category>
