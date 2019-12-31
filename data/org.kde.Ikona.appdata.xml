@@ -58,11 +58,11 @@
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/home-screenshot.png</image>
     </screenshot>
     <screenshot>
-      <caption>The colourful icon view of Ikona</caption>
+      <caption>The colorful icon view of Ikona</caption>
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot.png</image>
     </screenshot>
     <screenshot>
-      <caption>The colourful icon view of Ikona in dark mode</caption>
+      <caption>The colorful icon view of Ikona in dark mode</caption>
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot-dark.png</image>
     </screenshot>
     <screenshot>
@@ -70,8 +70,9 @@
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/monochrome-screenshot.png</image>
     </screenshot>
     <screenshot>
-      <caption>The colour palette of Ikona</caption>
+      <caption>The color palette of Ikona</caption>
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-palette-screenshot.png</image>
+    </screenshot>
   </screenshots>
   <update_contact>
         uhhadd@gmail.com
