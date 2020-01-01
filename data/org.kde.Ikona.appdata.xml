@@ -7,6 +7,7 @@
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="cs">Ikona</name>
   <name xml:lang="es">Ikona</name>
+  <name xml:lang="et">Ikona</name>
   <name xml:lang="fr">Ikona</name>
   <name xml:lang="id">Ikona</name>
   <name xml:lang="it">Ikona</name>
@@ -21,6 +22,7 @@
   <summary>Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos</summary>
+  <summary xml:lang="et">Ikona on abivahend, mis aitab ikoone kujundada</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
   <summary xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone</summary>
   <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
@@ -33,6 +35,7 @@
     <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
     <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos. Ha sido diseñado para integrarse con el escritorio Plasma de KDE.</p>
+    <p xml:lang="et">Ikona on abivahend, mis aitab ikoone kujundada. See on põhjalikult lõimitud KDE Plasma töökeskkonnaga.</p>
     <p xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon. Ini dirancang untuk mengintegrasikan dengan desktop KDE Plasma.</p>
     <p xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone. È progettato per integrarsi con il desktop KDE Plasma.</p>
     <p xml:lang="nl">Ikona is een ontwerphulp om u te helpen pictogrammen te ontwerpen. Het is ontworpen om te integreren in het KDE Plasma bureaublad.</p>
