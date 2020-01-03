@@ -38,19 +38,19 @@ void messageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
     const char *function = context.function != nullptr ? context.function : "";
     switch (type) {
     case QtDebugMsg:
-        fprintf(stderr, "Debug:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "[D] Debug:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtInfoMsg:
-        fprintf(stderr, "Info:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "[i] Info:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtWarningMsg:
-        fprintf(stderr, "Warning:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "[!] Warning:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtCriticalMsg:
-        fprintf(stderr, "Critical:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "[!!] Critical:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtFatalMsg:
-        fprintf(stderr, "Fatal:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "[X] Fatal:\t%s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     }
 }
