@@ -62,6 +62,7 @@
     <screenshot>
       <caption>The welcome screen of Ikona</caption>
       <caption xml:lang="ca">La pantalla de benvinguda a l'Ikona</caption>
+      <caption xml:lang="es">La pantalla de bienvenida de Ikona</caption>
       <caption xml:lang="et">Ikona tervitusekraan</caption>
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
@@ -74,6 +75,7 @@
     <screenshot>
       <caption>The colorful icon view of Ikona</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
+      <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
@@ -86,6 +88,7 @@
     <screenshot>
       <caption>The colorful icon view of Ikona in dark mode</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
+      <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade tumedas režiimis</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
@@ -98,6 +101,7 @@
     <screenshot>
       <caption>The monochromatic icon view of Ikona</caption>
       <caption xml:lang="ca">La vista d'icones monocromàtica de l'Ikona</caption>
+      <caption xml:lang="es">La vista de iconos monocromos de Ikona</caption>
       <caption xml:lang="et">Ikona ühevärviline ikoonivaade</caption>
       <caption xml:lang="nl">De monochrome pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista monocromática do ícone do Ikona</caption>
@@ -110,6 +114,7 @@
     <screenshot>
       <caption>The color palette of Ikona</caption>
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
+      <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="et">Ikona värvipalett</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
