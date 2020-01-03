@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.13
 
 import org.kde.kirigami 2.5 as Kirigami
 
-Kirigami.GlobalDrawer {
+Kirigami.OverlayDrawer {
     id: drawerRoot
 
     height: 500
