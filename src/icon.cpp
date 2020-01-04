@@ -68,6 +68,12 @@ void Icon::processIcon(const QString& inPath) {
     QFile::copy(path, lightPath);
     QFile::copy(path, darkPath);
 
+    if (path == "qrc:/ikona.svg") {
+        QFile::copy(":/ikona.svg", lightPath);
+        QFile::copy(":/ikona.svg", darkPath);
+        return;
+    }
+
     {
         QString text = readFile(lightPath);
 
