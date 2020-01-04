@@ -20,7 +20,7 @@ FILE(GLOB_RECURSE HEADERS "include/*.h")
 
 include_directories(include)
 
-add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
+add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/manip.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
 
 target_compile_definitions(ikona
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

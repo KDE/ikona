@@ -21,6 +21,8 @@
 #include <QFile>
 #include <QTextStream>
 
+#include "manip.h"
+
 void writeFile(const QString& path, const QString& data) {
     QFile of(path);
     if (of.open(QFile::WriteOnly)) {
@@ -69,12 +71,7 @@ void Icon::processIcon(const QString& inPath) {
     {
         QString text = readFile(lightPath);
 
-        text.replace("fill=\"#eff0f1\"", "fill=\"#232629\"");
-        text.replace("fill=\"#31363b\"", "fill=\"#eff0f1\"");
-        text.replace("fill=\"#232629\"", "fill=\"#fcfcfc\"");
-        text.replace("color:#eff0f1", "color:#232629");
-        text.replace("color:#31363b", "color:#eff0f1");
-        text.replace("color:#232629", "color:#fcfcfc");
+        text = IconManipulator::toLight(text);
 
         writeFile(lightPath, text);
     }
@@ -82,12 +79,7 @@ void Icon::processIcon(const QString& inPath) {
     {
         QString text = readFile(darkPath);
 
-        text.replace("fill=\"#232629\"", "fill=\"#eff0f1\"");
-        text.replace("fill=\"#eff0f1\"", "fill=\"#31363b\"");
-        text.replace("fill=\"#fcfcfc\"", "fill=\"#232629\"");
-        text.replace("color:#232629", "color:#eff0f1");
-        text.replace("color:#eff0f1", "color:#31363b");
-        text.replace("color:#fcfcfc", "color:#232629");
+        text = IconManipulator::toDark(text);
 
         writeFile(darkPath, text);
     }
