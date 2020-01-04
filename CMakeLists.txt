@@ -16,6 +16,14 @@ find_package(KF5Kirigami2)
 find_package(KF5ConfigWidgets)
 find_package(KF5I18n)
 
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(Cairo REQUIRED IMPORTED_TARGET cairo)
+# pkg_check_modules(Rsvg REQUIRED IMPORTED_TARGET librsvg-2.0)
+# pkg_check_modules(Glib REQUIRED IMPORTED_TARGET glib-2.0)
+# pkg_check_modules(GObject REQUIRED IMPORTED_TARGET gobject-2.0)
+# PkgConfig::Cairo PkgConfig::Rsvg PkgConfig::Glib PkgConfig::GObject
+# See TODO in manip.cpp
+
 FILE(GLOB_RECURSE HEADERS "include/*.h")
 
 include_directories(include)

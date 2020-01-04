@@ -40,6 +40,13 @@ auto readFile(const QString& path) -> QString {
     return "";
 }
 
+bool copyFile(const QString& from, const QString& to) {
+    if (QFile::exists(to)) {
+        QFile::remove(to);
+    }
+    return QFile::copy(from, to);
+}
+
 Icon::Icon(QObject* parent) : QObject(parent) {
     this->m_iconPath = "";
     this->m_darkIconPath = "";
@@ -65,8 +72,12 @@ void Icon::processIcon(const QString& inPath) {
     QString lightPath = "/tmp/" + QString::number(qrand() % 1000000) + "ikonalight.svg";
     QString darkPath = "/tmp/" + QString::number(qrand() % 1000000) + "ikonadark.svg";
 
-    QFile::copy(path, lightPath);
-    QFile::copy(path, darkPath);
+    if (!copyFile(path, lightPath)) {
+        qCritical() << "Failed to copy file!";
+    }
+    if (!copyFile(path, darkPath)) {
+        qCritical() << "Failed to copy file!";
+    }
 
     if (path == "qrc:/ikona.svg") {
         QFile::copy(":/ikona.svg", lightPath);
