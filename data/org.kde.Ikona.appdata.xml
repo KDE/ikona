@@ -8,6 +8,7 @@
   <name xml:lang="cs">Ikona</name>
   <name xml:lang="es">Ikona</name>
   <name xml:lang="et">Ikona</name>
+  <name xml:lang="fi">Ikona</name>
   <name xml:lang="fr">Ikona</name>
   <name xml:lang="id">Ikona</name>
   <name xml:lang="it">Ikona</name>
@@ -24,6 +25,7 @@
   <summary xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos</summary>
   <summary xml:lang="et">Ikona on abivahend, mis aitab ikoone kujundada</summary>
+  <summary xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
   <summary xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone</summary>
   <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
@@ -38,6 +40,7 @@
     <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos. Ha sido diseñado para integrarse con el escritorio Plasma de KDE.</p>
     <p xml:lang="et">Ikona on abivahend, mis aitab ikoone kujundada. See on põhjalikult lõimitud KDE Plasma töökeskkonnaga.</p>
+    <p xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita. Se on tehty integroitumaan KDE Plasma -työpöydälle.</p>
     <p xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon. Ini dirancang untuk mengintegrasikan dengan desktop KDE Plasma.</p>
     <p xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone. È progettato per integrarsi con il desktop KDE Plasma.</p>
     <p xml:lang="nl">Ikona is een ontwerphulp om u te helpen pictogrammen te ontwerpen. Het is ontworpen om te integreren in het KDE Plasma bureaublad.</p>
@@ -64,6 +67,7 @@
       <caption xml:lang="ca">La pantalla de benvinguda a l'Ikona</caption>
       <caption xml:lang="es">La pantalla de bienvenida de Ikona</caption>
       <caption xml:lang="et">Ikona tervitusekraan</caption>
+      <caption xml:lang="fi">Ikona tervetulonäkymä</caption>
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="sv">Välkomstskärmen i Ikona</caption>
@@ -77,6 +81,7 @@
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade</caption>
+      <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona</caption>
@@ -90,6 +95,7 @@
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade tumedas režiimis</caption>
+      <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä tummassa tilassa</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona med mörkt läge</caption>
@@ -103,6 +109,7 @@
       <caption xml:lang="ca">La vista d'icones monocromàtica de l'Ikona</caption>
       <caption xml:lang="es">La vista de iconos monocromos de Ikona</caption>
       <caption xml:lang="et">Ikona ühevärviline ikoonivaade</caption>
+      <caption xml:lang="fi">Ikonan mustavalkoinen kuvakenäkymä</caption>
       <caption xml:lang="nl">De monochrome pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista monocromática do ícone do Ikona</caption>
       <caption xml:lang="sv">Den svartvita ikonvyn i Ikona</caption>
@@ -116,6 +123,7 @@
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="et">Ikona värvipalett</caption>
+      <caption xml:lang="fi">Ikonan väripaletti</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="sv">Färgpaletten i Ikona</caption>
