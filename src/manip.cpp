@@ -1,14 +1,8 @@
-// #include <cairo/cairo.h>
-// #include <cairo/cairo-svg.h>
-
-// #include <librsvg/rsvg.h>
-
-// #include <QDebug>
-// See TODO at extractIdFromSvg
-
 #include "manip.h"
+#include "ikonars.h"
+#include <QDebug>
 
-QString IconManipulator::toLight(const QString& data) {
+QString toLight(const QString& data) {
     QString manip = data;
     
     manip.replace("fill=\"#eff0f1\"", "fill=\"#232629\"");
@@ -21,7 +15,7 @@ QString IconManipulator::toLight(const QString& data) {
     return manip;
 }
 
-QString IconManipulator::toDark(const QString& data) {
+QString toDark(const QString& data) {
     QString manip = data;
 
     manip.replace("fill=\"#232629\"", "fill=\"#eff0f1\"");
@@ -34,7 +28,7 @@ QString IconManipulator::toDark(const QString& data) {
     return manip;
 }
 
-QString IconManipulator::classIcon(const QString& data) {
+QString classIcon(const QString& data) {
     QString manip = data;
 
     manip.replace("fill=\"#232629\"", "class=\"ColorScheme-Text\" fill=\"currentColor\"");
@@ -46,6 +40,26 @@ QString IconManipulator::classIcon(const QString& data) {
     manip.replace("fill=\"#da4453\"", "class=\"ColorScheme-NegativeText\" fill=\"currentColor\"");
 
     return manip;
+}
+
+QString IconManipulator::processIconInternal(const QString& inPath, IconKind type, const QString& idToExtract, int32_t targetSize) {
+    auto inPathStr = inPath.toStdString();
+    auto idToExtractStr = idToExtract.toStdString();
+
+    auto inPathCStr = inPathStr.c_str();
+    auto idToExtractCStr = idToExtractStr.c_str();
+
+    const char* manipulated = ikona_extract_id_from_svg(inPathCStr, idToExtractCStr, targetSize);
+
+    QString manipulatedString(manipulated);
+
+    manipulatedString = classIcon(manipulatedString);
+
+    if (type == IconKind::Dark) {
+        manipulatedString = toDark(manipulatedString);
+    }
+
+    return manipulatedString;
 }
 
 // TODO: unbreak this and use it

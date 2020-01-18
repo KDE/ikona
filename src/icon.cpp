@@ -20,6 +20,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QRandomGenerator>
 
 #include "manip.h"
 
@@ -47,65 +48,59 @@ bool copyFile(const QString& from, const QString& to) {
     return QFile::copy(from, to);
 }
 
-Icon::Icon(QObject* parent) : QObject(parent) {
-    this->m_iconPath = "";
-    this->m_darkIconPath = "";
-    this->m_lightIconPath = "";
+AppIcon::AppIcon(QObject* parent) : QObject(parent) {
     this->m_watcher = new QFileSystemWatcher();
-    QObject::connect(this->m_watcher, &QFileSystemWatcher::fileChanged, this, &Icon::processIcon);
+    QObject::connect(this->m_watcher, &QFileSystemWatcher::fileChanged, this, &AppIcon::processIcon);
 }
 
-void Icon::setIcon(const QString &path) {
-    this->m_watcher->removePath(this->m_iconPath);
-    this->m_iconPath = path;
-    this->m_watcher->addPath(this->m_iconPath);
-
+void AppIcon::setIcon(const QString &path) {
+    this->m_watcher->removePath(this->m_inPath);
+    this->m_inPath = path;
+    this->m_watcher->addPath(this->m_inPath);
     this->processIcon(path);
 }
 
-void Icon::processIcon(const QString& inPath) {
+void AppIcon::processIcon(const QString& inPath) {
     QString path = inPath;
     if (path.startsWith("file://")) {
         path = path.replace("file://", "");
     }
 
-    QString lightPath = "/tmp/" + QString::number(qrand() % 1000000) + "ikonalight.svg";
-    QString darkPath = "/tmp/" + QString::number(qrand() % 1000000) + "ikonadark.svg";
-
-    if (!copyFile(path, lightPath)) {
-        qCritical() << "Failed to copy file!";
-    }
-    if (!copyFile(path, darkPath)) {
-        qCritical() << "Failed to copy file!";
-    }
-
     if (path == "qrc:/ikona.svg") {
-        QFile::copy(":/ikona.svg", lightPath);
-        QFile::copy(":/ikona.svg", darkPath);
+        for (const int& size : {16, 22, 32, 48, 64}) {
+            auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
+            QFile::copy(":/ikona.svg", filepath);
+            this->setProperty(
+                qUtf8Printable("icon"+QString::number(size)+QStringLiteral("path")), 
+                filepath
+            );
+        }
+        emit resultChanged("");
         return;
     }
 
-    {
-        QString text = readFile(lightPath);
-
-        text = IconManipulator::toLight(text);
-
-        writeFile(lightPath, text);
+    if (!path.endsWith(".ikona.app.svg", Qt::CaseInsensitive)) {
+        for (const int& size : {16, 22, 32, 48, 64}) {
+            auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
+            QFile::copy(path, filepath);
+            this->setProperty(
+                qUtf8Printable("icon"+QString::number(size)+QStringLiteral("path")), 
+                filepath
+            );
+        }
+        emit resultChanged("");
+        return;
     }
 
-    {
-        QString text = readFile(darkPath);
-
-        text = IconManipulator::toDark(text);
-
-        writeFile(darkPath, text);
+    for (const int& size : {16, 22, 32, 48, 64}) {
+        auto data = IconManipulator::processIconInternal(path, IconKind::Light, "#"+QString::number(size)+"plate", size);
+        auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
+        writeFile(filepath, data);
+        this->setProperty(
+            qUtf8Printable("icon"+QString::number(size)+QStringLiteral("path")), 
+            filepath
+        );
     }
-
-    this->m_darkIconPath = darkPath;
-    this->m_lightIconPath = lightPath;
-
-    emit lightIconChanged(lightPath);
-    emit darkIconChanged(darkPath);
-    emit normalIconChanged(path);
+    emit resultChanged("");
 }
 

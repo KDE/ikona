@@ -2,10 +2,9 @@
 
 #include <QString>
 
+enum IconKind { Light, Dark };
+
 class IconManipulator {
 public:
-    static QString toLight(const QString&);
-    static QString toDark(const QString&);
-    static QString classIcon(const QString&);
-//  static QString extractIdFromSvg(const QString& iconData, const QString& idToSelect, const int& targetWidthHeight);
+    static QString processIconInternal(const QString& inPath, IconKind type, const QString& idToExtract, int32_t targetSize);
 };

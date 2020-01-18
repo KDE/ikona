@@ -41,34 +41,11 @@ Kirigami.ApplicationWindow {
     Welcome { id: welc }
 
     Component.onCompleted: {
-        Ikoner.setIcon("qrc:/ikona.svg")
+        AppIcon.setIcon("qrc:/ikona.svg")
     }
 
-    property string normalPath
-    property string darkPath
-    property string lightPath
-    property int colourSize: 48
     property var appExamples: ["accessories-calculator", "accessories-camera", "accessories-character-map", "accessories-text-editor", "akregator", "utilities-terminal", "anjuta", "choqok"]
     property var symIcons: ["checkbox", "go-previous", "edit-clear-list", "edit-find", "games-achievements", "go-down-search", "process-stop", "draw-brush"]
-
-    Timer {
-        interval: 1000
-        running: true
-        onTriggered: {
-            root.normalPath = Ikoner.normalIconPath
-            root.darkPath = Ikoner.darkIconPath
-            root.lightPath = Ikoner.lightIconPath
-            Ikoner.normalIconChanged.connect((val) => {
-                root.normalPath = val
-            })
-            Ikoner.darkIconChanged.connect((val) => {
-                root.darkPath = val
-            })
-            Ikoner.lightIconChanged.connect((val) => {
-                root.lightPath = val
-            })
-        }
-    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -120,7 +97,7 @@ Kirigami.ApplicationWindow {
         FileDialog {
             id: picker
             onAccepted: {
-                Ikoner.setIcon(picker.fileUrl)
+                AppIcon.setIcon(picker.fileUrl)
             }
             nameFilters: ["Icon SVGs (*.svg)"]
         }

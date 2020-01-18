@@ -50,7 +50,7 @@ Image {
         }
 
         DisplayIcon {
-            source: root.normalPath
+            source: AppIcon.icon48path
         }
 
         Repeater {
@@ -70,7 +70,7 @@ Image {
             DisplayIcon {
                 Layout.alignment: Qt.AlignBottom
                 size: modelData
-                source: root.normalPath
+                source: AppIcon["icon"+modelData+"path"]
                 showLabel: true
             }
         }

@@ -19,6 +19,7 @@
 
 #include <QApplication>
 #include <QCoreApplication>
+#include <QDebug>
 #include <QIcon>
 #include <QModelIndex>
 #include <QQmlApplicationEngine>
@@ -30,6 +31,8 @@
 
 #include "icon.h"
 #include "manager.h"
+
+#include "ikonars.h"
 
 void messageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -77,11 +80,11 @@ auto main(int argc, char *argv[]) -> int
         auto *obj = new ColourSchemeManager(app);
         return obj;
     });
-    qmlRegisterSingletonType<Icon>("org.kde.Ikona", 1, 0, "Ikoner", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+    qmlRegisterSingletonType<AppIcon>("org.kde.Ikona", 1, 0, "AppIcon", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
 
-        Icon *obj = new Icon();
+        AppIcon *obj = new AppIcon();
         return obj;
     });
 

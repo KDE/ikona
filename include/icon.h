@@ -3,22 +3,40 @@
 #include <QObject>
 #include <QFileSystemWatcher>
 
-class Icon : public QObject {
+class AppIcon : public QObject {
     Q_OBJECT
 public:
-    explicit Icon(QObject *parent = nullptr);
+    explicit AppIcon(QObject *parent = nullptr);
     Q_INVOKABLE void setIcon(const QString& path);
-    Q_PROPERTY(QString lightIconPath MEMBER m_lightIconPath NOTIFY lightIconChanged)
-    Q_PROPERTY(QString normalIconPath MEMBER m_iconPath NOTIFY normalIconChanged)
-    Q_PROPERTY(QString darkIconPath MEMBER m_darkIconPath NOTIFY darkIconChanged)
+    Q_PROPERTY(QString inPath MEMBER m_inPath NOTIFY inPathChanged)
+
+    Q_PROPERTY(QString icon16path MEMBER m_icon16path NOTIFY resultChanged)
+    Q_PROPERTY(QString icon22path MEMBER m_icon16path NOTIFY resultChanged)
+    Q_PROPERTY(QString icon32path MEMBER m_icon32path NOTIFY resultChanged)
+    Q_PROPERTY(QString icon48path MEMBER m_icon48path NOTIFY resultChanged)
+    Q_PROPERTY(QString icon64path MEMBER m_icon64path NOTIFY resultChanged)
+
 signals:
-    void normalIconChanged(QString val);
-    void lightIconChanged(QString val);
-    void darkIconChanged(QString val);
+    void inPathChanged(QString val);
+
+    void resultChanged(QString val);
+
 private:
     void processIcon(const QString& path);
-    QString m_iconPath;
-    QString m_darkIconPath;
-    QString m_lightIconPath;
+    QString m_inPath;
+
+    QString m_icon16path;
+    QString m_icon22path;
+    QString m_icon32path;
+    QString m_icon48path;
+    QString m_icon64path;
+
     QFileSystemWatcher* m_watcher;
 };
+
+// class MonoIcon : public QObject {
+//     Q_OBJECT
+// public:
+//     explicit MonoIcon(QObject *parent = nullptr);
+//     Q_INVOKABLE void setIcon(const QString& path);
+// };

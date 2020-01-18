@@ -59,19 +59,22 @@ Kirigami.OverlayDrawer {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             Button {
-                text: i18nc("Open the colour view", "Colour Icon View")
+                text: i18nc("Opens the view displaying colourful icons", "Colour Icon View")
                 onClicked: {
                     swipe.setCurrentIndex(0)
                     drawerRoot.close()
                 }
             }
-            Button {
-                text: i18nc("Open the monochrome view", "Monochrome Icon View")
-                onClicked: {
-                    swipe.setCurrentIndex(1)
-                    drawerRoot.close()
-                }
-            }
+            // Disabling this until we get some adequate backend code
+            // going for a monochromatic view...
+            //
+            // Button {
+            //     text: i18nc("Open the monochrome view", "Monochrome Icon View")
+            //     onClicked: {
+            //         swipe.setCurrentIndex(1)
+            //         drawerRoot.close()
+            //     }
+            // }
 
             Layout.fillWidth: true
         }

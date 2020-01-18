@@ -5,3 +5,4 @@ flatbuild
 .flatpak-builder
 .vscode
 CMakeLists.txt.user
+src/rs/target
