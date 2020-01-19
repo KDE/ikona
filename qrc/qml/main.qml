@@ -94,10 +94,20 @@ Kirigami.ApplicationWindow {
                 }
             }
         }
+        Timer {
+            id: tock
+
+            interval: 2000
+            repeat: true
+            
+            onTriggered: {
+                AppIcon.refreshIcon()
+            }
+        }
         FileDialog {
             id: picker
             onAccepted: {
-                AppIcon.setIcon(picker.fileUrl)
+                tock.running = !AppIcon.setIcon(picker.fileUrl)
             }
             nameFilters: ["Icon SVGs (*.svg)"]
         }

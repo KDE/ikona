@@ -53,20 +53,28 @@ AppIcon::AppIcon(QObject* parent) : QObject(parent) {
     QObject::connect(this->m_watcher, &QFileSystemWatcher::fileChanged, this, &AppIcon::processIcon);
 }
 
-void AppIcon::setIcon(const QString &path) {
+bool AppIcon::setIcon(const QString &path) {
+    QString watcherPath = path;
+    if (path.startsWith("file://")) {
+        watcherPath = watcherPath.replace("file://", "");
+    }
     this->m_watcher->removePath(this->m_inPath);
-    this->m_inPath = path;
-    this->m_watcher->addPath(this->m_inPath);
-    this->processIcon(path);
+    this->m_inPath = watcherPath;
+    this->processIcon(watcherPath);
+    if (!this->m_watcher->addPath(this->m_inPath)) {
+        qWarning() << "Failed to add watcher path" << m_inPath;
+        qWarning() << "Falling back to regular polling...";
+        return false;
+    }
+    return true;
+}
+
+void AppIcon::refreshIcon() {
+    this->processIcon(this->m_inPath);
 }
 
 void AppIcon::processIcon(const QString& inPath) {
-    QString path = inPath;
-    if (path.startsWith("file://")) {
-        path = path.replace("file://", "");
-    }
-
-    if (path == "qrc:/ikona.svg") {
+    if (inPath == "qrc:/ikona.svg") {
         for (const int& size : {16, 22, 32, 48, 64}) {
             auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
             QFile::copy(":/ikona.svg", filepath);
@@ -79,10 +87,10 @@ void AppIcon::processIcon(const QString& inPath) {
         return;
     }
 
-    if (!path.endsWith(".ikona.app.svg", Qt::CaseInsensitive)) {
+    if (!inPath.endsWith(".ikona.app.svg", Qt::CaseInsensitive)) {
         for (const int& size : {16, 22, 32, 48, 64}) {
             auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
-            QFile::copy(path, filepath);
+            QFile::copy(inPath, filepath);
             this->setProperty(
                 qUtf8Printable("icon"+QString::number(size)+QStringLiteral("path")), 
                 filepath
@@ -93,7 +101,7 @@ void AppIcon::processIcon(const QString& inPath) {
     }
 
     for (const int& size : {16, 22, 32, 48, 64}) {
-        auto data = IconManipulator::processIconInternal(path, IconKind::Light, "#"+QString::number(size)+"plate", size);
+        auto data = IconManipulator::processIconInternal(inPath, IconKind::Light, "#"+QString::number(size)+"plate", size);
         auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
         writeFile(filepath, data);
         this->setProperty(

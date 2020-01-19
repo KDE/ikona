@@ -22,6 +22,7 @@ pub extern "C" fn ikona_extract_id_from_svg(in_path: *const c_char, id: *const c
     let svg_handle = match librsvg::Loader::new().read_path(in_path_string) {
         Ok(handle) => handle,
         Err(_e) => {
+            println!("[!] Failed to load SVG with path {:?}: {:?}", in_path_string, _e);
             return CString::new("Failed to load SVG").expect("Could not create CString").into_raw()
         }
     };
