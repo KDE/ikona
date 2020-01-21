@@ -94,6 +94,8 @@ auto main(int argc, char *argv[]) -> int
     QApplication::setOrganizationDomain("org.kde");
     QApplication::setApplicationName("Ikona");
 
+    QApplication::setDesktopFileName("org.kde.Ikona.desktop");
+
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     const QUrl url(QStringLiteral("qrc:/main.qml"));
