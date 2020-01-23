@@ -32,8 +32,6 @@ Kirigami.ApplicationWindow {
     visible: true
     width: 500
     height: 500
-    maximumHeight: 500
-    maximumWidth: 500
     minimumHeight: 500
     minimumWidth: 500
     title: i18n("Ikona")
@@ -59,19 +57,6 @@ Kirigami.ApplicationWindow {
                     icon.name: "go-previous"
                     onClicked: {
                         welc.open()
-                    }
-                }
-                ToolButton {
-                    id: darkBtn
-
-                    checkable: true
-                    text: i18nc("Togglebutton to switch between Breeze Light and Breeze Dark", "Use Dark Colours")
-                    onClicked: {
-                        if (checked) {
-                            ColourScheme.set("Breeze Dark")
-                        } else {
-                            ColourScheme.set("Breeze Light")
-                        }
                     }
                 }
                 ToolButton {
