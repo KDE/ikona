@@ -28,6 +28,8 @@ ColumnLayout {
     property alias source: icon.source
     property int size: 48
     property bool showLabel: false
+    property bool showCheckbox: false
+    property alias checked: checkbox.checked
     property alias labelColor: label.color
 
     Kirigami.Icon {
@@ -41,5 +43,10 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
         visible: showLabel
         text: iconRoot.size
+    }
+    CheckBox {
+        id: checkbox
+        Layout.alignment: Qt.AlignHCenter
+        visible: showCheckbox
     }
 }

@@ -9,7 +9,9 @@ public:
     explicit AppIcon(QObject *parent = nullptr);
     Q_INVOKABLE bool setIcon(const QString& path);
     Q_INVOKABLE void refreshIcon();
+    Q_INVOKABLE void exportToDirectory(bool useSepDirs, const QString& size, const QString& destPath, const QString& targetPath);
     Q_PROPERTY(QString inPath MEMBER m_inPath NOTIFY inPathChanged)
+    Q_PROPERTY(bool isEnhanced MEMBER m_isEnhanced NOTIFY isEnhancedChanged)
 
     Q_PROPERTY(QString icon16path MEMBER m_icon16path NOTIFY resultChanged)
     Q_PROPERTY(QString icon22path MEMBER m_icon16path NOTIFY resultChanged)
@@ -19,12 +21,13 @@ public:
 
 signals:
     void inPathChanged(QString val);
-
+    void isEnhancedChanged(bool val);
     void resultChanged(QString val);
 
 private:
     void processIcon(const QString& path);
     QString m_inPath;
+    bool m_isEnhanced;
 
     QString m_icon16path;
     QString m_icon22path;

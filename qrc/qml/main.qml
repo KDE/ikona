@@ -77,8 +77,17 @@ Kirigami.ApplicationWindow {
                         }
                     }
                 }
+                ToolButton {
+                    icon.name: "document-export"
+                    text: i18n("Export Icon...")
+                    visible: AppIcon.isEnhanced
+                    onClicked: {
+                        colour.show()
+                    }
+                }
             }
         }
+        ExportDialogColour { id: colour }
         Timer {
             id: tock
 

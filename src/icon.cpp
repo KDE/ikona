@@ -18,6 +18,7 @@
 
 #include "icon.h"
 #include <QDebug>
+#include <QDir>
 #include <QFile>
 #include <QTextStream>
 #include <QRandomGenerator>
@@ -50,7 +51,23 @@ bool copyFile(const QString& from, const QString& to) {
 
 AppIcon::AppIcon(QObject* parent) : QObject(parent) {
     this->m_watcher = new QFileSystemWatcher();
+    this->m_isEnhanced = false;
     QObject::connect(this->m_watcher, &QFileSystemWatcher::fileChanged, this, &AppIcon::processIcon);
+}
+
+void AppIcon::exportToDirectory(bool useSepDirs, const QString& size, const QString& destPath, const QString& targetPath) {
+    QString trueDestPath = targetPath;
+    if (targetPath.startsWith("file://")) {
+        trueDestPath = trueDestPath.replace("file://", "");
+    }
+    QString exportName = QFileInfo(this->m_inPath).baseName();
+    if (useSepDirs) {
+        qDebug() << "target dir:" << QDir::cleanPath(trueDestPath + QDir::separator() + size);
+        qDebug() << QDir("/").mkpath(QDir::cleanPath(trueDestPath + QDir::separator() + size));
+        qDebug() << QFile::copy(destPath, QDir::cleanPath(trueDestPath + QDir::separator() + size + QDir::separator() + exportName + ".svg"));
+    } else {
+        QFile::copy(destPath, trueDestPath + QDir::separator() + exportName + "-" + size + ".svg");
+    }
 }
 
 bool AppIcon::setIcon(const QString &path) {
@@ -96,8 +113,13 @@ void AppIcon::processIcon(const QString& inPath) {
                 filepath
             );
         }
+        this->m_isEnhanced = false;
+        emit isEnhancedChanged(false);
         emit resultChanged("");
         return;
+    } else {
+        this->m_isEnhanced = true;
+        emit isEnhancedChanged(true);
     }
 
     for (const int& size : {16, 22, 32, 48, 64}) {

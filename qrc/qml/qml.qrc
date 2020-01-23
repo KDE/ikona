@@ -11,6 +11,7 @@
         <file>LightIcon.qml</file>
         <file>DarkIcon.qml</file>
         <file>ColourPalette.qml</file>
+        <file>ExportDialogColour.qml</file>
         <file>ColorBlock.qml</file>
     </qresource>
 </RCC>
