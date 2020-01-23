@@ -26,7 +26,7 @@ import org.kde.kirigami 2.5 as Kirigami
 
 import org.kde.Ikona 1.0
 
-Window {
+Kirigami.ApplicationWindow {
     id: exportColour
 
     title: "Export Icon"
@@ -36,6 +36,8 @@ Window {
     minimumHeight: 500
     maximumWidth: 500
     maximumHeight: 500
+
+    visible: false
 
     modality: Qt.WindowModal
 
@@ -78,6 +80,7 @@ Window {
                             target: exportColour
 
                             onClosing: {
+                                print("onclosing")
                                 iconCheck.checked = true
                             }
                         }
@@ -86,9 +89,10 @@ Window {
                             target: folderDialog
 
                             onAccepted: {
-                                print(folderDialog.type)
-                                print(ExportDialogColour.DirType.PerSize)
-                                print(folderDialog.type == ExportDialogColour.DirType.PerSize)
+                                print("onaccept")
+                                if (!iconCheck.checked) {
+                                    return
+                                }
                                 AppIcon.exportToDirectory(folderDialog.type == ExportDialogColour.DirType.PerSize, modelData, AppIcon["icon"+modelData+"path"], folderDialog.fileUrl)
                             }
                         }
@@ -134,10 +138,10 @@ Window {
         property int type: ExportDialogColour.DirType.PerSize
 
         onAccepted: {
-            exportColour.close()
+            exportColour.showPassiveNotification(i18n("Exporting icon..."), "long")
         }
         onRejected: {
-            exportColour.close()
+            exportColour.showPassiveNotification(i18n("Exporting icon..."), "long")
         }
     }
 }
