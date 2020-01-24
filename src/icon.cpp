@@ -62,10 +62,15 @@ void AppIcon::exportToDirectory(bool useSepDirs, const QString& size, const QStr
     }
     QString exportName = QFileInfo(this->m_inPath).baseName();
     if (useSepDirs) {
-        qDebug() << "target dir:" << QDir::cleanPath(trueDestPath + QDir::separator() + size);
-        qDebug() << QDir("/").mkpath(QDir::cleanPath(trueDestPath + QDir::separator() + size));
-        qDebug() << QFile::copy(destPath, QDir::cleanPath(trueDestPath + QDir::separator() + size + QDir::separator() + exportName + ".svg"));
+        if (QFile::exists(QDir::cleanPath(trueDestPath + QDir::separator() + size + QDir::separator() + exportName + ".svg"))) {
+            QFile::remove(QDir::cleanPath(trueDestPath + QDir::separator() + size + QDir::separator() + exportName + ".svg"));
+        }
+        QDir("/").mkpath(QDir::cleanPath(trueDestPath + QDir::separator() + size));
+        QFile::copy(destPath, QDir::cleanPath(trueDestPath + QDir::separator() + size + QDir::separator() + exportName + ".svg"));
     } else {
+        if (QFile::exists(trueDestPath + QDir::separator() + exportName + "-" + size + ".svg")) {
+            QFile::remove(trueDestPath + QDir::separator() + exportName + "-" + size + ".svg");
+        }
         QFile::copy(destPath, trueDestPath + QDir::separator() + exportName + "-" + size + ".svg");
     }
 }
