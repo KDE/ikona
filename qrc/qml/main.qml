@@ -48,44 +48,43 @@ Kirigami.ApplicationWindow {
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
-        ToolBar {
+        Kirigami.ActionToolBar {
             Layout.fillWidth: true
-            Row {
-                anchors.fill: parent
-                spacing: Kirigami.Units.largeSpacing
-                ToolButton {
+            Layout.preferredHeight: 40
+            actions: [
+                Kirigami.Action {
                     icon.name: "go-previous"
-                    onClicked: {
+                    onTriggered: {
                         welc.open()
                     }
-                }
-                ToolButton {
+                },
+                Kirigami.Action {
                     icon.name: "document-open"
                     text: i18n("Open Icon...")
-                    onClicked: {
+                    onTriggered: {
                         picker.open()
                     }
-                }
-                ToolButton {
+                },
+                Kirigami.Action {
                     icon.name: "camera-photo"
                     text: i18n("Take Montage...")
-                    onClicked: {
+                    onTriggered: {
                         if (swipe.currentIndex == 0) {
                             screen.shot()
                         } else {
                             monoScreen.shot()
                         }
                     }
-                }
-                ToolButton {
+                },
+                Kirigami.Action {
                     icon.name: "document-export"
                     text: i18n("Export Icon...")
-                    visible: AppIcon.isEnhanced
-                    onClicked: {
+                    enabled: AppIcon.isEnhanced
+                    onTriggered: {
                         colour.show()
                     }
                 }
-            }
+            ]
         }
         ExportDialogColour { id: colour }
         Timer {
