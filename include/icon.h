@@ -10,6 +10,7 @@ public:
     Q_INVOKABLE bool setIcon(const QString& path);
     Q_INVOKABLE void refreshIcon();
     Q_INVOKABLE void exportToDirectory(bool useSepDirs, const QString& size, const QString& destPath, const QString& targetPath);
+    Q_INVOKABLE void exportTemplate(const QString& targetPath);
     Q_PROPERTY(QString inPath MEMBER m_inPath NOTIFY inPathChanged)
     Q_PROPERTY(bool isEnhanced MEMBER m_isEnhanced NOTIFY isEnhancedChanged)
 

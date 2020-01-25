@@ -3,5 +3,6 @@
         <file>dark.jpg</file>
         <file>light.jpg</file>
         <file>ikona.svg</file>
+        <file>template.ikona.app.svg</file>
     </qresource>
 </RCC>

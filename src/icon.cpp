@@ -91,6 +91,17 @@ bool AppIcon::setIcon(const QString &path) {
     return true;
 }
 
+void AppIcon::exportTemplate(const QString& targetPath) {
+    QString resolvedPath = targetPath;
+    if (targetPath.startsWith("file://")) {
+        resolvedPath = resolvedPath.replace("file://", "");
+    }
+    if (QFile::exists(resolvedPath)) {
+        QFile::remove(resolvedPath);
+    }
+    QFile::copy(":/template.ikona.app.svg", resolvedPath);
+}
+
 void AppIcon::refreshIcon() {
     this->processIcon(this->m_inPath);
 }
