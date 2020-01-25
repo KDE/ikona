@@ -59,6 +59,13 @@ Kirigami.ApplicationWindow {
                     }
                 },
                 Kirigami.Action {
+                    icon.name: "document-new"
+                    text: i18n("Create Icon...")
+                    onTriggered: {
+                        savePicker.open()
+                    }
+                },
+                Kirigami.Action {
                     icon.name: "document-open"
                     text: i18n("Open Icon...")
                     onTriggered: {
@@ -103,6 +110,14 @@ Kirigami.ApplicationWindow {
                 tock.running = !AppIcon.setIcon(picker.fileUrl)
             }
             nameFilters: ["Icon SVGs (*.svg)"]
+        }
+        FileDialog {
+            id: savePicker
+            selectExisting: false
+            onAccepted: {
+                AppIcon.exportTemplate(savePicker.fileUrl)
+            }
+            nameFilters: ["Ikona App SVGs (*.ikona.app.svg)"]
         }
         SwipeView {
             Layout.fillWidth: true
