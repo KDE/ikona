@@ -1,0 +1,13 @@
+[package]
+name = "ikonars"
+version = "0.1.0"
+authors = ["Carson Black <uhhadd@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "ikonars"
+path = "capi.rs"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+ikona = { path = "../ikona" }

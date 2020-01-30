@@ -37,7 +37,7 @@ find_program(Cargo NAMES cargo)
 add_custom_command(
   OUTPUT "${RUST_LIB}"
   COMMAND ${Cargo} build ${RUST_BUILD_FLAG}
-  DEPENDS src/rs/src/lib.rs
+  DEPENDS src/rs/src/ikona/ikona.rs src/rs/src/capi/capi.rs
   WORKING_DIRECTORY "${RUST_DIR}"
 )
 
