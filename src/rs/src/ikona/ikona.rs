@@ -24,14 +24,9 @@ pub mod Ikona {
             let replace_format = format!("fill=\"currentColor\" class=\"ColorScheme-{}\"", $class);
             let stylesheet_format = format!(".ColorScheme-{} {{ color: {}; }}", $class, $color);
 
-            println!("icon: {}", $icon);
-            println!("color format: {}", color_format);
             if $icon.contains(&color_format) {
-                println!("icon contains colour format!");
                 $icon = $icon.replace(&color_format, &replace_format);
                 $stylesheet.push_str(&stylesheet_format);
-            } else {
-                println!("no contain colour");
             }
         };
     }
@@ -57,6 +52,9 @@ pub mod Ikona {
                 },
                 Err(_) => Err("There was an error creating an internal file")
             }
+        }
+        pub fn get_filepath(&self) -> &'static str {
+            self.filepath
         }
         pub fn optimize_with_rsvg(&self) -> Result<Icon, &'static str> {
             let renderer = librsvg::CairoRenderer::new(&self.handle);
