@@ -14,6 +14,7 @@ cairo-rs = "0.7.0"
 glib = "0.8.0"
 gio = { version="0.7.0", features=["v2_48"] } 
 rand = "0.7.3"
+regex = "1"
 
 [features]
 default = [ "cairo-rs/svg" ]
