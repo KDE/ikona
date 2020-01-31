@@ -11,7 +11,7 @@ pub extern "C" fn ikona_extract_id_from_svg(in_path: *const c_char, id: *const c
     let in_path_string = unsafe { CStr::from_ptr(in_path).to_str().unwrap() };
     let id_string = unsafe { CStr::from_ptr(id).to_str().unwrap() };
 
-    let icon = match Ikona::Icon::new_from_path(in_path_string) {
+    let icon = match Ikona::Icon::new_from_path(in_path_string.to_string()) {
         Ok(val) => val,
         Err(_) => return CString::new("").expect("Failed to create CString").into_raw(),
     };
