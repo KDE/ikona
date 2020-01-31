@@ -31,6 +31,10 @@ endif()
 
 SET(RUST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/rs")
 SET(RUST_LIB "${RUST_DIR}/${RUST_TARGET_DIR}/libikonars.so")
+SET(RUST_BIN "${RUST_DIR}/${RUST_TARGET_DIR}/ikona-cli")
+SET(ZSH_COMPL "${RUST_DIR}/${RUST_TARGET_DIR}/_ikona-cli")
+SET(BASH_COMPL "${RUST_DIR}/${RUST_TARGET_DIR}/ikona-cli.bash")
+SET(FISH_COMPL "${RUST_DIR}/${RUST_TARGET_DIR}/ikona-cli.fish")
 
 find_program(Cargo NAMES cargo)
 
@@ -60,6 +64,10 @@ target_link_libraries(ikona
 
 install(TARGETS ikona DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${RUST_LIB} DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES ${RUST_BIN} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES ${ZSH_COMPL} DESTINATION ${CMAKE_INSTALL_DATADIR}/zsh/site-functions)
+install(FILES ${BASH_COMPL} DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}/bash_completion.d)
+install(FILES ${FISH_COMPL} DESTINATION ${CMAKE_INSTALL_DATADIR}/fish/completions)
 install(FILES data/org.kde.Ikona.desktop DESTINATION share/applications)
 install(FILES data/org.kde.Ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
 install(FILES data/org.kde.Ikona.appdata.xml DESTINATION share/metainfo)

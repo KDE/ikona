@@ -1,0 +1,50 @@
+name: ikona-cli
+version: "1.0"
+author: Carson Black <uhhadd@gmail.com>
+about: Command-line interface to Ikona
+subcommands:
+    - optimize:
+        about: Optimize your icon
+        args:
+          - input:
+              help: Sets the input file to write to
+              required: true
+              index: 1
+          - output:
+              help: Sets the output file to write to
+              index: 2
+          - mode:
+              short: m
+              long: mode
+              help: Sets optimization method to use
+              possible_values: [ all, rsvg, scour ]
+              takes_value: true
+          - inplace:
+              short: i
+              long: inplace
+              help: Modifies the icon in-place
+              conflicts_with:
+                  - output
+    - class:
+        about: Class your icon
+        args:
+          - input:
+              help: Sets the input file to write to
+              required: true
+              index: 1
+          - output:
+              help: Sets the output file to write to
+              index: 2
+          - mode:
+              short: m
+              long: mode
+              help: Sets what type of icon to treat the icon as
+              possible_values: [ light, dark ]
+              takes_value: true
+              required: true
+          - inplace:
+              short: i
+              long: inplace
+              help: Modifies the icon in-place
+              conflicts_with:
+                  - output

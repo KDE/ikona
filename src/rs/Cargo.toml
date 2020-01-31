@@ -3,4 +3,5 @@
 members = [
     'src/ikona',
     'src/capi',
+    'src/cli',
 ]
