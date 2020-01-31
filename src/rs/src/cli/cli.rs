@@ -17,7 +17,7 @@ fn optimize(matches: clap::ArgMatches) {
         }
     };
     let proc = match subcommand_matches.value_of("mode") {
-        Some("all") | None => match icon.optimize_all() {
+        Some("all") => match icon.optimize_all() {
             Ok(icon) => icon,
             Err(err) => {
                 println!("{}", err);
@@ -31,7 +31,7 @@ fn optimize(matches: clap::ArgMatches) {
                 return;
             }
         },
-        Some("scour") => match icon.optimize_with_scour() {
+        Some("scour") | None => match icon.optimize_with_scour() {
             Ok(icon) => (icon),
             Err(err) => {
                 println!("{}", err);
