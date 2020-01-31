@@ -11,6 +11,7 @@ pub mod Ikona {
     use std::str;
     use std::fs;
     use std::process::Command;
+    use std::error::Error;
 
     use regex::Regex;
 
@@ -184,9 +185,9 @@ pub mod Ikona {
             stylesheet_replace!(icon_str_mut, stylesheet, "#f67400", "NeutralText");
             stylesheet_replace!(icon_str_mut, stylesheet, "#da4453", "NegativeText");
 
-            icon_str_mut.insert_str(style.start(), &format!("<style>{}</style>", stylesheet));
+            icon_str_mut.insert_str(style.end(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
 
-            match Icon::new_from_string(Box::leak(icon_str.into_boxed_str())) {
+            match Icon::new_from_string(Box::leak(icon_str_mut.into_boxed_str())) {
                 Ok(icon) => Ok(icon),
                 Err(err) => Err(err),
             }
@@ -216,9 +217,9 @@ pub mod Ikona {
             stylesheet_replace!(icon_str_mut, stylesheet, "#f67400", "NeutralText");
             stylesheet_replace!(icon_str_mut, stylesheet, "#da4453", "NegativeText");
 
-            icon_str_mut.insert_str(style.start(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
+            icon_str_mut.insert_str(style.end(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
 
-            match Icon::new_from_string(Box::leak(icon_str.into_boxed_str())) {
+            match Icon::new_from_string(Box::leak(icon_str_mut.into_boxed_str())) {
                 Ok(icon) => Ok(icon),
                 Err(err) => Err(err),
             }
@@ -241,19 +242,14 @@ pub mod Ikona {
 </svg>
         "###;
 
-        let mut data_mut = data.to_string();
+        let icon = Icon::new_from_string(data).unwrap();
 
-        let re = Regex::new("<svg.*>").unwrap();
+        let dark = icon.class_as_dark().unwrap();
 
-        let style = re.find(&data).unwrap();
+        let dark_str = dark.read_to_string().unwrap();
 
-        let mut stylesheet = "".to_string();
-
-        stylesheet_replace!(data_mut, stylesheet, "#eff0f1", "Text");
-        stylesheet_replace!(data_mut, stylesheet, "#notexist", "notexist");
-
-        data_mut.insert_str(style.end(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
-
-        assert_eq!(data_mut, data_expected);
+        println!("Data: {}", dark_str);
+        println!("Expected Data: {}", data_expected);
+        assert_eq!(dark_str, data_expected);
     }
 }
