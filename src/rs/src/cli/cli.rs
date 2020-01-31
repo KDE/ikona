@@ -9,7 +9,7 @@ fn optimize(matches: clap::ArgMatches) {
     let subcommand_matches = matches.subcommand_matches("optimize").unwrap();
     let file = subcommand_matches.value_of("input").unwrap().to_owned();
     let file_two = subcommand_matches.value_of("input").unwrap().to_owned();
-    let icon = match Ikona::Icon::new_from_path(file) {
+    let icon = match Ikona::IkonaIcon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
@@ -63,7 +63,7 @@ fn class(matches: clap::ArgMatches) {
     let subcommand_matches = matches.subcommand_matches("class").unwrap();
     let file = subcommand_matches.value_of("input").unwrap().to_owned();
     let file_two = subcommand_matches.value_of("input").unwrap().to_owned();
-    let icon = match Ikona::Icon::new_from_path(file) {
+    let icon = match Ikona::IkonaIcon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);

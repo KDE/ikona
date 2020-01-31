@@ -29,17 +29,16 @@ QString toDark(const QString& data) {
 }
 
 QString classIcon(const QString& data) {
-    QString manip = data;
+    auto dataStr = data.toStdString();
+    auto dataCStr = dataStr.c_str();
 
-    manip.replace("fill=\"#232629\"", "class=\"ColorScheme-Text\" fill=\"currentColor\"");
-    manip.replace("fill=\"#eff0f1\"", "class=\"ColorScheme-Background\" fill=\"currentColor\"");
-    manip.replace("fill=\"#fcfcfc\"", "class=\"ColorScheme-ViewBackground\" fill=\"currentColor\"");
-    manip.replace("fill=\"#3daee9\"", "class=\"ColorScheme-ButtonFocus\" fill=\"currentColor\"");
-    manip.replace("fill=\"#27ae60\"", "class=\"ColorScheme-PositiveText\" fill=\"currentColor\"");
-    manip.replace("fill=\"#f67400\"", "class=\"ColorScheme-NeutralText\" fill=\"currentColor\"");
-    manip.replace("fill=\"#da4453\"", "class=\"ColorScheme-NegativeText\" fill=\"currentColor\"");
+    auto icon = ikona_icon_new_from_string(dataCStr);
+    auto light = ikona_icon_class_as_light(icon);
+    auto cdata = ikona_icon_read_to_string(light);
 
-    return manip;
+    QString lightString(cdata);
+
+    return lightString;
 }
 
 QString IconManipulator::processIconInternal(const QString& inPath, IconKind type, const QString& idToExtract, int32_t targetSize) {
@@ -49,8 +48,10 @@ QString IconManipulator::processIconInternal(const QString& inPath, IconKind typ
     auto inPathCStr = inPathStr.c_str();
     auto idToExtractCStr = idToExtractStr.c_str();
 
-    const char* manipulated = ikona_extract_id_from_svg(inPathCStr, idToExtractCStr, targetSize);
-
+    auto icon = ikona_icon_new_from_path(inPathCStr);
+    auto manip = ikona_icon_extract_subicon_by_id(icon, idToExtractCStr, targetSize);
+    const char* manipulated = ikona_icon_read_to_string(manip);
+    
     QString manipulatedString(manipulated);
 
     manipulatedString = classIcon(manipulatedString);

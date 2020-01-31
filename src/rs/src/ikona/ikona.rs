@@ -15,7 +15,8 @@ pub mod Ikona {
 
     use regex::Regex;
 
-    pub struct Icon {
+    #[repr(C)]
+    pub struct IkonaIcon {
         handle: librsvg::SvgHandle,
         filepath: String,
     }
@@ -31,14 +32,14 @@ pub mod Ikona {
             }
         };
     }
-    impl Icon {
-        pub fn new_from_path(in_path: String) -> Result<Icon, String> {
+    impl IkonaIcon {
+        pub fn new_from_path(in_path: String) -> Result<IkonaIcon, String> {
             match librsvg::Loader::new().read_path(in_path.clone()) {
-                Ok(handle) => Ok(Icon{handle: handle, filepath: in_path}),
+                Ok(handle) => Ok(IkonaIcon{handle: handle, filepath: in_path}),
                 Err(_) => Err("There was an error loading the SVG".to_string()),
             }
         }
-        pub fn new_from_string(string: String) -> Result<Icon, String> {
+        pub fn new_from_string(string: String) -> Result<IkonaIcon, String> {
             let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
                 .sample_iter(&Alphanumeric)
                 .take(40)
@@ -47,7 +48,7 @@ pub mod Ikona {
             match fs::write(filepath.clone(), string) {
                 Ok(_) => {
                     match librsvg::Loader::new().read_path(filepath.clone()) {
-                        Ok(handle) => Ok(Icon{handle: handle, filepath: filepath}),
+                        Ok(handle) => Ok(IkonaIcon{handle: handle, filepath: filepath}),
                         Err(_) => Err("There was an error loading the SVG".to_string())
                     }
                 },
@@ -57,7 +58,7 @@ pub mod Ikona {
         pub fn get_filepath(&self) -> String {
             self.filepath.clone()
         }
-        pub fn optimize_with_rsvg(&self) -> Result<Icon, String> {
+        pub fn optimize_with_rsvg(&self) -> Result<IkonaIcon, String> {
             let renderer = librsvg::CairoRenderer::new(&self.handle);
 
             let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
@@ -88,11 +89,11 @@ pub mod Ikona {
                 Ok(_) => {
                     svg_surface.finish();
     
-                    return Icon::new_from_path(filepath);
+                    return IkonaIcon::new_from_path(filepath);
                 }
             }
         }
-        pub fn optimize_with_scour(&self) -> Result<Icon, String> {
+        pub fn optimize_with_scour(&self) -> Result<IkonaIcon, String> {
             let output = match Command::new("scour")
                                        .arg("--set-precision=8")
                                        .arg("--enable-viewboxing")
@@ -114,9 +115,9 @@ pub mod Ikona {
             
             let string = String::from_utf8_lossy(&output.stdout).into_owned();
 
-            return Icon::new_from_string(string);
+            return IkonaIcon::new_from_string(string);
         }
-        pub fn optimize_all(&self) -> Result<Icon, String> {
+        pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
             match self.optimize_with_rsvg() {
                 Ok(ok) => {
                     match ok.optimize_with_scour() {
@@ -127,7 +128,7 @@ pub mod Ikona {
                 Err(err) => Err(err),
             }
         }
-        pub fn extract_subicon_by_id(&self, id: &str, target_size: i32) -> Result<Icon, String> {
+        pub fn extract_subicon_by_id(&self, id: &str, target_size: i32) -> Result<IkonaIcon, String> {
             match self.handle.has_element_with_id(id) {
                 Ok(_) => {
                     let renderer = librsvg::CairoRenderer::new(&self.handle);
@@ -147,7 +148,7 @@ pub mod Ikona {
                         Ok(_) => {
                             svg_surface.finish();
     
-                            return Icon::new_from_path(filepath);
+                            return IkonaIcon::new_from_path(filepath);
                         },
                     }
                 },
@@ -160,7 +161,7 @@ pub mod Ikona {
                 Err(_) => Err("Failed to read file".to_string()),
             }
         }
-        pub fn class_as_dark(&self) -> Result<Icon, String> {
+        pub fn class_as_dark(&self) -> Result<IkonaIcon, String> {
             let icon_str = match self.read_to_string() {
                 Ok(val) => val,
                 Err(err) => return Err(err),
@@ -187,12 +188,12 @@ pub mod Ikona {
 
             icon_str_mut.insert_str(style.end(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
 
-            match Icon::new_from_string(icon_str_mut) {
+            match IkonaIcon::new_from_string(icon_str_mut) {
                 Ok(icon) => Ok(icon),
                 Err(err) => Err(err),
             }
         }
-        pub fn class_as_light(&self) -> Result<Icon, String> {
+        pub fn class_as_light(&self) -> Result<IkonaIcon, String> {
             let icon_str = match self.read_to_string() {
                 Ok(val) => val,
                 Err(err) => return Err(err),
@@ -219,7 +220,7 @@ pub mod Ikona {
 
             icon_str_mut.insert_str(style.end(), &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
 
-            match Icon::new_from_string(icon_str_mut) {
+            match IkonaIcon::new_from_string(icon_str_mut) {
                 Ok(icon) => Ok(icon),
                 Err(err) => Err(err),
             }
@@ -242,7 +243,7 @@ pub mod Ikona {
 </svg>
         "###.to_string();
 
-        let icon = Icon::new_from_string(data).unwrap();
+        let icon = IkonaIcon::new_from_string(data).unwrap();
 
         let dark = icon.class_as_dark().unwrap();
 
