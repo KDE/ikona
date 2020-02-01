@@ -130,7 +130,36 @@ Kirigami.ApplicationWindow {
             MonoView {}
         }
     }
-
+    Rectangle {
+        id: dragrect
+        color: Qt.rgba(0.07, 0.07, 0.07, 0.8);
+        anchors.fill: parent;
+        opacity: area.containsDrag ? 1 : 0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.InOutQuad
+            }
+        }
+        DarkIcon {
+            anchors.centerIn: parent
+            source: "document-open"
+            size: root.width / 2
+        }
+    }
+    DropArea {
+        id: area
+        anchors.fill: parent;
+        keys: ["text/plain"]
+        onEntered: {
+            drag.accept(Qt.CopyAction);
+        }
+        onDropped: (s) => {
+            if (s.hasUrls) {
+                tock.running = !AppIcon.setIcon(s.urls[0])
+            }
+        }
+    }
     Screenshot { id: screen }
     MonochromaticScreenshot { id: monoScreen }
 }

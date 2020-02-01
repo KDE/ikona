@@ -22,6 +22,8 @@ import QtQuick.Layouts 1.13
 
 import org.kde.kirigami 2.5 as Kirigami
 
+import org.kde.Ikona 1.0
+
 ColumnLayout {
     id: iconRoot
 
@@ -32,11 +34,45 @@ ColumnLayout {
     property alias checked: checkbox.checked
     property alias labelColor: label.color
 
+
     Kirigami.Icon {
         Layout.alignment: Qt.AlignHCenter
         id: icon
         width: iconRoot.size
         height: iconRoot.size
+
+        property var prevX: 0
+        property var prevY: 0
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            enabled: icon.source.startsWith("/")
+
+            drag.target: parent
+            onPressed: parent.grabToImage(function(result) {
+                parent.Drag.imageSource = result.url
+            })
+        }
+
+        Drag.active: mouseArea.drag.active
+        Drag.hotSpot.x: 0
+        Drag.hotSpot.y: 0
+        
+        Drag.supportedActions: Qt.CopyAction
+        
+        Drag.mimeData: { "text/uri-list": "file://"+icon.source }
+        Drag.dragType: Drag.Automatic
+
+        Drag.onDragStarted: {
+            icon.prevX = icon.x
+            icon.prevY = icon.y
+        }
+        Drag.onDragFinished: (dropAction) => {
+            icon.visible = false
+            AppIcon.refreshIcon()
+            icon.visible = true
+        }
     }
     Label {
         id: label
