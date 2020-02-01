@@ -2,14 +2,14 @@ use clap;
 use clap::App;
 use std::io;
 use std::fs;
-use ikona::Ikona;
+use ikona::icons::IkonaIcon;
 
 fn optimize(matches: clap::ArgMatches) {
     // If we got here, we already know that our subcommand is optimize.
     let subcommand_matches = matches.subcommand_matches("optimize").unwrap();
     let file = subcommand_matches.value_of("input").unwrap().to_owned();
     let file_two = subcommand_matches.value_of("input").unwrap().to_owned();
-    let icon = match Ikona::IkonaIcon::new_from_path(file) {
+    let icon = match IkonaIcon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
@@ -63,7 +63,7 @@ fn class(matches: clap::ArgMatches) {
     let subcommand_matches = matches.subcommand_matches("class").unwrap();
     let file = subcommand_matches.value_of("input").unwrap().to_owned();
     let file_two = subcommand_matches.value_of("input").unwrap().to_owned();
-    let icon = match Ikona::IkonaIcon::new_from_path(file) {
+    let icon = match IkonaIcon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
