@@ -23,6 +23,8 @@ import QtQuick.Dialogs 1.3
 
 import org.kde.kirigami 2.8 as Kirigami
 
+import org.kde.Ikona 1.0
+
 Item {
     id: dualMontage
     visible: false
@@ -30,7 +32,10 @@ Item {
     width: 512
     Kirigami.Theme.inherit: false
     function shot() {
-        ssPicker.open()
+        dualMontage.grabToImage(function(result) {
+            Clipboard.copyImage(result.image)
+            root.showPassiveNotification("Montage copied to clipboard", "long")
+        });
     }
     FileDialog {
         id: ssPicker
@@ -61,23 +66,22 @@ Item {
             GridLayout {
                 id: previewGrid
                 anchors.centerIn: parent
-                columns: sizes.length
+                columns: [16, 22, 32, 48, 64].length
                 rows: 2
-                property var sizes: [8, 16, 22, 32, 48, 64, 128]
                 Repeater {
-                    model: previewGrid.sizes.length
+                    model: [16, 22, 32, 48, 64]
                     delegate: Kirigami.Icon {
                         Layout.alignment: Qt.AlignBottom
-                        source: root.normalPath
-                        width: previewGrid.sizes[index]
-                        height: previewGrid.sizes[index]
+                        source: AppIcon["icon"+modelData+"path"]
+                        width: modelData
+                        height: modelData
                     }
                 }
                 Repeater {
-                    model: previewGrid.sizes.length
+                    model: [16, 22, 32, 48, 64]
                     delegate: QQC2.Label {
                         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                        text: previewGrid.sizes[index]
+                        text: modelData
                     }
                 }
             }
@@ -111,23 +115,22 @@ Item {
 
             GridLayout {
                 anchors.centerIn: parent
-                columns: sizes.length
+                columns: [16, 22, 32, 48, 64].length
                 rows: 2
-                property var sizes: [8, 16, 22, 32, 48, 64, 128]
                 Repeater {
-                    model: previewGrid.sizes.length
+                    model: [16, 22, 32, 48, 64]
                     delegate: Kirigami.Icon {
                         Layout.alignment: Qt.AlignBottom
-                        source: root.normalPath
-                        width: previewGrid.sizes[index]
-                        height: previewGrid.sizes[index]
+                        source: AppIcon["icon"+modelData+"path"]
+                        width: modelData
+                        height: modelData
                     }
                 }
                 Repeater {
-                    model: previewGrid.sizes.length
+                    model: [16, 22, 32, 48, 64]
                     delegate: QQC2.Label {
                         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                        text: previewGrid.sizes[index]
+                        text: modelData
                     }
                 }
             }

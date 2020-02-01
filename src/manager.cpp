@@ -29,3 +29,8 @@ void ClipboardManager::copy(const QColor& colour) {
     QClipboard *clip = QApplication::clipboard();
     clip->setText(colour.name(QColor::NameFormat::HexRgb));
 }
+
+void ClipboardManager::copyImage(const QImage& image) {
+    QClipboard *clip = QApplication::clipboard();
+    clip->setImage(image);
+}
