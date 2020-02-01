@@ -21,6 +21,8 @@ import QtQuick.Layouts 1.13
 
 import org.kde.kirigami 2.5 as Kirigami
 
+import org.kde.Ikona 1.0
+
 Row {
     id: monoRoot
     property var sizes: [8, 16, 22, 32]
@@ -59,7 +61,7 @@ Row {
                     DisplayIcon {
                         Layout.alignment: Qt.AlignHCenter
                         size: modelData
-                        source: root.darkPath
+                        source: MonoIcon["light"+modelData+"path"]
                         labelColor: "black"
                         showLabel: true
                     }
@@ -122,7 +124,7 @@ Row {
                     DisplayIcon {
                         Layout.alignment: Qt.AlignHCenter
                         size: modelData
-                        source: root.lightPath
+                        source: MonoIcon["dark"+modelData+"path"]
                         labelColor: "white"
                         showLabel: true
                     }

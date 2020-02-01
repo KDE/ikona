@@ -29,6 +29,7 @@
 #include <KLocalizedString>
 
 #include "icon.h"
+#include "monoicon.h"
 #include "manager.h"
 
 #include "ikonars.h"
@@ -80,6 +81,13 @@ auto main(int argc, char *argv[]) -> int
         Q_UNUSED(scriptEngine)
 
         AppIcon *obj = new AppIcon();
+        return obj;
+    });
+    qmlRegisterSingletonType<MonoIcon>("org.kde.Ikona", 1, 0, "MonoIcon", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+
+        MonoIcon *obj = new MonoIcon();
         return obj;
     });
 

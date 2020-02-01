@@ -50,6 +50,10 @@ QString IconManipulator::processIconInternal(const QString& inPath, IconKind typ
 
     auto icon = ikona_icon_new_from_path(inPathCStr);
     auto manip = ikona_icon_extract_subicon_by_id(icon, idToExtractCStr, targetSize);
+    if (manip == nullptr) {
+        return "";
+    }
+
     const char* manipulated = ikona_icon_read_to_string(manip);
     
     QString manipulatedString(manipulated);

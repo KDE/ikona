@@ -56,7 +56,7 @@ FILE(GLOB_RECURSE HEADERS "include/*.h")
 
 include_directories(include)
 
-add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/manip.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
+add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/monoicon.cpp src/util.cpp src/manip.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
 
 add_dependencies(ikona rust_target)
 

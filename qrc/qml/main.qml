@@ -40,6 +40,7 @@ Kirigami.ApplicationWindow {
 
     Component.onCompleted: {
         AppIcon.setIcon("qrc:/ikona.svg")
+        MonoIcon.setIcon("qrc:/ikona.svg")
     }
 
     property var appExamples: ["accessories-calculator", "accessories-camera", "accessories-character-map", "accessories-text-editor", "akregator", "utilities-terminal", "anjuta", "choqok"]
@@ -69,7 +70,11 @@ Kirigami.ApplicationWindow {
                     icon.name: "document-open"
                     text: i18n("Open Icon...")
                     onTriggered: {
-                        picker.open()
+                        if (swipe.currentIndex == 0) {
+                            picker.open()
+                        } else {
+                            monoPicker.open()
+                        }
                     }
                 },
                 Kirigami.Action {
@@ -104,10 +109,27 @@ Kirigami.ApplicationWindow {
                 AppIcon.refreshIcon()
             }
         }
+        Timer {
+            id: tick
+
+            interval: 2000
+            repeat: true
+            
+            onTriggered: {
+                MonoIcon.refreshIcon()
+            }
+        }
         FileDialog {
             id: picker
             onAccepted: {
                 tock.running = !AppIcon.setIcon(picker.fileUrl)
+            }
+            nameFilters: ["Icon SVGs (*.svg)"]
+        }
+        FileDialog {
+            id: monoPicker
+            onAccepted: {
+                tick.running = !MonoIcon.setIcon(monoPicker.fileUrl)
             }
             nameFilters: ["Icon SVGs (*.svg)"]
         }

@@ -64,17 +64,14 @@ Kirigami.OverlayDrawer {
                     swipe.setCurrentIndex(0)
                     drawerRoot.close()
                 }
+            }            
+            Button {
+                text: i18nc("Open the monochrome view", "Monochrome Icon View")
+                onClicked: {
+                    swipe.setCurrentIndex(1)
+                    drawerRoot.close()
+                }
             }
-            // Disabling this until we get some adequate backend code
-            // going for a monochromatic view...
-            //
-            // Button {
-            //     text: i18nc("Open the monochrome view", "Monochrome Icon View")
-            //     onClicked: {
-            //         swipe.setCurrentIndex(1)
-            //         drawerRoot.close()
-            //     }
-            // }
 
             Layout.fillWidth: true
         }
