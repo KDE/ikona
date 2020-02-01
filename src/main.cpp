@@ -25,7 +25,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include <KColorSchemeManager>
 #include <KLocalizedContext>
 #include <KLocalizedString>
 
@@ -69,15 +68,11 @@ auto main(int argc, char *argv[]) -> int
 
     KLocalizedString::setApplicationDomain("ikona");
 
-    auto *manager = new KColorSchemeManager(app);
-    manager->activateScheme(manager->indexForScheme("Breeze Light"));
-    delete manager;
-
-    qmlRegisterSingletonType<ColourSchemeManager>("org.kde.Ikona", 1, 0, "ColourScheme", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+    qmlRegisterSingletonType<ClipboardManager>("org.kde.Ikona", 1, 0, "Clipboard", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
 
-        auto *obj = new ColourSchemeManager(app);
+        auto *obj = new ClipboardManager(app);
         return obj;
     });
     qmlRegisterSingletonType<AppIcon>("org.kde.Ikona", 1, 0, "AppIcon", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {

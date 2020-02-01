@@ -66,7 +66,7 @@ Rectangle {
         hoverEnabled: true
         onClicked: {
             swip.currentIndex = 1
-            ColourScheme.copy(recty.color)
+            Clipboard.copy(recty.color)
         }
         onExited: {
             swip.currentIndex = 0
