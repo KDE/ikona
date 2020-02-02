@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>Welcome.qml</file>
         <file>ColourView.qml</file>
+        <file>ColourPage.qml</file>
+        <file>ScreenshotGrid.qml</file>
         <file>PlasmaMaterial.qml</file>
         <file>DisplayIcon.qml</file>
         <file>Screenshot.qml</file>

@@ -27,7 +27,6 @@ Rectangle {
     width: 40
     height: 40
     Rectangle {
-        id: scrim
         color: Qt.rgba(0,0,0,0.5)
         anchors.fill: parent
         opacity: mausArea.containsMouse ? 1 : 0
@@ -43,18 +42,14 @@ Rectangle {
             clip: true
             interactive: false
 
-            Item {
-                DarkIcon {
-                    anchors.centerIn: parent
-                    source: "edit-copy"
-                    size: 16
-                }
-            }
-            Item {
-                DarkIcon {
-                    anchors.centerIn: parent
-                    source: "checkmark"
-                    size: 16
+            Repeater {
+                model: ["edit-copy", "checkmark"]
+                Item {
+                    DarkIcon {
+                        anchors.centerIn: parent
+                        source: modelData
+                        size: 16
+                    }
                 }
             }
         }

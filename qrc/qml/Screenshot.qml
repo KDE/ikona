@@ -63,28 +63,8 @@ Item {
             Kirigami.Theme.neutralTextColor: "#f67400"
             Kirigami.Theme.negativeTextColor: "#da4453"
 
-            GridLayout {
-                id: previewGrid
-                anchors.centerIn: parent
-                columns: [16, 22, 32, 48, 64].length
-                rows: 2
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    delegate: Kirigami.Icon {
-                        Layout.alignment: Qt.AlignBottom
-                        source: AppIcon["icon"+modelData+"path"]
-                        width: modelData
-                        height: modelData
-                    }
-                }
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    delegate: QQC2.Label {
-                        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                        text: modelData
-                    }
-                }
-            }
+            ScreenshotGrid {}
+
             Row {
                 anchors.top: parent.top
                 anchors.left: parent.left
@@ -113,27 +93,7 @@ Item {
             Kirigami.Theme.neutralTextColor: "#f67400"
             Kirigami.Theme.negativeTextColor: "#da4453"
 
-            GridLayout {
-                anchors.centerIn: parent
-                columns: [16, 22, 32, 48, 64].length
-                rows: 2
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    delegate: Kirigami.Icon {
-                        Layout.alignment: Qt.AlignBottom
-                        source: AppIcon["icon"+modelData+"path"]
-                        width: modelData
-                        height: modelData
-                    }
-                }
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    delegate: QQC2.Label {
-                        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                        text: modelData
-                    }
-                }
-            }
+            ScreenshotGrid {}
         }
     }
 }

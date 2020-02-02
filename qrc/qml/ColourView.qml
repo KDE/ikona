@@ -48,63 +48,7 @@ Kirigami.ColumnView {
             source: "light.jpg"
             anchors.fill: parent
 
-            PlasmaMaterial {
-                anchors.centerIn: parent
-                width: 450
-                height: width
-                RoundButton {
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    anchors.margins: Kirigami.Units.largeSpacing
-                    icon.name: "arrow-right"
-                    visible: columnRoot.width <= 1000
-                    onClicked: {
-                        columnRoot.currentIndex = 1
-                    }
-                }
-            }
-
-            Grid {
-                id: leftGrid
-                columns: 3
-                rows: 3
-
-                anchors.centerIn: parent
-                spacing: Kirigami.Units.largeSpacing * 3
-
-                Repeater {
-                    model: 4
-                    DisplayIcon {
-                        source: root.appExamples[index]
-                    }
-                }
-
-                DisplayIcon {
-                    source: AppIcon.icon48path
-                }
-
-                Repeater {
-                    model: 4
-                    DisplayIcon {
-                        source: root.appExamples[index+4]
-                    }
-                }
-            }
-            RowLayout {
-                anchors.horizontalCenter: leftGrid.horizontalCenter
-                anchors.top: leftGrid.bottom
-                anchors.topMargin: Kirigami.Units.largeSpacing * 3
-                spacing: Kirigami.Units.largeSpacing * 3
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    DisplayIcon {
-                        Layout.alignment: Qt.AlignBottom
-                        size: modelData
-                        source: AppIcon["icon"+modelData+"path"]
-                        showLabel: true
-                    }
-                }
-            }
+            ColourPage { anchors.fill: parent; buttonTargetIndex: 1; buttonIcon: "arrow-right" }
         }
     }
 
@@ -127,63 +71,7 @@ Kirigami.ColumnView {
             source: "dark.jpg"
             anchors.fill: parent
 
-            PlasmaMaterial {
-                anchors.centerIn: parent
-                width: 450
-                height: width
-                RoundButton {
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.margins: Kirigami.Units.largeSpacing
-                    icon.name: "arrow-left"
-                    visible: columnRoot.width <= 1000
-                    onClicked: {
-                        columnRoot.currentIndex = 0
-                    }
-                }
-            }
-
-            Grid {
-                id: rightGrid
-                columns: 3
-                rows: 3
-
-                anchors.centerIn: parent
-                spacing: Kirigami.Units.largeSpacing * 3
-
-                Repeater {
-                    model: 4
-                    DisplayIcon {
-                        source: root.appExamples[index]
-                    }
-                }
-
-                DisplayIcon {
-                    source: AppIcon.icon48path
-                }
-
-                Repeater {
-                    model: 4
-                    DisplayIcon {
-                        source: root.appExamples[index+4]
-                    }
-                }
-            }
-            RowLayout {
-                anchors.horizontalCenter: rightGrid.horizontalCenter
-                anchors.top: rightGrid.bottom
-                anchors.topMargin: Kirigami.Units.largeSpacing * 3
-                spacing: Kirigami.Units.largeSpacing * 3
-                Repeater {
-                    model: [16, 22, 32, 48, 64]
-                    DisplayIcon {
-                        Layout.alignment: Qt.AlignBottom
-                        size: modelData
-                        source: AppIcon["icon"+modelData+"path"]
-                        showLabel: true
-                    }
-                }
-            }
+            ColourPage { anchors.fill: parent; buttonTargetIndex: 0; buttonIcon: "arrow-left" }
         }
     }
 }
