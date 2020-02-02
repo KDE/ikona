@@ -33,6 +33,9 @@ use std::collections::HashMap;
 
 use regex::Regex;
 
+/// Object that exposes Ikona's icon manipulation functionality.
+/// 
+/// This is the entrypoint for Ikona's functionality.
 #[repr(C)]
 pub struct IkonaIcon {
     handle: librsvg::SvgHandle,
@@ -51,12 +54,30 @@ macro_rules! stylesheet_replace {
     };
 }
 impl IkonaIcon {
+    /// Creates an `IkonaIcon`, reading the contents from `in_path`.
+    /// 
+    /// # Example:
+    /// 
+    /// ```ignore
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_path("example.svg").unwrap();
+    /// ```
     pub fn new_from_path(in_path: String) -> Result<IkonaIcon, String> {
         match librsvg::Loader::new().read_path(in_path.clone()) {
             Ok(handle) => Ok(IkonaIcon{handle: handle, filepath: in_path}),
             Err(_) => Err("There was an error loading the SVG".to_string()),
         }
     }
+    /// Creates an `IkonaIcon`, reading the contents from a String. 
+    /// 
+    /// # Example: 
+    /// 
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// ```
     pub fn new_from_string(string: String) -> Result<IkonaIcon, String> {
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
             .sample_iter(&Alphanumeric)
@@ -73,9 +94,30 @@ impl IkonaIcon {
             Err(_) => Err("There was an error creating an internal file".to_string())
         }
     }
+    /// Reads the filepath of an `IkonaIcon` into a `String`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let filepath = icon.get_filepath();
+    /// ````
     pub fn get_filepath(&self) -> String {
         self.filepath.clone()
     }
+    /// Optimizes the SVG of the current `IkonaIcon` with rsvg and returns it
+    /// as a new `IkonaIcon`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let optimized = icon.optimize_with_rsvg().unwrap();
+    /// ````
     pub fn optimize_with_rsvg(&self) -> Result<IkonaIcon, String> {
         let renderer = librsvg::CairoRenderer::new(&self.handle);
 
@@ -111,6 +153,17 @@ impl IkonaIcon {
             }
         }
     }
+    /// Optimizes the SVG of the current `IkonaIcon` with scour and returns it
+    /// as a new `IkonaIcon`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let optimized = icon.optimize_with_scour().unwrap();
+    /// ````
     pub fn optimize_with_scour(&self) -> Result<IkonaIcon, String> {
         let output = match Command::new("scour")
                                     .arg("--set-precision=8")
@@ -135,6 +188,17 @@ impl IkonaIcon {
 
         return IkonaIcon::new_from_string(string);
     }
+    /// Optimizes the SVG of the current `IkonaIcon` with both rsvg and scour
+    /// and returns it as a new `IkonaIcon`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let optimized = icon.optimize_all().unwrap();
+    /// ````
     pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
         match self.optimize_with_rsvg() {
             Ok(ok) => {
@@ -146,6 +210,7 @@ impl IkonaIcon {
             Err(err) => Err(err),
         }
     }
+    /// Returns an child `IkonaIcon` extracted by ID and size.
     pub fn extract_subicon_by_id(&self, id: &str, target_size: i32) -> Result<IkonaIcon, String> {
         match self.handle.has_element_with_id(id) {
             Ok(_) => {
@@ -173,6 +238,7 @@ impl IkonaIcon {
             Err(_) => Err("Badly formatted ID, or SVG does not have ID".to_string()),
         }
     }
+    /// Returns an child `IkonaIcon` extracted by ID and size.
     pub fn extract_subicons_by_ids(&self, icons: HashMap<String,i32>) -> Result<Vec<IkonaIcon>, String> {
         let mut ret_icons = Vec::<IkonaIcon>::with_capacity(icons.len());
         for (id, size) in icons {
@@ -207,12 +273,23 @@ impl IkonaIcon {
         }
         Ok(ret_icons)
     }
+    /// Reads the contents of the `IkonaIcon` into a `String`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let string = icon.read_to_string().unwrap();
+    /// ````
     pub fn read_to_string(&self) -> Result<String, String> {
         match fs::read_to_string(&self.filepath) {
             Ok(val) => Ok(val.to_string()),
             Err(_) => Err("Failed to read file".to_string()),
         }
     }
+    /// Returns an `IkonaIcon` with a dark colour palette.
     pub fn convert_to_dark_from_light(&self) -> Result<IkonaIcon, String> {
         let icon_str = self.read_to_string()?;
 
@@ -226,6 +303,7 @@ impl IkonaIcon {
 
         return IkonaIcon::new_from_string(icon_str_mut);
     }
+    /// Returns an `IkonaIcon` with a light colour palette.
     pub fn convert_to_light_from_dark(&self) -> Result<IkonaIcon, String> {
         let icon_str = self.read_to_string()?;
 
@@ -239,6 +317,8 @@ impl IkonaIcon {
 
         return IkonaIcon::new_from_string(icon_str_mut);
     }
+    /// Injects CSS and replaces hardcoded colours according to a dark
+    /// colour palette.
     pub fn class_as_dark(&self) -> Result<IkonaIcon, String> {
         let icon_str = match self.read_to_string() {
             Ok(val) => val,
@@ -296,6 +376,8 @@ impl IkonaIcon {
             Err(err) => Err(err),
         }
     }
+    /// Injects CSS and replaces hardcoded colours according to a light
+    /// colour palette.
     pub fn class_as_light(&self) -> Result<IkonaIcon, String> {
         let icon_str = match self.read_to_string() {
             Ok(val) => val,
