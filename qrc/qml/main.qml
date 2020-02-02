@@ -76,11 +76,7 @@ Kirigami.ApplicationWindow {
                     icon.name: "camera-photo"
                     text: i18n("Take Montage...")
                     onTriggered: {
-                        if (swipe.currentIndex == 0) {
-                            screen.shot()
-                        } else {
-                            monoScreen.shot()
-                        }
+                        screen.shot()
                     }
                 },
                 Kirigami.Action {
@@ -119,15 +115,9 @@ Kirigami.ApplicationWindow {
             }
             nameFilters: ["Ikona App SVGs (*.ikona.app.svg)"]
         }
-        SwipeView {
+        ColourView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-
-            id: swipe
-            interactive: false
-
-            ColourView {}
-            MonoView {}
         }
     }
     Rectangle {
@@ -161,5 +151,4 @@ Kirigami.ApplicationWindow {
         }
     }
     Screenshot { id: screen }
-    MonochromaticScreenshot { id: monoScreen }
 }

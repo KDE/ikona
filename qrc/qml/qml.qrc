@@ -5,8 +5,6 @@
         <file>ColourView.qml</file>
         <file>PlasmaMaterial.qml</file>
         <file>DisplayIcon.qml</file>
-        <file>MonoView.qml</file>
-        <file>MonochromaticScreenshot.qml</file>
         <file>Screenshot.qml</file>
         <file>LightIcon.qml</file>
         <file>DarkIcon.qml</file>
