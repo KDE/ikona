@@ -152,6 +152,40 @@ fn convert(matches: clap::ArgMatches) {
     }
 }
 
+fn extract(matches: clap::ArgMatches) {
+    let subcommand_matches = matches.subcommand_matches("extract").unwrap();
+    let input = subcommand_matches.value_of("input").unwrap().to_owned();
+    let (id, size) = match subcommand_matches.value_of("size").unwrap() {
+        "16" => ("#16plate", 16),
+        "22" => ("#22plate", 22),
+        "32" => ("#32plate", 32),
+        "48" => ("#48plate", 48),
+        "64" => ("#64plate", 64),
+        _ => ("#48plate", 48),
+    };
+    let output = subcommand_matches.value_of("output").unwrap().to_owned();
+
+    let icon = match IkonaIcon::new_from_path(input) {
+        Ok(icon) => icon,
+        Err(err) => {
+            println!("{}", err);
+            return;
+        }
+    };
+    let subicon = match icon.extract_subicon_by_id(id, size) {
+        Ok(subicon) => subicon,
+        Err(err) => {
+            println!("{}", err);
+            return;
+        }
+    };
+
+    match fs::copy(subicon.get_filepath(), output) {
+        Ok(_) => println!("Icon extracted"),
+        Err(_) => println!("Icon failed to extract"),
+    }
+}
+
 fn main() {
     let yaml = clap::load_yaml!("cli.yaml");
     let app = App::from(yaml);
@@ -162,6 +196,7 @@ fn main() {
         Some("optimize") => optimize(matches),
         Some("class") => class(matches),
         Some("convert") => convert(matches),
+        Some("extract") => extract(matches),
         None => {
             let mut out = io::stdout();
             app.write_help(&mut out).expect("Failed to write to stdout");

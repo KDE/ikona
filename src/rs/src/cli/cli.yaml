@@ -71,3 +71,24 @@ subcommands:
               help: Modifies the icon in-place
               conflicts_with:
                   - output
+    - extract:
+        about: Extract icons from an Ikona template file
+        args:
+          - input: 
+              help: Sets the input file to read from
+              required: true
+              index: 1
+          - size:
+              help: Sets the size of icon you want to extract
+              required: true
+              index: 2
+              possible_values:
+              - "16"
+              - "22"
+              - "32"
+              - "48"
+              - "64"
+          - output:
+              help: Sets the output file to write to
+              required: true
+              index: 3
