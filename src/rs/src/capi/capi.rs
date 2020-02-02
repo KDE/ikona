@@ -21,6 +21,7 @@ extern crate ikona;
 use std::ffi::CStr;
 use std::ffi::CString;
 use std::os::raw::c_char;
+use std::collections::HashMap;
 use std::ptr;
 
 use ikona::icons::IkonaIcon;
@@ -171,4 +172,44 @@ pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut IkonaIcon, i
     let boxed: Box::<IkonaIcon> = Box::new(proc);
 
     Box::into_raw(boxed)
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_icon_extract_subicons_by_id(ptr: *mut IkonaIcon, ids: *const *const c_char, sizes: *const i32, sizes_length: i32) -> *mut *mut IkonaIcon {
+    assert!(!ptr.is_null());
+    
+    let mut ids_len = 0;
+    let mut array_ids = ids;
+    while !(*array_ids).is_null() {
+        array_ids = array_ids.offset(1);
+        ids_len += 1;
+    }
+
+    let ids_slice = std::slice::from_raw_parts(ids, ids_len);
+    let sizes_slice = std::slice::from_raw_parts(sizes, sizes_length as usize);
+    let ids_slice_string: Vec<String> = ids_slice.iter()
+                                        .map(|&s_ptr| {
+                                            CStr::from_ptr(s_ptr)
+                                                .to_str()
+                                                .expect("Strings not UTF8")
+                                                .to_owned()
+                                                .to_string()
+                                        })
+                                        .collect();
+
+    assert_eq!(ids_slice.len(), sizes_slice.len());
+
+    let hash = ids_slice_string.iter().zip(sizes_slice.iter()).collect::<HashMap<&String, &i32>>();
+
+    let icon = &*ptr;
+
+    // TODO: convert hash of pointers to hash of values
+    match icon.extract_subicons_by_ids(hash) {
+        Ok(vals) => {
+            // TODO: finish converting vector of icons to C array
+        },
+        Err(_) => {
+            return ptr::null_mut::<ptr::null_mut<IkonaIcon>>();
+        }
+    }
 }
