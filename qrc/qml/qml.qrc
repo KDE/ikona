@@ -6,7 +6,6 @@
         <file>PlasmaMaterial.qml</file>
         <file>DisplayIcon.qml</file>
         <file>Screenshot.qml</file>
-        <file>LightIcon.qml</file>
         <file>DarkIcon.qml</file>
         <file>ColourPalette.qml</file>
         <file>ExportDialogColour.qml</file>
