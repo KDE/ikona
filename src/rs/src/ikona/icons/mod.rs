@@ -11,6 +11,7 @@ use std::str;
 use std::fs;
 use std::process::Command;
 use std::error::Error;
+use std::collections::HashMap;
 
 use regex::Regex;
 
@@ -153,6 +154,40 @@ impl IkonaIcon {
             },
             Err(_) => Err("Badly formatted ID, or SVG does not have ID".to_string()),
         }
+    }
+    pub fn extract_subicons_by_ids(&self, icons: HashMap<String,i32>) -> Result<Vec<IkonaIcon>, String> {
+        let mut ret_icons = Vec::<IkonaIcon>::with_capacity(icons.len());
+        for (id, size) in icons {
+            match self.handle.has_element_with_id(&id) {
+                Ok(_) => {
+                    let renderer = librsvg::CairoRenderer::new(&self.handle);
+
+                    let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
+                        .sample_iter(&Alphanumeric)
+                        .take(40)
+                        .collect::<String>());
+
+                    let mut svg_surface = cairo::SvgSurface::new(f64::from(size), f64::from(size), filepath.clone());
+                    svg_surface.set_document_unit(cairo::SvgUnit::Px);
+
+                    let cairo_context = cairo::Context::new(&svg_surface);
+
+                    match renderer.render_element(&cairo_context, Some(&id), &cairo::Rectangle{ x: 0.0,  y: 0.0, width: f64::from(size), height: f64::from(size) }) {
+                        Err(_) => return Err("Failed to render subicon".to_string()),
+                        Ok(_) => {
+                            svg_surface.finish();
+
+                            match IkonaIcon::new_from_path(filepath) {
+                                Ok(value) => ret_icons.push(value),
+                                Err(err) => return Err(err),
+                            }
+                        }
+                    }
+                },
+                Err(_) => return Err("Badly formatted ID, or SVG does not have ID".to_string()),
+            }
+        }
+        Ok(ret_icons)
     }
     pub fn read_to_string(&self) -> Result<String, String> {
         match fs::read_to_string(&self.filepath) {
