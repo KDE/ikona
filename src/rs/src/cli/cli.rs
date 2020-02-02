@@ -105,6 +105,53 @@ fn class(matches: clap::ArgMatches) {
     }
 }
 
+fn convert(matches: clap::ArgMatches) {
+    // If we got here, we already know that our subcommand is convert.
+    let subcommand_matches = matches.subcommand_matches("convert").unwrap();
+    let file = subcommand_matches.value_of("input").unwrap().to_owned();
+    let file_two = subcommand_matches.value_of("input").unwrap().to_owned();
+    let icon = match IkonaIcon::new_from_path(file) {
+        Ok(icon) => icon,
+        Err(err) => {
+            println!("{}", err);
+            return;
+        }
+    };
+    let proc = match subcommand_matches.value_of("light") {
+        Some("light") | None => match icon.convert_to_light_from_dark() {
+            Ok(icon) => icon,
+            Err(err) => {
+                println!("{}", err);
+                return;
+            }
+        },
+        Some("dark") => match icon.convert_to_dark_from_light() {
+            Ok(icon) => (icon),
+            Err(err) => {
+                println!("{}", err);
+                return;
+            }
+        },
+        _ => panic!("We shouldn't be able to get to this program state!")
+    };
+    if subcommand_matches.is_present("inplace") {
+        match fs::copy(proc.get_filepath(), file_two) {
+            Ok(_) => println!("Icon converted"),
+            Err(_) => println!("Icon failed to convert"),
+        }
+    } else {
+        if let Some(output) = subcommand_matches.value_of("output") {
+            match fs::copy(proc.get_filepath(), output) {
+                Ok(_) => println!("Icon converted"),
+                Err(_) => println!("Icon failed to convert")
+            }
+        } else {
+            println!("Please specify an output file");
+            return
+        }
+    }
+}
+
 fn main() {
     let yaml = clap::load_yaml!("cli.yaml");
     let app = App::from(yaml);
@@ -114,6 +161,7 @@ fn main() {
     match matches.subcommand_name() {
         Some("optimize") => optimize(matches),
         Some("class") => class(matches),
+        Some("convert") => convert(matches),
         None => {
             let mut out = io::stdout();
             app.write_help(&mut out).expect("Failed to write to stdout");

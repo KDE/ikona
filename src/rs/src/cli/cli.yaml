@@ -7,7 +7,7 @@ subcommands:
         about: Optimize your icon
         args:
           - input:
-              help: Sets the input file to write to
+              help: Sets the input file to read from
               required: true
               index: 1
           - output:
@@ -29,7 +29,7 @@ subcommands:
         about: Class your icon
         args:
           - input:
-              help: Sets the input file to write to
+              help: Sets the input file to read from
               required: true
               index: 1
           - output:
@@ -39,6 +39,29 @@ subcommands:
               short: m
               long: mode
               help: Sets what type of icon to treat the icon as
+              possible_values: [ light, dark ]
+              takes_value: true
+              required: true
+          - inplace:
+              short: i
+              long: inplace
+              help: Modifies the icon in-place
+              conflicts_with:
+                  - output
+    - convert:
+        about: Convert your icon from light <-> dark
+        args:
+          - input:
+              help: Sets the input file to read from
+              required: true
+              index: 1
+          - output:
+              help: Sets the output file to read from
+              index: 2
+          - target:
+              short: t
+              long: target
+              help: Sets the type of icon to convert to
               possible_values: [ light, dark ]
               takes_value: true
               required: true
