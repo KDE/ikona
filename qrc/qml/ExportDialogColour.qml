@@ -50,7 +50,7 @@ Kirigami.ApplicationWindow {
 
             Kirigami.Heading {
                 Layout.alignment: Qt.AlignHCenter
-                text: "Export Icon..."
+                text: i18nc("Header for dialog to export a user's icon", "Export Icon...")
             }
 
             RowLayout {

@@ -34,7 +34,7 @@ Item {
     function shot() {
         dualMontage.grabToImage(function(result) {
             Clipboard.copyImage(result.image)
-            root.showPassiveNotification("Montage copied to clipboard", "long")
+            root.showPassiveNotification(i18n("Montage copied to clipboard"), "long")
         });
     }
     FileDialog {
