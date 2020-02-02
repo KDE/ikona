@@ -195,6 +195,32 @@ impl IkonaIcon {
             Err(_) => Err("Failed to read file".to_string()),
         }
     }
+    pub fn convert_to_dark_from_light(&self) -> Result<IkonaIcon, String> {
+        let icon_str = self.read_to_string()?;
+
+        let mut icon_str_mut = icon_str.to_owned();
+
+        if !icon_str_mut.contains("#31363b") {
+            icon_str_mut = icon_str_mut.replace("#eff0f1", "#31363b");
+            icon_str_mut = icon_str_mut.replace("#232629", "#eff0f1");
+            icon_str_mut = icon_str_mut.replace("#fcfcfc", "#232629");
+        }
+
+        return IkonaIcon::new_from_string(icon_str_mut);
+    }
+    pub fn convert_to_light_from_dark(&self) -> Result<IkonaIcon, String> {
+        let icon_str = self.read_to_string()?;
+
+        let mut icon_str_mut = icon_str.to_owned();
+
+        if !icon_str_mut.contains("#fcfcfc") {
+            icon_str_mut = icon_str_mut.replace("#232629", "#fcfcfc");
+            icon_str_mut = icon_str_mut.replace("#eff0f1", "#232629");
+            icon_str_mut = icon_str_mut.replace("#31363b", "#eff0f1");
+        }
+
+        return IkonaIcon::new_from_string(icon_str_mut);
+    }
     pub fn class_as_dark(&self) -> Result<IkonaIcon, String> {
         let icon_str = match self.read_to_string() {
             Ok(val) => val,
