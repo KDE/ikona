@@ -20,6 +20,8 @@ const char* ikona_icon_read_to_string(IkonaIcon icon);
 
 IkonaIcon ikona_icon_extract_subicon_by_id(IkonaIcon icon, const char* id, int target_size);
 
+void ikona_icon_free(IkonaIcon icon);
+
 #ifdef __cplusplus
 }
 #endif

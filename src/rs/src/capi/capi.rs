@@ -172,3 +172,10 @@ pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut IkonaIcon, i
 
     Box::into_raw(boxed)
 }
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_icon_free(ptr: *mut IkonaIcon) {
+    assert!(!ptr.is_null());
+
+    let from_raw = Box::from_raw(ptr);
+}

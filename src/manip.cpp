@@ -16,5 +16,8 @@ QString IconManipulator::processIconInternal(const QString& inPath, IconKind typ
     
     QString manipulatedString(manipulated);
 
+    ikona_icon_free(icon);
+    ikona_icon_free(manip);
+    ikona_icon_free(classed);
     return manipulatedString;
 }
