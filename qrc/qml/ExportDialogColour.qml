@@ -107,14 +107,14 @@ Kirigami.ApplicationWindow {
             RowLayout {
                 spacing: Kirigami.Units.largeSpacing * 2
                 Button {
-                    text: i18n("Export to Per-Size Directories...")
+                    text: i18n("Export to Per-Size Folders...")
                     onClicked: {
                         folderDialog.type = ExportDialogColour.DirType.PerSize
                         folderDialog.open()
                     }
                 }
                 Button {
-                    text: i18n("Export to One Directory...")
+                    text: i18n("Export to One Folder...")
                     onClicked: {
                         folderDialog.type = ExportDialogColour.DirType.One
                         folderDialog.open()
