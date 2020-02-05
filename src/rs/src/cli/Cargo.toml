@@ -11,6 +11,7 @@ path = "cli.rs"
 
 [dependencies]
 ikona = { path = "../ikona" }
+gettext-rs = { version = "0.4.4", features = ["gettext-system"] }
 
 [dependencies.clap]
 version = "2.33.0"
