@@ -28,10 +28,7 @@ use cairo;
 use std::str;
 use std::fs;
 use std::process::Command;
-use std::error::Error;
 use std::collections::HashMap;
-
-use regex::Regex;
 
 /// Object that exposes Ikona's icon manipulation functionality.
 /// 
@@ -437,4 +434,5 @@ impl IkonaIcon {
     }
 }
 
+#[cfg(test)]
 mod tests;
