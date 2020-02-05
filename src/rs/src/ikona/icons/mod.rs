@@ -22,9 +22,6 @@ extern crate regex;
 use rand::Rng; 
 use rand::distributions::Alphanumeric;
 
-use librsvg;
-use cairo;
-
 use std::str;
 use std::fs;
 use std::process::Command;
@@ -60,9 +57,9 @@ impl IkonaIcon {
     /// 
     /// let icon = IkonaIcon::new_from_path("example.svg").unwrap();
     /// ```
-    pub fn new_from_path(in_path: String) -> Result<IkonaIcon, String> {
-        match librsvg::Loader::new().read_path(in_path.clone()) {
-            Ok(handle) => Ok(IkonaIcon{handle: handle, filepath: in_path}),
+    pub fn new_from_path(filepath: String) -> Result<IkonaIcon, String> {
+        match librsvg::Loader::new().read_path(filepath.clone()) {
+            Ok(handle) => Ok(IkonaIcon{handle, filepath}),
             Err(_) => Err("There was an error loading the SVG".to_string()),
         }
     }
@@ -84,7 +81,7 @@ impl IkonaIcon {
         match fs::write(filepath.clone(), string) {
             Ok(_) => {
                 match librsvg::Loader::new().read_path(filepath.clone()) {
-                    Ok(handle) => Ok(IkonaIcon{handle: handle, filepath: filepath}),
+                    Ok(handle) => Ok(IkonaIcon{handle, filepath}),
                     Err(_) => Err("There was an error loading the SVG".to_string())
                 }
             },
@@ -123,30 +120,26 @@ impl IkonaIcon {
                         .take(40)
                         .collect::<String>());
 
-        let width = f64::from(
-            match renderer.intrinsic_dimensions().width {
-                Some(val) => val.length,
-                None => return Err("Failed to get width".to_string())
-            }
-        );
+        let width = match renderer.intrinsic_dimensions().width {
+            Some(val) => val.length,
+            None => return Err("Failed to get width".to_string())
+        };
 
-        let height = f64::from(
-            match renderer.intrinsic_dimensions().height {
-                Some(val) => val.length,
-                None => return Err("Failed to get height".to_string())
-            }
-        );
+        let height = match renderer.intrinsic_dimensions().height {
+            Some(val) => val.length,
+            None => return Err("Failed to get height".to_string())
+        };
 
         let svg_surface = cairo::SvgSurface::new(width, height, filepath.clone());
         
         let cairo_context = cairo::Context::new(&svg_surface);
 
-        match renderer.render_document(&cairo_context, &cairo::Rectangle{x:0.0,y:0.0,width:width,height:height}) {
+        match renderer.render_document(&cairo_context, &cairo::Rectangle{x:0.0,y:0.0,width,height}) {
             Err(_) => Err("Failed to render SVG".to_string()),
             Ok(_) => {
                 svg_surface.finish();
 
-                return IkonaIcon::new_from_path(filepath);
+                IkonaIcon::new_from_path(filepath)
             }
         }
     }
@@ -183,7 +176,7 @@ impl IkonaIcon {
         
         let string = String::from_utf8_lossy(&output.stdout).into_owned();
 
-        return IkonaIcon::new_from_string(string);
+        IkonaIcon::new_from_string(string)
     }
     /// Optimizes the SVG of the current `IkonaIcon` with both rsvg and scour
     /// and returns it as a new `IkonaIcon`.
@@ -228,7 +221,7 @@ impl IkonaIcon {
                     Ok(_) => {
                         svg_surface.finish();
 
-                        return IkonaIcon::new_from_path(filepath);
+                        IkonaIcon::new_from_path(filepath)
                     },
                 }
             },
@@ -282,15 +275,13 @@ impl IkonaIcon {
     /// ````
     pub fn read_to_string(&self) -> Result<String, String> {
         match fs::read_to_string(&self.filepath) {
-            Ok(val) => Ok(val.to_string()),
+            Ok(val) => Ok(val),
             Err(_) => Err("Failed to read file".to_string()),
         }
     }
     /// Returns an `IkonaIcon` with a dark colour palette.
     pub fn convert_to_dark_from_light(&self) -> Result<IkonaIcon, String> {
-        let icon_str = self.read_to_string()?;
-
-        let mut icon_str_mut = icon_str.to_owned();
+        let mut icon_str_mut = self.read_to_string()?;
 
         if !icon_str_mut.contains("#31363b") {
             icon_str_mut = icon_str_mut.replace("#eff0f1", "#31363b");
@@ -298,13 +289,11 @@ impl IkonaIcon {
             icon_str_mut = icon_str_mut.replace("#fcfcfc", "#232629");
         }
 
-        return IkonaIcon::new_from_string(icon_str_mut);
+        IkonaIcon::new_from_string(icon_str_mut)
     }
     /// Returns an `IkonaIcon` with a light colour palette.
     pub fn convert_to_light_from_dark(&self) -> Result<IkonaIcon, String> {
-        let icon_str = self.read_to_string()?;
-
-        let mut icon_str_mut = icon_str.to_owned();
+        let mut icon_str_mut = self.read_to_string()?;
 
         if !icon_str_mut.contains("#fcfcfc") {
             icon_str_mut = icon_str_mut.replace("#232629", "#fcfcfc");
@@ -312,7 +301,7 @@ impl IkonaIcon {
             icon_str_mut = icon_str_mut.replace("#31363b", "#eff0f1");
         }
 
-        return IkonaIcon::new_from_string(icon_str_mut);
+        IkonaIcon::new_from_string(icon_str_mut)
     }
     /// Injects CSS and replaces hardcoded colours according to a dark
     /// colour palette.

@@ -16,7 +16,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-use clap;
 use clap::App;
 use std::io;
 use std::fs;
@@ -69,10 +68,8 @@ fn optimize(matches: clap::ArgMatches) {
                 Ok(_) => println!("Icon optimized"),
                 Err(_) => println!("Icon failed to optimize")
             }
-        } else {
-            println!("Please specify an output file");
-            return
         }
+        println!("Please specify an output file");
     }
 }
 
@@ -116,10 +113,8 @@ fn class(matches: clap::ArgMatches) {
                 Ok(_) => println!("Icon classed"),
                 Err(_) => println!("Icon failed to class")
             }
-        } else {
-            println!("Please specify an output file");
-            return
         }
+        println!("Please specify an output file");
     }
 }
 
@@ -163,10 +158,8 @@ fn convert(matches: clap::ArgMatches) {
                 Ok(_) => println!("Icon converted"),
                 Err(_) => println!("Icon failed to convert")
             }
-        } else {
-            println!("Please specify an output file");
-            return
         }
+        println!("Please specify an output file");
     }
 }
 

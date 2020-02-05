@@ -16,6 +16,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#![allow(clippy::missing_safety_doc)]
+
 extern crate ikona;
 
 use std::ffi::CStr;
@@ -151,7 +153,7 @@ pub unsafe extern "C" fn ikona_icon_read_to_string(ptr: *mut IkonaIcon) -> *cons
         Err(_) => return CString::new("").expect("Failed to create CString").into_raw()
     };
 
-    return CString::new(proc).expect("Failed to create CString").into_raw()
+    CString::new(proc).expect("Failed to create CString").into_raw()
 }
 
 #[no_mangle]
