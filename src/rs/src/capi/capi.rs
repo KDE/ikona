@@ -41,7 +41,10 @@ pub unsafe extern "C" fn ikona_icon_new_from_path(in_path: *const c_char) -> *mu
 
     let icon = match IkonaIcon::new_from_path(in_path_string.to_string()) {
         Ok(icon) => icon,
-        Err(_) => return std::ptr::null_mut::<IkonaIcon>()
+        Err(err) => {
+            println!("{}", err);
+            return std::ptr::null_mut::<IkonaIcon>()
+        },
     };
 
     let boxed: Box::<IkonaIcon> = Box::new(icon);
@@ -57,7 +60,10 @@ pub unsafe extern "C" fn ikona_icon_new_from_string(in_string: *const c_char) ->
 
     let icon = match IkonaIcon::new_from_string(in_path_string.to_string()) {
         Ok(icon) => icon,
-        Err(_) => return std::ptr::null_mut::<IkonaIcon>()
+        Err(err) => {
+            println!("{}", err);
+            return std::ptr::null_mut::<IkonaIcon>()
+        },
     };
 
     let boxed: Box::<IkonaIcon> = Box::new(icon);

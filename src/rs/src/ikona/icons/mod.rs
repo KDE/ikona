@@ -60,7 +60,7 @@ impl IkonaIcon {
     pub fn new_from_path(filepath: String) -> Result<IkonaIcon, String> {
         match librsvg::Loader::new().read_path(filepath.clone()) {
             Ok(handle) => Ok(IkonaIcon{handle, filepath}),
-            Err(_) => Err("There was an error loading the SVG".to_string()),
+            Err(err) => Err(format!("There was an error loading the SVG: {:?}", err)),
         }
     }
     /// Creates an `IkonaIcon`, reading the contents from a String. 
@@ -82,7 +82,7 @@ impl IkonaIcon {
             Ok(_) => {
                 match librsvg::Loader::new().read_path(filepath.clone()) {
                     Ok(handle) => Ok(IkonaIcon{handle, filepath}),
-                    Err(_) => Err("There was an error loading the SVG".to_string())
+                    Err(err) => Err(format!("There was an error loading the SVG: {:?}", err)),
                 }
             },
             Err(_) => Err("There was an error creating an internal file".to_string())
