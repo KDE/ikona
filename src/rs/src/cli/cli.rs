@@ -106,7 +106,7 @@ macro_rules! app {
                     )
                     .arg(
                         Arg::with_name(&gettext("output"))
-                            .help(&gettext("Sets the output file to read from"))
+                            .help(&gettext("Sets the output file to write to"))
                             .index(2),
                     )
                     .arg(
