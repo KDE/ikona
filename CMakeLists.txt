@@ -20,6 +20,8 @@ find_package(KF5I18n)
 
 # rust
 
+option(withsvgcleaner "Build Ikona with svgcleaner crate. Note that this results in GPL2 binaries." OFF)
+
 string(TOUPPER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_UPPER)
 if(CMAKE_BUILD_TYPE_UPPER STREQUAL DEBUG)
     set(RUST_TARGET_DIR target/debug/)
@@ -27,6 +29,10 @@ if(CMAKE_BUILD_TYPE_UPPER STREQUAL DEBUG)
 else()
     set(RUST_TARGET_DIR target/release/)
     set(RUST_BUILD_FLAG --release)
+endif()
+
+if(withsvgcleaner)
+    list(APPEND ${RUST_BUILD_FLAG} --features with-svgcleaner)
 endif()
 
 SET(RUST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/rs")
