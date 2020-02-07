@@ -15,6 +15,9 @@ glib = "0.8.0"
 gio = { version="0.7.0", features=["v2_48"] } 
 rand = "0.7.3"
 regex = "1"
+svgcleaner = { version="0.9.5", optional=true }
+svgdom = { version="0.10.5", optional=true }
 
 [features]
 default = [ "cairo-rs/svg" ]
+with-svgcleaner = [ "cairo-rs/svg", "svgcleaner", "svgdom" ]

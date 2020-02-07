@@ -27,6 +27,11 @@ use std::fs;
 use std::process::Command;
 use std::collections::HashMap;
 
+#[cfg(feature = "with-svgcleaner")]
+use svgcleaner;
+#[cfg(feature = "with-svgcleaner")]
+use svgdom;
+
 /// Object that exposes Ikona's icon manipulation functionality.
 /// 
 /// This is the entrypoint for Ikona's functionality.
@@ -178,7 +183,25 @@ impl IkonaIcon {
 
         IkonaIcon::new_from_string(string)
     }
-    /// Optimizes the SVG of the current `IkonaIcon` with both rsvg and scour
+    #[cfg(feature = "with-svgcleaner")]
+    pub fn optimize_with_svgcleaner(&self) -> Result<IkonaIcon, String> {
+        let icon_string = self.read_to_string()?;
+
+        let mut doc = match svgdom::Document::from_str(&icon_string) {
+            Ok(doc) => doc,
+            Err(err) => return Err(format!("{:?}", err)),
+        };
+
+        match svgcleaner::cleaner::clean_doc(&mut doc, &svgcleaner::CleaningOptions::default(), &svgcleaner::WriteOptions::default()) {
+            Ok(()) => (),
+            Err(err) => return Err(format!("{:?}", err)),
+        };
+        
+        use svgdom::ToStringWithOptions;
+
+        IkonaIcon::new_from_string(doc.to_string_with_opt(&svgdom::WriteOptions::default()))
+    }
+    /// Optimizes the SVG of the current `IkonaIcon` with all methods
     /// and returns it as a new `IkonaIcon`.
     /// 
     /// # Example:
@@ -189,6 +212,30 @@ impl IkonaIcon {
     /// 
     /// let optimized = icon.optimize_all().unwrap();
     /// ````
+    #[cfg(feature = "with-svgcleaner")]
+    pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
+        match self.optimize_with_rsvg() {
+            Ok(ok) => {
+                match ok.optimize_with_svgcleaner() {
+                    Ok(ok) => Ok(ok),
+                    Err(err) => Err(err),
+                }
+            },
+            Err(err) => Err(err),
+        }
+    }
+    /// Optimizes the SVG of the current `IkonaIcon` with all methods
+    /// and returns it as a new `IkonaIcon`.
+    /// 
+    /// # Example:
+    /// ```
+    /// use ikona::icons::IkonaIcon;
+    /// 
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// 
+    /// let optimized = icon.optimize_all().unwrap();
+    /// ````
+    #[cfg(not(feature = "with-svgcleaner"))]
     pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
         match self.optimize_with_rsvg() {
             Ok(ok) => {
