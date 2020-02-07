@@ -120,22 +120,6 @@
       <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot-dark.png</image>
     </screenshot>
     <screenshot>
-      <caption>The monochromatic icon view of Ikona</caption>
-      <caption xml:lang="ca">La vista d'icones monocromàtica de l'Ikona</caption>
-      <caption xml:lang="ca-valencia">La vista d'icones monocromàtica de l'Ikona</caption>
-      <caption xml:lang="es">La vista de iconos monocromos de Ikona</caption>
-      <caption xml:lang="et">Ikona ühevärviline ikoonivaade</caption>
-      <caption xml:lang="fi">Ikonan mustavalkoinen kuvakenäkymä</caption>
-      <caption xml:lang="nl">De monochrome pictogramweergave van Ikona</caption>
-      <caption xml:lang="pt">A vista monocromática do ícone do Ikona</caption>
-      <caption xml:lang="pt-BR">A vista monocromática do ícone do Ikona</caption>
-      <caption xml:lang="sv">Den svartvita ikonvyn i Ikona</caption>
-      <caption xml:lang="uk">Перегляд піктограм у монохроматичному режимі в Ikona</caption>
-      <caption xml:lang="x-test">xxThe monochromatic icon view of Ikonaxx</caption>
-      <caption xml:lang="zh-TW">Ikona 的單色圖示檢視</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/monochrome-screenshot.png</image>
-    </screenshot>
-    <screenshot>
       <caption>The color palette of Ikona</caption>
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="ca-valencia">La paleta de colors de l'Ikona</caption>
