@@ -9,7 +9,17 @@ QString IconManipulator::processIconInternal(const QString& inPath, IconKind typ
     auto inPathCStr = inPathStr.c_str();
     auto idToExtractCStr = idToExtractStr.c_str();
 
-    auto icon = ikona_icon_new_from_path(inPathCStr);
+    IkonaIcon icon = nullptr;
+    int i = 0;
+    while (icon == nullptr) {
+        icon = ikona_icon_new_from_path(inPathCStr);
+        if (i++ < 10000) {
+            break;
+        }
+    }
+    if (icon == nullptr) {
+        return QString("");
+    }
     auto manip = ikona_icon_extract_subicon_by_id(icon, idToExtractCStr, targetSize);
     auto classed = ikona_icon_class_as_light(manip);
     const char* manipulated = ikona_icon_read_to_string(classed);
