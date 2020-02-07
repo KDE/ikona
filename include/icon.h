@@ -15,7 +15,7 @@ public:
     Q_PROPERTY(bool isEnhanced MEMBER m_isEnhanced NOTIFY isEnhancedChanged)
 
     Q_PROPERTY(QString icon16path MEMBER m_icon16path NOTIFY resultChanged)
-    Q_PROPERTY(QString icon22path MEMBER m_icon16path NOTIFY resultChanged)
+    Q_PROPERTY(QString icon22path MEMBER m_icon22path NOTIFY resultChanged)
     Q_PROPERTY(QString icon32path MEMBER m_icon32path NOTIFY resultChanged)
     Q_PROPERTY(QString icon48path MEMBER m_icon48path NOTIFY resultChanged)
     Q_PROPERTY(QString icon64path MEMBER m_icon64path NOTIFY resultChanged)
