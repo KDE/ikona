@@ -74,7 +74,7 @@ Kirigami.ApplicationWindow {
                 },
                 Kirigami.Action {
                     icon.name: "camera-photo"
-                    text: i18n("Take Montage...")
+                    text: i18n("Take Montage")
                     onTriggered: {
                         screen.shot()
                     }
