@@ -28,8 +28,8 @@ import org.kde.Ikona 1.0
 Item {
     id: dualMontage
     visible: false
-    height: 512
-    width: 512
+    height: 256
+    width: 768
     Kirigami.Theme.inherit: false
     function shot() {
         dualMontage.grabToImage(function(result) {
@@ -37,23 +37,12 @@ Item {
             root.showPassiveNotification(i18n("Montage copied to clipboard"), "long")
         });
     }
-    FileDialog {
-        id: ssPicker
-        selectExisting: false
-        selectMultiple: false
-        selectFolder: false
-        onAccepted: {
-            dualMontage.grabToImage(function(result) {
-                res = result.saveToFile(ssPicker.fileUrl.toString().slice(7))
-            });
-        }
-        nameFilters: [ "PNG screenshot files (*.png)" ]
-    }
-    Column {
-        Rectangle {
+    Row {
+        Image {
             height: 256
-            width: 512
-            color: Kirigami.Theme.backgroundColor
+            width: 384
+            source: "light.jpg"
+
             Kirigami.Theme.inherit: false
             Kirigami.Theme.textColor: "#232629"
             Kirigami.Theme.backgroundColor: "#eff0f1"
@@ -63,6 +52,7 @@ Item {
             Kirigami.Theme.neutralTextColor: "#f67400"
             Kirigami.Theme.negativeTextColor: "#da4453"
 
+            PlasmaMaterial { anchors.fill: parent }
             ScreenshotGrid {}
 
             Row {
@@ -70,8 +60,7 @@ Item {
                 anchors.left: parent.left
                 anchors.margins: Kirigami.Units.smallSpacing
                 Kirigami.Icon {
-                    height: 32
-                    width: 32
+                    height: 32; width: 32
                     source: "org.kde.Ikona"
                 }
                 QQC2.Label {
@@ -80,10 +69,11 @@ Item {
                 }
             }
         }
-        Rectangle {
+        Image {
             height: 256
-            width: 512
-            color: Kirigami.Theme.backgroundColor
+            width: 384
+            source: "dark.jpg"
+
             Kirigami.Theme.inherit: false
             Kirigami.Theme.textColor: "#eff0f1"
             Kirigami.Theme.backgroundColor: "#31363b"
@@ -93,6 +83,7 @@ Item {
             Kirigami.Theme.neutralTextColor: "#f67400"
             Kirigami.Theme.negativeTextColor: "#da4453"
 
+            PlasmaMaterial { anchors.fill: parent }
             ScreenshotGrid {}
         }
     }
