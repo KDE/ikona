@@ -5,9 +5,20 @@ before_script:
   - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev
   - rustup component add clippy
 
-test:cargo:
+stages:
+  - test
+  - lint
+
+cargo_test:
+  stage: test
   script:
     - cd src/rs
     - rustc --version && cargo --version  # Print version info for debugging
-    - cargo clippy
     - cargo test --all --verbose
+
+clippy:
+  allow_failure: true
+  stage: lint
+  script:
+  - cd src/rs
+  - cargo clippy -- -D warnings
