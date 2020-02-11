@@ -83,7 +83,7 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// ```
     pub fn new_from_string(string: String) -> Result<IkonaIcon, String> {
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
@@ -107,7 +107,7 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let filepath = icon.get_filepath();
     /// ````
@@ -121,9 +121,9 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
-    /// let optimized = icon.optimize_with_rsvg().unwrap();
+    /// let optimized = icon.optimize_with_rsvg();
     /// ````
     pub fn optimize_with_rsvg(&self) -> Result<IkonaIcon, String> {
         let renderer = librsvg::CairoRenderer::new(&self.handle);
@@ -163,9 +163,9 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
-    /// let optimized = icon.optimize_with_scour().unwrap();
+    /// let optimized = icon.optimize_with_scour();
     /// ````
     pub fn optimize_with_scour(&self) -> Result<IkonaIcon, String> {
         let output = match Command::new("scour")
@@ -216,9 +216,9 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
-    /// let optimized = icon.optimize_all().unwrap();
+    /// let optimized = icon.optimize_all();
     /// ````
     #[cfg(feature = "with-svgcleaner")]
     pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
@@ -239,9 +239,9 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
-    /// let optimized = icon.optimize_all().unwrap();
+    /// let optimized = icon.optimize_all();
     /// ````
     #[cfg(not(feature = "with-svgcleaner"))]
     pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
@@ -324,9 +324,9 @@ impl IkonaIcon {
     /// ```
     /// use ikona::icons::IkonaIcon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
-    /// let string = icon.read_to_string().unwrap();
+    /// let string = icon.read_to_string();
     /// ````
     pub fn read_to_string(&self) -> Result<String, String> {
         match fs::read_to_string(&self.filepath) {
