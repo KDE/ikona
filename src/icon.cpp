@@ -100,6 +100,7 @@ void AppIcon::exportTemplate(const QString& targetPath) {
         QFile::remove(resolvedPath);
     }
     QFile::copy(":/template.ikona.app.svg", resolvedPath);
+    QFile::setPermissions(resolvedPath, QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup | QFileDevice::ReadOther);
 }
 
 void AppIcon::refreshIcon() {
