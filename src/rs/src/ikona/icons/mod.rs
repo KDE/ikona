@@ -52,6 +52,14 @@ macro_rules! stylesheet_replace {
         }
     };
 }
+macro_rules! cairo_err {
+    ($cairo: expr) => {
+        match $cairo {
+            Ok(surf) => surf,
+            Err(err) => return Err(format!("{:?}", err))
+        }
+    }
+}
 impl IkonaIcon {
     /// Creates an `IkonaIcon`, reading the contents from `in_path`.
     /// 
@@ -135,7 +143,7 @@ impl IkonaIcon {
             None => return Err("Failed to get height".to_string())
         };
 
-        let svg_surface = cairo::SvgSurface::new(width, height, filepath.clone());
+        let svg_surface = cairo_err!(cairo::SvgSurface::new(width, height, Some(filepath.clone())));
         
         let cairo_context = cairo::Context::new(&svg_surface);
 
@@ -258,7 +266,7 @@ impl IkonaIcon {
                     .take(40)
                     .collect::<String>());
 
-                let mut svg_surface = cairo::SvgSurface::new(f64::from(target_size), f64::from(target_size), filepath.clone());
+                let mut svg_surface = cairo_err!(cairo::SvgSurface::new(f64::from(target_size), f64::from(target_size), Some(filepath.clone())));
                 svg_surface.set_document_unit(cairo::SvgUnit::Px);
 
                 let cairo_context = cairo::Context::new(&svg_surface);
@@ -288,7 +296,7 @@ impl IkonaIcon {
                         .take(40)
                         .collect::<String>());
 
-                    let mut svg_surface = cairo::SvgSurface::new(f64::from(size), f64::from(size), filepath.clone());
+                    let mut svg_surface = cairo_err!(cairo::SvgSurface::new(f64::from(size), f64::from(size), Some(filepath.clone())));
                     svg_surface.set_document_unit(cairo::SvgUnit::Px);
 
                     let cairo_context = cairo::Context::new(&svg_surface);
