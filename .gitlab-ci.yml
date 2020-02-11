@@ -1,0 +1,13 @@
+image: "rust:latest"
+
+before_script:
+  - apt-get update -yqq
+  - apt-get install -yqq --no-install-recommends build-essential gettext
+  - rustup component add clippy
+
+test:cargo:
+  script:
+    - cd src/rs
+    - rustc --version && cargo --version  # Print version info for debugging
+    - cargo clippy
+    - cargo test --all --verbose
