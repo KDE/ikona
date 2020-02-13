@@ -21,6 +21,7 @@ use gettextrs::*;
 use ikona::icons::IkonaIcon;
 use std::fs;
 use std::io;
+use std::process::exit;
 
 /*
  * i18n note: For Rust reasons, adding comments to the macro below
@@ -175,7 +176,7 @@ fn optimize() {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return;
+            exit(1);
         }
     };
     let proc = match subcommand_matches!(gettext("optimize")).value_of(gettext("mode")) {
@@ -183,21 +184,21 @@ fn optimize() {
             Ok(icon) => icon,
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         Some("rsvg") => match icon.optimize_with_rsvg() {
             Ok(icon) => (icon),
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         Some("scour") | None => match icon.optimize_with_scour() {
             Ok(icon) => (icon),
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         _ => panic!("We shouldn't be able to get to this program state!"),
@@ -206,11 +207,11 @@ fn optimize() {
         match fs::copy(proc.get_filepath(), file_two) {
             Ok(_) => {
                 println!("{}", gettext("Icon optimized"));
-                return;
+                exit(0);
             }
             Err(_) => {
                 println!("{}", gettext("Icon failed to optimize"));
-                return;
+                exit(1);
             }
         }
     } else {
@@ -218,11 +219,11 @@ fn optimize() {
             match fs::copy(proc.get_filepath(), output) {
                 Ok(_) => {
                     println!("{}", gettext("Icon optimized"));
-                    return;
+                    exit(0);
                 }
                 Err(_) => {
                     println!("{}", gettext("Icon failed to optimize"));
-                    return;
+                    exit(1);
                 }
             }
         }
@@ -244,7 +245,7 @@ fn class() {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return;
+            exit(1);
         }
     };
     let proc = match subcommand_matches!(gettext("class")).value_of(gettext("mode")) {
@@ -252,14 +253,14 @@ fn class() {
             Ok(icon) => icon,
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         Some("dark") => match icon.class_as_dark() {
             Ok(icon) => (icon),
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         _ => panic!("We shouldn't be able to get to this program state!"),
@@ -268,11 +269,11 @@ fn class() {
         match fs::copy(proc.get_filepath(), file_two) {
             Ok(_) => {
                 println!("{}", gettext("Icon classed"));
-                return;
+                exit(0);
             }
             Err(_) => {
                 println!("{}", gettext("Icon failed to class"));
-                return;
+                exit(1);
             }
         }
     } else {
@@ -280,11 +281,11 @@ fn class() {
             match fs::copy(proc.get_filepath(), output) {
                 Ok(_) => {
                     println!("{}", gettext("Icon classed"));
-                    return;
+                    exit(0);
                 }
                 Err(_) => {
                     println!("{}", gettext("Icon failed to class"));
-                    return;
+                    exit(1);
                 }
             }
         }
@@ -306,7 +307,7 @@ fn convert() {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return;
+            exit(1);
         }
     };
     let proc = match subcommand_matches!(gettext("convert")).value_of(gettext("light")) {
@@ -314,14 +315,14 @@ fn convert() {
             Ok(icon) => icon,
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         Some("dark") => match icon.convert_to_dark_from_light() {
             Ok(icon) => (icon),
             Err(err) => {
                 println!("{}", err);
-                return;
+                exit(1);
             }
         },
         _ => panic!("We shouldn't be able to get to this program state!"),
@@ -330,11 +331,11 @@ fn convert() {
         match fs::copy(proc.get_filepath(), file_two) {
             Ok(_) => {
                 println!("{}", gettext("Icon converted"));
-                return;
+                exit(0);
             }
             Err(_) => {
                 println!("{}", gettext("Icon failed to convert"));
-                return;
+                exit(1);
             }
         }
     } else {
@@ -342,11 +343,11 @@ fn convert() {
             match fs::copy(proc.get_filepath(), output) {
                 Ok(_) => {
                     println!("{}", gettext("Icon converted"));
-                    return;
+                    exit(0);
                 }
                 Err(_) => {
                     println!("{}", gettext("Icon failed to convert"));
-                    return;
+                    exit(1);
                 }
             }
         }
@@ -379,21 +380,21 @@ fn extract() {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return;
+            exit(1);
         }
     };
     let subicon = match icon.extract_subicon_by_id(id, size) {
         Ok(subicon) => subicon,
         Err(err) => {
             println!("{}", err);
-            return;
+            exit(1);
         }
     };
 
     match fs::copy(subicon.get_filepath(), output) {
         Ok(_) => {
             println!("{}", gettext("Icon extracted"));
-            return;
+            exit(1);
         }
         Err(_) => println!("{}", gettext("Icon failed to extract")),
     }
