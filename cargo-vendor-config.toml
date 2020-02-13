@@ -1,0 +1,10 @@
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source."https://gitlab.gnome.org/GNOME/librsvg"]
+git = "https://gitlab.gnome.org/GNOME/librsvg"
+rev = "4590b7c7e43b54de88f179841b41e3e67108b760"
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"

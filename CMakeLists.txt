@@ -54,6 +54,18 @@ add_custom_command(
   WORKING_DIRECTORY "${RUST_DIR}"
 )
 
+if(EXISTS ${CMAKE_SOURCE_DIR}/ikona.cargo.vendor.tar.xz)
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -E tar xvf ${CMAKE_SOURCE_DIR}/ikona.cargo.vendor.tar.xz
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src/rs/
+    )
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/cargo-vendor-config.toml
+        ${CMAKE_SOURCE_DIR}/src/rs/.cargo/config
+        COPYONLY
+    )
+endif()
+
 add_custom_target(rust_target DEPENDS "${RUST_LIB}")
 
 # end rust

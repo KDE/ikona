@@ -6,3 +6,5 @@ flatbuild
 .vscode
 CMakeLists.txt.user
 src/rs/target
+src/rs/.cargo
+src/rs/vendor
