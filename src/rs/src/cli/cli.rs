@@ -401,7 +401,7 @@ fn extract() {
 }
 
 fn main() {
-    TextDomain::new("ikonacli").init();
+    let _ = TextDomain::new("ikonacli").init();
 
     match app!().get_matches().subcommand_name() {
         Some("optimize") => optimize(),
