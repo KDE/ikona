@@ -57,7 +57,7 @@ AppIcon::AppIcon(QObject* parent) : QObject(parent) {
 
 void AppIcon::exportToDirectory(bool useSepDirs, const QString& size, const QString& destPath, const QString& targetPath) {
     QString trueDestPath = targetPath;
-    if (targetPath.startsWith("file://")) {
+    if (targetPath.startsWith(QLatin1String("file://"))) {
         trueDestPath = trueDestPath.replace("file://", "");
     }
     QString exportName = QFileInfo(this->m_inPath).baseName();
@@ -77,7 +77,7 @@ void AppIcon::exportToDirectory(bool useSepDirs, const QString& size, const QStr
 
 bool AppIcon::setIcon(const QString &path) {
     QString watcherPath = path;
-    if (path.startsWith("file://")) {
+    if (path.startsWith(QLatin1String("file://"))) {
         watcherPath = watcherPath.replace("file://", "");
     }
     this->m_watcher->removePath(this->m_inPath);
@@ -93,7 +93,7 @@ bool AppIcon::setIcon(const QString &path) {
 
 void AppIcon::exportTemplate(const QString& targetPath) {
     QString resolvedPath = targetPath;
-    if (targetPath.startsWith("file://")) {
+    if (targetPath.startsWith(QLatin1String("file://"))) {
         resolvedPath = resolvedPath.replace("file://", "");
     }
     if (QFile::exists(resolvedPath)) {
@@ -121,7 +121,7 @@ void AppIcon::processIcon(const QString& inPath) {
         return;
     }
 
-    if (!inPath.endsWith(".ikona.app.svg", Qt::CaseInsensitive)) {
+    if (!inPath.endsWith(QLatin1String(".ikona.app.svg"), Qt::CaseInsensitive)) {
         for (const int& size : {16, 22, 32, 48, 64}) {
             auto filepath = QStringLiteral("/tmp/ikona-app-")+QString::number(QRandomGenerator::global()->generate())+QStringLiteral(".svg");
             QFile::copy(inPath, filepath);
