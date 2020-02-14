@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-ikona-colour-icon">
+        <sub-class-of type="image/svg+xml" />
+        <comment>Ikona colour icon SVG</comment>
+        <glob pattern="*.ikona.app.svg"/>
+    </mime-type>
+</mime-info>

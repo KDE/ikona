@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Ikona App Icons
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=application/x-ikona-colour-icon;
+CacheThumbnail=false
+X-KDE-Library=ikonathumbnailer
+ThumbnailerVersion=5

@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.5)
 
 project(ikona LANGUAGES CXX)
 
+find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -13,10 +19,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(GNUInstallDirs)
 
-find_package(Qt5 COMPONENTS Core Widgets Quick REQUIRED)
-find_package(KF5Kirigami2)
-find_package(KF5ConfigWidgets)
-find_package(KF5I18n)
+find_package(Qt5 REQUIRED COMPONENTS
+    Core
+    Widgets
+    Quick
+    Svg
+)
+find_package(KF5 5.60 REQUIRED COMPONENTS
+    Archive
+    KIO
+    Kirigami2
+    ConfigWidgets
+    I18n
+)
 
 # rust
 
@@ -76,21 +91,32 @@ include_directories(include)
 
 add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/manip.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
 
+add_library(ikonathumbnailer MODULE src/thumbnail/thumbnail.cpp)
+
 add_dependencies(ikona rust_target)
 
 target_compile_definitions(ikona
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(ikona
   PRIVATE Qt5::Core Qt5::Widgets Qt5::Quick KF5::I18n KF5::Kirigami2 KF5::ConfigWidgets ${RUST_LIB})
+target_link_libraries(ikonathumbnailer
+  PRIVATE Qt5::Gui Qt5::Svg KF5::Archive KF5::KIOWidgets ${RUST_LIB})
 
 install(TARGETS ikona DESTINATION ${CMAKE_INSTALL_BINDIR})
+
 install(FILES ${RUST_LIB} DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES ${RUST_BIN}
         DESTINATION ${CMAKE_INSTALL_BINDIR}
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_WRITE GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+
 install(FILES ${ZSH_COMPL} DESTINATION ${CMAKE_INSTALL_DATADIR}/zsh/site-functions)
 install(FILES ${BASH_COMPL} DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}/bash_completion.d)
 install(FILES ${FISH_COMPL} DESTINATION ${CMAKE_INSTALL_DATADIR}/fish/completions)
+
 install(FILES data/org.kde.Ikona.desktop DESTINATION share/applications)
 install(FILES data/org.kde.Ikona.svg DESTINATION share/icons/hicolor/scalable/apps)
 install(FILES data/org.kde.Ikona.appdata.xml DESTINATION share/metainfo)
+
+install(TARGETS ikonathumbnailer DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES src/thumbnail/ikonathumbnailer.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES data/org.kde.Ikona.mime.xml DESTINATION share/mime/packages)
