@@ -15,6 +15,10 @@ cargo_test:
     - cd src/rs
     - rustc --version && cargo --version  # Print version info for debugging
     - cargo test --all --verbose
+  rules:
+    - changes:
+      - src/rs/
+      when: always
 
 clippy:
   allow_failure: true
@@ -22,3 +26,7 @@ clippy:
   script:
   - cd src/rs
   - cargo clippy -- -D warnings
+  rules:
+    - changes:
+      - src/rs/
+      when: on_success
