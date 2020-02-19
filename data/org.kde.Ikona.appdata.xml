@@ -77,6 +77,7 @@
       <caption xml:lang="et">Ikona tervitusekraan</caption>
       <caption xml:lang="fi">Ikona tervetulonäkymä</caption>
       <caption xml:lang="fr">L'écran de bienvenue d'Ikona</caption>
+      <caption xml:lang="it">La schermata di benvenuto di Ikona</caption>
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="pt-BR">A tela de boas-vindas do Ikona</caption>
@@ -94,6 +95,7 @@
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
+      <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona</caption>
@@ -110,6 +112,7 @@
       <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade tumedas režiimis</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä tummassa tilassa</caption>
+      <caption xml:lang="it">La vista a icone colorata di Ikona in modalità scura</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona no modo escuro</caption>
@@ -127,6 +130,7 @@
       <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="et">Ikona värvipalett</caption>
       <caption xml:lang="fi">Ikonan väripaletti</caption>
+      <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="pt-BR">A paleta de cores do Ikona</caption>
