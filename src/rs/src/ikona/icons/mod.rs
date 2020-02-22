@@ -369,28 +369,19 @@ impl Icon {
             height, 
             width,
         };
-        
-        let (_, mut log) = match renderer.geometry_for_layer(None, &viewport) {
-            Ok((ink, log)) => (ink, log),
-            Err(err) => return Err(format!("{:?}", err))
-        };
-        
-        log.width += f64::from(padding*2);
-        log.height += f64::from(padding*2);
-        log.x += f64::from(padding);
-        log.y += f64::from(padding);
 
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
             .sample_iter(&Alphanumeric)
             .take(40)
             .collect::<String>());
 
-        let mut svg_surface = cairo_err!(cairo::SvgSurface::new(log.width, log.height, Some(filepath.clone())));
+        let mut svg_surface = cairo_err!(cairo::SvgSurface::new(width + f64::from(padding*2), height + f64::from(padding*2), Some(filepath.clone())));
         svg_surface.set_document_unit(cairo::SvgUnit::Px);
 
         let cairo_context = cairo::Context::new(&svg_surface);
+        cairo_context.translate(f64::from(padding), f64::from(padding));
 
-        match renderer.render_document(&cairo_context, &log) {
+        match renderer.render_document(&cairo_context, &viewport) {
             Err(err) => Err(format!("{:?}", err)),
             Ok(_) => {
                 svg_surface.finish();
