@@ -25,7 +25,8 @@ use std::ffi::CString;
 use std::os::raw::c_char;
 use std::ptr;
 
-use ikona::icons::IkonaIcon;
+use ikona::icons::Icon;
+use ikona::icons::breeze::BreezeIcon;
 
 /*
  *
@@ -34,39 +35,39 @@ use ikona::icons::IkonaIcon;
  */
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_new_from_path(in_path: *const c_char) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_new_from_path(in_path: *const c_char) -> *mut Icon {
     assert!(!in_path.is_null());
 
     let in_path_string = CStr::from_ptr(in_path).to_str().unwrap();
 
-    let icon = match IkonaIcon::new_from_path(in_path_string.to_string()) {
+    let icon = match Icon::new_from_path(in_path_string.to_string()) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return std::ptr::null_mut::<IkonaIcon>()
+            return std::ptr::null_mut::<Icon>()
         },
     };
 
-    let boxed: Box::<IkonaIcon> = Box::new(icon);
+    let boxed: Box::<Icon> = Box::new(icon);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_new_from_string(in_string: *const c_char) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_new_from_string(in_string: *const c_char) -> *mut Icon {
     assert!(!in_string.is_null());
 
     let in_path_string = CStr::from_ptr(in_string).to_str().unwrap();
 
-    let icon = match IkonaIcon::new_from_string(in_path_string.to_string()) {
+    let icon = match Icon::new_from_string(in_path_string.to_string()) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return std::ptr::null_mut::<IkonaIcon>()
+            return std::ptr::null_mut::<Icon>()
         },
     };
 
-    let boxed: Box::<IkonaIcon> = Box::new(icon);
+    let boxed: Box::<Icon> = Box::new(icon);
 
     Box::into_raw(boxed)
 }
@@ -78,7 +79,7 @@ pub unsafe extern "C" fn ikona_icon_new_from_string(in_string: *const c_char) ->
  */
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_get_filepath(ptr: *mut IkonaIcon) -> *const c_char {
+pub unsafe extern "C" fn ikona_icon_get_filepath(ptr: *mut Icon) -> *const c_char {
     assert!(!ptr.is_null());
 
     let icon = &*ptr;
@@ -100,43 +101,43 @@ macro_rules! icon_operation {
 
         let proc = match icon.$func() {
             Ok(icon) => icon,
-            Err(_) => return ptr::null_mut::<IkonaIcon>()
+            Err(_) => return ptr::null_mut::<Icon>()
         };
 
-        let $boxy: Box::<IkonaIcon> = Box::new(proc);
+        let $boxy: Box::<Icon> = Box::new(proc);
     };
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_optimize_with_rsvg(ptr: *mut IkonaIcon) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_optimize_with_rsvg(ptr: *mut Icon) -> *mut Icon {
     icon_operation!(ptr, optimize_with_rsvg, boxed);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_optimize_with_scour(ptr: *mut IkonaIcon) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_optimize_with_scour(ptr: *mut Icon) -> *mut Icon {
     icon_operation!(ptr, optimize_with_scour, boxed);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_optimize_all(ptr: *mut IkonaIcon) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_optimize_all(ptr: *mut Icon) -> *mut Icon {
     icon_operation!(ptr, optimize_all, boxed);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_class_as_dark(ptr: *mut IkonaIcon) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_class_as_dark(ptr: *mut Icon) -> *mut Icon {
     icon_operation!(ptr, class_as_dark, boxed);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_class_as_light(ptr: *mut IkonaIcon) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_class_as_light(ptr: *mut Icon) -> *mut Icon {
     icon_operation!(ptr, class_as_light, boxed);
 
     Box::into_raw(boxed)
@@ -149,7 +150,7 @@ pub unsafe extern "C" fn ikona_icon_class_as_light(ptr: *mut IkonaIcon) -> *mut 
  */
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_read_to_string(ptr: *mut IkonaIcon) -> *const c_char {
+pub unsafe extern "C" fn ikona_icon_read_to_string(ptr: *mut Icon) -> *const c_char {
     assert!(!ptr.is_null());
 
     let icon = &*ptr;
@@ -163,7 +164,7 @@ pub unsafe extern "C" fn ikona_icon_read_to_string(ptr: *mut IkonaIcon) -> *cons
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut IkonaIcon, id: *const c_char, target_size: i32) -> *mut IkonaIcon {
+pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut Icon, id: *const c_char, target_size: i32) -> *mut Icon {
     assert!(!ptr.is_null());
     assert!(!id.is_null());
     
@@ -173,16 +174,16 @@ pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut IkonaIcon, i
 
     let proc = match icon.extract_subicon_by_id(id_string, target_size) {
         Ok(icon) => icon,
-        Err(_) => return ptr::null_mut::<IkonaIcon>()
+        Err(_) => return ptr::null_mut::<Icon>()
     };
 
-    let boxed: Box::<IkonaIcon> = Box::new(proc);
+    let boxed: Box::<Icon> = Box::new(proc);
 
     Box::into_raw(boxed)
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_free(ptr: *mut IkonaIcon) {
+pub unsafe extern "C" fn ikona_icon_free(ptr: *mut Icon) {
     assert!(!ptr.is_null());
 
     Box::from_raw(ptr);

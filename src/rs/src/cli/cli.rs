@@ -18,7 +18,8 @@
 
 use clap::{App, Arg, SubCommand};
 use gettextrs::*;
-use ikona::icons::IkonaIcon;
+use ikona::icons::Icon;
+use ikona::icons::breeze::BreezeIcon;
 use std::fs;
 use std::io;
 use std::process::exit;
@@ -172,7 +173,7 @@ fn optimize() {
         .value_of(gettext("input"))
         .unwrap()
         .to_owned();
-    let icon = match IkonaIcon::new_from_path(file) {
+    let icon = match Icon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
@@ -241,7 +242,7 @@ fn class() {
         .value_of(gettext("input"))
         .unwrap()
         .to_owned();
-    let icon = match IkonaIcon::new_from_path(file) {
+    let icon = match Icon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
@@ -303,7 +304,7 @@ fn convert() {
         .value_of(gettext("input"))
         .unwrap()
         .to_owned();
-    let icon = match IkonaIcon::new_from_path(file) {
+    let icon = match Icon::new_from_path(file) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
@@ -376,7 +377,7 @@ fn extract() {
         .unwrap()
         .to_owned();
 
-    let icon = match IkonaIcon::new_from_path(input) {
+    let icon = match Icon::new_from_path(input) {
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);

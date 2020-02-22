@@ -36,7 +36,7 @@ use svgdom;
 /// 
 /// This is the entrypoint for Ikona's functionality.
 #[repr(C)]
-pub struct IkonaIcon {
+pub struct Icon {
     handle: librsvg::SvgHandle,
     filepath: String,
 }
@@ -60,32 +60,32 @@ macro_rules! cairo_err {
         }
     }
 }
-impl IkonaIcon {
-    /// Creates an `IkonaIcon`, reading the contents from `in_path`.
+impl Icon {
+    /// Creates an `Icon`, reading the contents from `in_path`.
     /// 
     /// # Example:
     /// 
     /// ```ignore
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_path("example.svg").unwrap();
+    /// let icon = Icon::new_from_path("example.svg").unwrap();
     /// ```
-    pub fn new_from_path(filepath: String) -> Result<IkonaIcon, String> {
+    pub fn new_from_path(filepath: String) -> Result<Icon, String> {
         match librsvg::Loader::new().read_path(filepath.clone()) {
-            Ok(handle) => Ok(IkonaIcon{handle, filepath}),
+            Ok(handle) => Ok(Icon{handle, filepath}),
             Err(err) => Err(format!("There was an error loading the SVG: {:?}", err)),
         }
     }
-    /// Creates an `IkonaIcon`, reading the contents from a String. 
+    /// Creates an `Icon`, reading the contents from a String. 
     /// 
     /// # Example: 
     /// 
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// ```
-    pub fn new_from_string(string: String) -> Result<IkonaIcon, String> {
+    pub fn new_from_string(string: String) -> Result<Icon, String> {
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
             .sample_iter(&Alphanumeric)
             .take(40)
@@ -94,38 +94,38 @@ impl IkonaIcon {
         match fs::write(filepath.clone(), string) {
             Ok(_) => {
                 match librsvg::Loader::new().read_path(filepath.clone()) {
-                    Ok(handle) => Ok(IkonaIcon{handle, filepath}),
+                    Ok(handle) => Ok(Icon{handle, filepath}),
                     Err(err) => Err(format!("There was an error loading the SVG: {:?}", err)),
                 }
             },
             Err(_) => Err("There was an error creating an internal file".to_string())
         }
     }
-    /// Reads the filepath of an `IkonaIcon` into a `String`.
+    /// Reads the filepath of an `Icon` into a `String`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let filepath = icon.get_filepath();
     /// ````
     pub fn get_filepath(&self) -> String {
         self.filepath.clone()
     }
-    /// Optimizes the SVG of the current `IkonaIcon` with rsvg and returns it
-    /// as a new `IkonaIcon`.
+    /// Optimizes the SVG of the current `Icon` with rsvg and returns it
+    /// as a new `Icon`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let optimized = icon.optimize_with_rsvg();
     /// ````
-    pub fn optimize_with_rsvg(&self) -> Result<IkonaIcon, String> {
+    pub fn optimize_with_rsvg(&self) -> Result<Icon, String> {
         let renderer = librsvg::CairoRenderer::new(&self.handle);
 
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
@@ -152,22 +152,22 @@ impl IkonaIcon {
             Ok(_) => {
                 svg_surface.finish();
 
-                IkonaIcon::new_from_path(filepath)
+                Icon::new_from_path(filepath)
             }
         }
     }
-    /// Optimizes the SVG of the current `IkonaIcon` with scour and returns it
-    /// as a new `IkonaIcon`.
+    /// Optimizes the SVG of the current `Icon` with scour and returns it
+    /// as a new `Icon`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let optimized = icon.optimize_with_scour();
     /// ````
-    pub fn optimize_with_scour(&self) -> Result<IkonaIcon, String> {
+    pub fn optimize_with_scour(&self) -> Result<Icon, String> {
         let output = match Command::new("scour")
                                     .arg("--set-precision=8")
                                     .arg("--enable-viewboxing")
@@ -189,10 +189,10 @@ impl IkonaIcon {
         
         let string = String::from_utf8_lossy(&output.stdout).into_owned();
 
-        IkonaIcon::new_from_string(string)
+        Icon::new_from_string(string)
     }
     #[cfg(feature = "with-svgcleaner")]
-    pub fn optimize_with_svgcleaner(&self) -> Result<IkonaIcon, String> {
+    pub fn optimize_with_svgcleaner(&self) -> Result<Icon, String> {
         let icon_string = self.read_to_string()?;
 
         let mut doc = match svgdom::Document::from_str(&icon_string) {
@@ -207,21 +207,21 @@ impl IkonaIcon {
         
         use svgdom::ToStringWithOptions;
 
-        IkonaIcon::new_from_string(doc.to_string_with_opt(&svgdom::WriteOptions::default()))
+        Icon::new_from_string(doc.to_string_with_opt(&svgdom::WriteOptions::default()))
     }
-    /// Optimizes the SVG of the current `IkonaIcon` with all methods
-    /// and returns it as a new `IkonaIcon`.
+    /// Optimizes the SVG of the current `Icon` with all methods
+    /// and returns it as a new `Icon`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let optimized = icon.optimize_all();
     /// ````
     #[cfg(feature = "with-svgcleaner")]
-    pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
+    pub fn optimize_all(&self) -> Result<Icon, String> {
         match self.optimize_with_rsvg() {
             Ok(ok) => {
                 match ok.optimize_with_svgcleaner() {
@@ -232,19 +232,19 @@ impl IkonaIcon {
             Err(err) => Err(err),
         }
     }
-    /// Optimizes the SVG of the current `IkonaIcon` with all methods
-    /// and returns it as a new `IkonaIcon`.
+    /// Optimizes the SVG of the current `Icon` with all methods
+    /// and returns it as a new `Icon`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let optimized = icon.optimize_all();
     /// ````
     #[cfg(not(feature = "with-svgcleaner"))]
-    pub fn optimize_all(&self) -> Result<IkonaIcon, String> {
+    pub fn optimize_all(&self) -> Result<Icon, String> {
         match self.optimize_with_rsvg() {
             Ok(ok) => {
                 match ok.optimize_with_scour() {
@@ -255,8 +255,8 @@ impl IkonaIcon {
             Err(err) => Err(err),
         }
     }
-    /// Returns an child `IkonaIcon` extracted by ID and size.
-    pub fn extract_subicon_by_id(&self, id: &str, target_size: i32) -> Result<IkonaIcon, String> {
+    /// Returns an child `Icon` extracted by ID and size.
+    pub fn extract_subicon_by_id(&self, id: &str, target_size: i32) -> Result<Icon, String> {
         match self.handle.has_element_with_id(id) {
             Ok(_) => {
                 let renderer = librsvg::CairoRenderer::new(&self.handle);
@@ -276,55 +276,137 @@ impl IkonaIcon {
                     Ok(_) => {
                         svg_surface.finish();
 
-                        IkonaIcon::new_from_path(filepath)
+                        Icon::new_from_path(filepath)
                     },
                 }
             },
             Err(_) => Err("Badly formatted ID, or SVG does not have ID".to_string()),
         }
     }
-    /// Returns an child `IkonaIcon` extracted by ID and size.
-    pub fn extract_subicons_by_ids(&self, icons: HashMap<String,i32>) -> Result<Vec<IkonaIcon>, String> {
-        let mut ret_icons = Vec::<IkonaIcon>::with_capacity(icons.len());
+    /// Returns children `Icon`s extracted by ID and size.
+    pub fn extract_subicons_by_ids(&self, icons: HashMap<String,i32>) -> Result<Vec<Icon>, String> {
+        let mut ret_icons = Vec::<Icon>::with_capacity(icons.len());
         for (id, size) in icons {
-            match self.handle.has_element_with_id(&id) {
-                Ok(_) => {
-                    let renderer = librsvg::CairoRenderer::new(&self.handle);
-
-                    let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
-                        .sample_iter(&Alphanumeric)
-                        .take(40)
-                        .collect::<String>());
-
-                    let mut svg_surface = cairo_err!(cairo::SvgSurface::new(f64::from(size), f64::from(size), Some(filepath.clone())));
-                    svg_surface.set_document_unit(cairo::SvgUnit::Px);
-
-                    let cairo_context = cairo::Context::new(&svg_surface);
-
-                    match renderer.render_element(&cairo_context, Some(&id), &cairo::Rectangle{ x: 0.0,  y: 0.0, width: f64::from(size), height: f64::from(size) }) {
-                        Err(_) => return Err("Failed to render subicon".to_string()),
-                        Ok(_) => {
-                            svg_surface.finish();
-
-                            match IkonaIcon::new_from_path(filepath) {
-                                Ok(value) => ret_icons.push(value),
-                                Err(err) => return Err(err),
-                            }
-                        }
-                    }
-                },
-                Err(_) => return Err("Badly formatted ID, or SVG does not have ID".to_string()),
-            }
+            let subicon = self.extract_subicon_by_id(&id, size)?;
+            ret_icons.push(subicon);
         }
         Ok(ret_icons)
     }
-    /// Reads the contents of the `IkonaIcon` into a `String`.
+    /// Crops to a subicon.
+    pub fn crop_to_subicon(&self, id: &str, target_size: i32) -> Result<Icon, String> {
+        match self.handle.has_element_with_id(id) {
+            Ok(_) => {
+                let renderer = librsvg::CairoRenderer::new(&self.handle);
+                let height = match renderer.intrinsic_dimensions().height {
+                    Some(val) => val.length,
+                    None => return Err("Failed to grab height".to_string()),
+                };
+                let width = match renderer.intrinsic_dimensions().width {
+                    Some(val) => val.length,
+                    None => return Err("Failed to grab width".to_string()),
+                };
+                let viewport = cairo::Rectangle {
+                    x: 0.0, 
+                    y: 0.0,
+                    height, 
+                    width,
+                };
+
+                let (_, log) = match renderer.geometry_for_layer(Some(id), &viewport) {
+                    Ok((ink, log)) => (ink, log),
+                    Err(err) => return Err(format!("{:?}", err))
+                };
+
+                let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
+                    .sample_iter(&Alphanumeric)
+                    .take(40)
+                    .collect::<String>());
+
+                    let mut svg_surface = cairo_err!(cairo::SvgSurface::new(f64::from(target_size), f64::from(target_size), Some(filepath.clone())));
+                    svg_surface.set_document_unit(cairo::SvgUnit::Px);
+
+                let cairo_context = cairo::Context::new(&svg_surface);
+                cairo_context.scale(f64::from(target_size)/log.width, f64::from(target_size)/log.height);
+                cairo_context.translate(-log.x, -log.y);
+
+                match renderer.render_document(&cairo_context, &viewport) {
+                    Err(err) => Err(format!("{:?}", err)),
+                    Ok(_) => {
+                        svg_surface.finish();
+
+                        Icon::new_from_path(filepath)
+                    }
+                }
+            },
+            Err(_) => Err("Badly formatted ID, or SVG does not have ID".to_string())
+        }
+    }
+    /// Returns a vector of cropped subicons.
+    pub fn crop_to_subicons(&self, icons: HashMap<String,i32>) -> Result<Vec<Icon>, String> {
+        let mut ret_icons = Vec::<Icon>::with_capacity(icons.len());
+        for (id, size) in icons {
+            let subicon = self.crop_to_subicon(&id, size)?;
+            ret_icons.push(subicon);
+        }
+        Ok(ret_icons)
+    }
+    /// Returns the icon with added padding to all sides
+    pub fn add_padding(&self, padding: i32) -> Result<Icon,String> {
+        let renderer = librsvg::CairoRenderer::new(&self.handle);
+        
+        let height = match renderer.intrinsic_dimensions().height {
+            Some(val) => val.length,
+            None => return Err("Failed to grab height".to_string()),
+        };
+        let width = match renderer.intrinsic_dimensions().width {
+            Some(val) => val.length,
+            None => return Err("Failed to grab width".to_string()),
+        };
+        
+        let viewport = cairo::Rectangle {
+            x: 0.0, 
+            y: 0.0,
+            height, 
+            width,
+        };
+        
+        let (_, mut log) = match renderer.geometry_for_layer(None, &viewport) {
+            Ok((ink, log)) => (ink, log),
+            Err(err) => return Err(format!("{:?}", err))
+        };
+        
+        log.width += f64::from(padding*2);
+        log.height += f64::from(padding*2);
+        log.x += f64::from(padding);
+        log.y += f64::from(padding);
+
+        let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
+            .sample_iter(&Alphanumeric)
+            .take(40)
+            .collect::<String>());
+
+        let mut svg_surface = cairo_err!(cairo::SvgSurface::new(log.width, log.height, Some(filepath.clone())));
+        svg_surface.set_document_unit(cairo::SvgUnit::Px);
+
+        let cairo_context = cairo::Context::new(&svg_surface);
+
+        match renderer.render_document(&cairo_context, &log) {
+            Err(err) => Err(format!("{:?}", err)),
+            Ok(_) => {
+                svg_surface.finish();
+
+                Icon::new_from_path(filepath)
+            }
+        }
+    }
+    /// 
+    /// Reads the contents of the `Icon` into a `String`.
     /// 
     /// # Example:
     /// ```
-    /// use ikona::icons::IkonaIcon;
+    /// use ikona::icons::Icon;
     /// 
-    /// let icon = IkonaIcon::new_from_string("<svg></svg>".to_string()).unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
     /// 
     /// let string = icon.read_to_string();
     /// ````
@@ -334,44 +416,14 @@ impl IkonaIcon {
             Err(_) => Err("Failed to read file".to_string()),
         }
     }
-    /// Returns an `IkonaIcon` with a dark colour palette.
-    pub fn convert_to_dark_from_light(&self) -> Result<IkonaIcon, String> {
+    /// Returns an `Icon` with stylesheet injected into it.
+    pub fn inject_stylesheet(&self, stylesheet: String, id: Option<String>) -> Result<Icon, String> {
         let mut icon_str_mut = self.read_to_string()?;
-
-        if !icon_str_mut.contains("#31363b") {
-            icon_str_mut = icon_str_mut.replace("#eff0f1", "#31363b");
-            icon_str_mut = icon_str_mut.replace("#232629", "#eff0f1");
-            icon_str_mut = icon_str_mut.replace("#fcfcfc", "#232629");
-        }
-
-        IkonaIcon::new_from_string(icon_str_mut)
-    }
-    /// Returns an `IkonaIcon` with a light colour palette.
-    pub fn convert_to_light_from_dark(&self) -> Result<IkonaIcon, String> {
-        let mut icon_str_mut = self.read_to_string()?;
-
-        if !icon_str_mut.contains("#fcfcfc") {
-            icon_str_mut = icon_str_mut.replace("#232629", "#fcfcfc");
-            icon_str_mut = icon_str_mut.replace("#eff0f1", "#232629");
-            icon_str_mut = icon_str_mut.replace("#31363b", "#eff0f1");
-        }
-
-        IkonaIcon::new_from_string(icon_str_mut)
-    }
-    /// Injects CSS and replaces hardcoded colours according to a dark
-    /// colour palette.
-    pub fn class_as_dark(&self) -> Result<IkonaIcon, String> {
-        let icon_str = match self.read_to_string() {
-            Ok(val) => val,
-            Err(err) => return Err(err),
-        };
-
-        let mut icon_str_mut = icon_str.to_owned();
 
         let mut end_index = 0;
         let mut mode = 0;
 
-        for (index, chr) in icon_str.chars().enumerate() {
+        for (index, chr) in icon_str_mut.chars().enumerate() {
             if chr == '<' {
                 mode = 1;
                 continue;
@@ -398,39 +450,26 @@ impl IkonaIcon {
             return Err("Failed to find a <svg>".to_string())
         }
 
-        let mut stylesheet = "".to_string();
-
-        stylesheet_replace!(icon_str_mut, stylesheet, "#eff0f1", "Text");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#31363b", "Background");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#232629", "ViewBackground");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#3daee9", "ButtonFocus");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#27ae60", "PositiveText");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#f67400", "NeutralText");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#da4453", "NegativeText");
-
-        if stylesheet != "" {
-            icon_str_mut.insert_str(end_index, &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
+        match id {
+            Some(val) => {
+                icon_str_mut.insert_str(end_index, &format!(r#"<style type="text/css" id="{}">{}</style>"#, val, stylesheet));
+            },
+            None => {
+                icon_str_mut.insert_str(end_index, &format!(r#"<style type="text/css">{}</style>"#, stylesheet));
+            }
         }
 
-        match IkonaIcon::new_from_string(icon_str_mut) {
-            Ok(icon) => Ok(icon),
-            Err(err) => Err(err),
-        }
+        Icon::new_from_string(icon_str_mut)
     }
-    /// Injects CSS and replaces hardcoded colours according to a light
-    /// colour palette.
-    pub fn class_as_light(&self) -> Result<IkonaIcon, String> {
-        let icon_str = match self.read_to_string() {
-            Ok(val) => val,
-            Err(err) => return Err(err),
-        };
-
-        let mut icon_str_mut = icon_str.to_owned();
+    /// Returns an `Icon` with colours replaced and stylesheeted.
+    pub fn replace_colours_with_classes(&self, map: HashMap<String,String>, add_style: bool, id: Option<String>) -> Result<Icon, String> {
+        let mut self_string = self.read_to_string()?;
+        let mut stylesheet = "".to_string();
 
         let mut end_index = 0;
         let mut mode = 0;
 
-        for (index, chr) in icon_str.chars().enumerate() {
+        for (index, chr) in self_string.chars().enumerate() {
             if chr == '<' {
                 mode = 1;
                 continue;
@@ -457,26 +496,27 @@ impl IkonaIcon {
             return Err("Failed to find a <svg>".to_string())
         }
 
-        let mut stylesheet = "".to_string();
-
-        stylesheet_replace!(icon_str_mut, stylesheet, "#232629", "Text");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#eff0f1", "Background");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#fcfcfc", "ViewBackground");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#3daee9", "ButtonFocus");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#27ae60", "PositiveText");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#f67400", "NeutralText");
-        stylesheet_replace!(icon_str_mut, stylesheet, "#da4453", "NegativeText");
-
-        if stylesheet != "" {
-            icon_str_mut.insert_str(end_index, &format!(r#"<style type="text/css" id="current-color-scheme">{}</style>"#, stylesheet));
+        for (key, val) in map.iter() {
+            stylesheet_replace!(self_string, stylesheet, key, val);
         }
 
-        match IkonaIcon::new_from_string(icon_str_mut) {
-            Ok(icon) => Ok(icon),
-            Err(err) => Err(err),
+        if stylesheet != "" && add_style {
+            match id {
+                Some(val) => {
+                    self_string.insert_str(end_index, &format!(r#"<style type="text/css" id="{}">{}</style>"#, val, stylesheet));
+                },
+                None => {
+                    self_string.insert_str(end_index, &format!(r#"<style type="text/css">{}</style>"#, stylesheet));
+                }
+            }
         }
+
+        Icon::new_from_string(self_string)
     }
 }
+
+pub mod breeze;
+pub mod gnome;
 
 #[cfg(test)]
 mod tests;
