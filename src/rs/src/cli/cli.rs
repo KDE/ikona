@@ -151,6 +151,34 @@ macro_rules! app {
                             .index(3),
                     ),
             )
+            .subcommand(
+                SubCommand::with_name(&gettext("pad"))
+                    .about(&*gettext("Add padding to an icon on all sides"))
+                    .arg(
+                        Arg::with_name(&gettext("input"))
+                            .help(&gettext("Sets the input file to read from"))
+                            .required(true)
+                            .index(1),
+                    )
+                    .arg(
+                        Arg::with_name(&gettext("padding"))
+                            .help(&gettext("Sets the amount of padding to use"))
+                            .required(true)
+                            .index(2),
+                    )
+                    .arg(
+                        Arg::with_name(&gettext("output"))
+                            .help(&gettext("Sets the output file to write to"))
+                            .index(3),
+                    )
+                    .arg(
+                        Arg::with_name(&gettext("inplace"))
+                            .short(&gettext("i"))
+                            .long(&gettext("inplace"))
+                            .help(&gettext("Modifies the icon in-place"))
+                            .conflicts_with(&gettext("output")),
+                    ),
+            )
     };
 }
 
@@ -401,6 +429,60 @@ fn extract() {
     }
 }
 
+fn pad() {
+    let input = subcommand_matches!(gettext("pad"))
+        .value_of(gettext("input"))
+        .unwrap()
+        .to_owned();
+
+    let padding = match subcommand_matches!(gettext("pad"))
+        .value_of(gettext("padding"))
+        .unwrap().parse::<i32>() {
+            Ok(val) => val,
+            Err(_) => {
+                println!("{}", gettext("Padding is not a number"));
+                return;
+            },
+    };
+
+    let icon = match Icon::new_from_path(input.clone()) {
+        Ok(icon) => match icon.add_padding(padding) {
+            Ok(icon) => icon,
+            Err(err) => {
+                println!("{}", err);
+                exit(1);
+            }
+        },
+        Err(err) => {
+            println!("{}", err);
+            exit(1);
+        }
+    };
+
+
+    let output_path = if subcommand_matches!(gettext("pad")).is_present(gettext("inplace")) {
+        input.clone()
+    } else {
+        if let Some(output) = subcommand_matches!(gettext("pad")).value_of(gettext("output")) {
+            output.to_owned()
+        } else {
+            println!("{}", gettext("Neither inplace nor output was specified"));
+            exit(1);
+        }
+    };
+
+    match fs::copy(icon.get_filepath(), output_path) {
+        Ok(_) => {
+            println!("{}", gettext("Icon padded"));
+            exit(0);
+        }
+        Err(_) => {
+            println!("{}", gettext("Failed to pad icon"));
+            exit(1);
+        }
+    }
+}
+
 fn main() {
     let _ = TextDomain::new("ikonacli").init();
 
@@ -409,6 +491,7 @@ fn main() {
         Some("class") => class(),
         Some("convert") => convert(),
         Some("extract") => extract(),
+        Some("pad") => pad(),
         None => {
             let mut out = io::stdout();
             app!()
