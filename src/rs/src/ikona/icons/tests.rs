@@ -16,14 +16,16 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-use super::IkonaIcon;
+use super::Icon;
 
 #[test]
 fn test_classing_light() {
+    use super::breeze::BreezeIcon;
+
     let data = include_str!("before/classing/timer.svg");
     let data_expected = include_str!("after/classing/timer.svg");
 
-    let icon = IkonaIcon::new_from_string(data.to_string()).unwrap();
+    let icon = Icon::new_from_string(data.to_string()).unwrap();
 
     let processed = icon.class_as_light().unwrap();
 
@@ -34,10 +36,12 @@ fn test_classing_light() {
 
 #[test]
 fn test_classing_dark() {
+    use super::breeze::BreezeIcon;
+
     let data = include_str!("before/classing/timer-dark.svg");
     let data_expected = include_str!("after/classing/timer-dark.svg");
 
-    let icon = IkonaIcon::new_from_string(data.to_string()).unwrap();
+    let icon = Icon::new_from_string(data.to_string()).unwrap();
 
     let processed = icon.class_as_dark().unwrap();
 
@@ -48,10 +52,12 @@ fn test_classing_dark() {
 
 #[test]
 fn test_classing_non_icon() {
+    use super::breeze::BreezeIcon;
+
     let data = include_str!("before/classing/kai okular.svg");
     let data_expected = include_str!("after/classing/kai okular.svg");
 
-    let icon = IkonaIcon::new_from_string(data.to_string()).unwrap();
+    let icon = Icon::new_from_string(data.to_string()).unwrap();
 
     let processed = icon.class_as_light().unwrap();
 
