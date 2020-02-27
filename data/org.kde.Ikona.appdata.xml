@@ -5,6 +5,7 @@
   <icon type="remote" width="48" height="48">https://invent.kde.org/kde/ikona/raw/master/data/org.kde.Ikona.svg</icon>
   <name>Ikona</name>
   <name xml:lang="ca">Ikona</name>
+  <name xml:lang="ca-valencia">Ikona</name>
   <name xml:lang="es">Ikona</name>
   <name xml:lang="fi">Ikona</name>
   <name xml:lang="fr">Ikona</name>
@@ -19,6 +20,7 @@
   <name xml:lang="zh-TW">Ikona</name>
   <summary>Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
+  <summary xml:lang="ca-valencia">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos</summary>
   <summary xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
@@ -33,6 +35,7 @@
   <description>
     <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
     <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
+    <p xml:lang="ca-valencia">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos. Ha sido diseñado para integrarse con el escritorio Plasma de KDE.</p>
     <p xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita. Se on tehty integroitumaan KDE Plasma -työpöydälle.</p>
     <p xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon. Ini dirancang untuk mengintegrasikan dengan desktop KDE Plasma.</p>
@@ -59,6 +62,7 @@
     <screenshot>
       <caption>The welcome screen of Ikona</caption>
       <caption xml:lang="ca">La pantalla de benvinguda a l'Ikona</caption>
+      <caption xml:lang="ca-valencia">La pantalla de benvinguda a l'Ikona</caption>
       <caption xml:lang="es">La pantalla de bienvenida de Ikona</caption>
       <caption xml:lang="fi">Ikona tervetulonäkymä</caption>
       <caption xml:lang="fr">L'écran de bienvenue d'Ikona</caption>
@@ -75,6 +79,7 @@
     <screenshot>
       <caption>The colorful icon view of Ikona</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
+      <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
@@ -90,6 +95,7 @@
     <screenshot>
       <caption>The colorful icon view of Ikona in dark mode</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
+      <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä tummassa tilassa</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona in modalità scura</caption>
@@ -105,6 +111,7 @@
     <screenshot>
       <caption>The color palette of Ikona</caption>
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
+      <caption xml:lang="ca-valencia">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="fi">Ikonan väripaletti</caption>
       <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
