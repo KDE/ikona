@@ -18,6 +18,13 @@ rand = "0.7.3"
 regex = "1"
 svgcleaner = { version="0.9.5", optional=true }
 svgdom = { version="0.10.5", optional=true }
+rust-ini = "0.15.2"
+lazy_static = "1.4.0"
+dirs = "2.0.2"
+log = "0.4"
+
+[dev-dependencies]
+pretty_env_logger = "0.4.0"
 
 [features]
 default = [ "cairo-rs/svg" ]
