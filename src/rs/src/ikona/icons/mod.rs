@@ -68,7 +68,7 @@ impl Icon {
     /// ```ignore
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_path("example.svg").unwrap();
+    /// let icon = Icon::new_from_path("example.svg".to_string()).unwrap();
     /// ```
     pub fn new_from_path(filepath: String) -> Result<Icon, String> {
         match librsvg::Loader::new().read_path(filepath.clone()) {
@@ -83,7 +83,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// ```
     pub fn new_from_string(string: String) -> Result<Icon, String> {
         let filepath = format!("/tmp/ikona-{}.svg", rand::thread_rng()
@@ -107,7 +107,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let filepath = icon.get_filepath();
     /// ````
@@ -121,7 +121,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let optimized = icon.optimize_with_rsvg();
     /// ````
@@ -163,7 +163,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let optimized = icon.optimize_with_scour();
     /// ````
@@ -216,7 +216,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let optimized = icon.optimize_all();
     /// ````
@@ -239,7 +239,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let optimized = icon.optimize_all();
     /// ````
@@ -397,7 +397,7 @@ impl Icon {
     /// ```
     /// use ikona::icons::Icon;
     /// 
-    /// let icon = Icon::new_from_string("<svg></svg>").unwrap();
+    /// let icon = Icon::new_from_string("<svg></svg>".to_string()).unwrap();
     /// 
     /// let string = icon.read_to_string();
     /// ````
