@@ -18,8 +18,8 @@
 
 use clap::{App, Arg, SubCommand};
 use gettextrs::*;
-use ikona::icons::Icon;
 use ikona::icons::breeze::BreezeIcon;
+use ikona::icons::Icon;
 use std::fs;
 use std::io;
 use std::process::exit;
@@ -437,12 +437,14 @@ fn pad() {
 
     let padding = match subcommand_matches!(gettext("pad"))
         .value_of(gettext("padding"))
-        .unwrap().parse::<i32>() {
-            Ok(val) => val,
-            Err(_) => {
-                println!("{}", gettext("Padding is not a number"));
-                return;
-            },
+        .unwrap()
+        .parse::<i32>()
+    {
+        Ok(val) => val,
+        Err(_) => {
+            println!("{}", gettext("Padding is not a number"));
+            return;
+        }
     };
 
     let icon = match Icon::new_from_path(input.clone()) {
@@ -458,7 +460,6 @@ fn pad() {
             exit(1);
         }
     };
-
 
     let output_path = if subcommand_matches!(gettext("pad")).is_present(gettext("inplace")) {
         input.clone()

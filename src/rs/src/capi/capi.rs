@@ -25,8 +25,8 @@ use std::ffi::CString;
 use std::os::raw::c_char;
 use std::ptr;
 
-use ikona::icons::Icon;
 use ikona::icons::breeze::BreezeIcon;
+use ikona::icons::Icon;
 
 /*
  *
@@ -44,11 +44,11 @@ pub unsafe extern "C" fn ikona_icon_new_from_path(in_path: *const c_char) -> *mu
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return std::ptr::null_mut::<Icon>()
-        },
+            return std::ptr::null_mut::<Icon>();
+        }
     };
 
-    let boxed: Box::<Icon> = Box::new(icon);
+    let boxed: Box<Icon> = Box::new(icon);
 
     Box::into_raw(boxed)
 }
@@ -63,11 +63,11 @@ pub unsafe extern "C" fn ikona_icon_new_from_string(in_string: *const c_char) ->
         Ok(icon) => icon,
         Err(err) => {
             println!("{}", err);
-            return std::ptr::null_mut::<Icon>()
-        },
+            return std::ptr::null_mut::<Icon>();
+        }
     };
 
-    let boxed: Box::<Icon> = Box::new(icon);
+    let boxed: Box<Icon> = Box::new(icon);
 
     Box::into_raw(boxed)
 }
@@ -84,7 +84,9 @@ pub unsafe extern "C" fn ikona_icon_get_filepath(ptr: *mut Icon) -> *const c_cha
 
     let icon = &*ptr;
 
-    CString::new(icon.get_filepath()).expect("Failed to create CString").into_raw()
+    CString::new(icon.get_filepath())
+        .expect("Failed to create CString")
+        .into_raw()
 }
 
 /*
@@ -101,10 +103,10 @@ macro_rules! icon_operation {
 
         let proc = match icon.$func() {
             Ok(icon) => icon,
-            Err(_) => return ptr::null_mut::<Icon>()
+            Err(_) => return ptr::null_mut::<Icon>(),
         };
 
-        let $boxy: Box::<Icon> = Box::new(proc);
+        let $boxy: Box<Icon> = Box::new(proc);
     };
 }
 
@@ -157,27 +159,37 @@ pub unsafe extern "C" fn ikona_icon_read_to_string(ptr: *mut Icon) -> *const c_c
 
     let proc = match icon.read_to_string() {
         Ok(icon) => icon,
-        Err(_) => return CString::new("").expect("Failed to create CString").into_raw()
+        Err(_) => {
+            return CString::new("")
+                .expect("Failed to create CString")
+                .into_raw()
+        }
     };
 
-    CString::new(proc).expect("Failed to create CString").into_raw()
+    CString::new(proc)
+        .expect("Failed to create CString")
+        .into_raw()
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(ptr: *mut Icon, id: *const c_char, target_size: i32) -> *mut Icon {
+pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(
+    ptr: *mut Icon,
+    id: *const c_char,
+    target_size: i32,
+) -> *mut Icon {
     assert!(!ptr.is_null());
     assert!(!id.is_null());
-    
+
     let id_string = CStr::from_ptr(id).to_str().unwrap();
 
     let icon = &*ptr;
 
     let proc = match icon.extract_subicon_by_id(id_string, target_size) {
         Ok(icon) => icon,
-        Err(_) => return ptr::null_mut::<Icon>()
+        Err(_) => return ptr::null_mut::<Icon>(),
     };
 
-    let boxed: Box::<Icon> = Box::new(proc);
+    let boxed: Box<Icon> = Box::new(proc);
 
     Box::into_raw(boxed)
 }

@@ -111,8 +111,8 @@ fn grab_icon_directories() -> Vec<String> {
                         Some(string) => string.to_string(),
                         None => {
                             warn!("continue on line {}", line!());
-                            continue
-                        },
+                            continue;
+                        }
                     };
                     vec.push(path_str);
                 }
@@ -125,7 +125,7 @@ fn grab_icon_directories() -> Vec<String> {
 }
 
 impl IconTheme {
-    pub fn load_from_path(path: String) -> Result<IconTheme,String> {
+    pub fn load_from_path(path: String) -> Result<IconTheme, String> {
         let pathbuf_dir: PathBuf = [path.clone()].iter().collect();
         let pathbuf: PathBuf = [path.clone(), "index.theme".to_string()].iter().collect();
 
@@ -135,33 +135,54 @@ impl IconTheme {
             Some(osstr) => match osstr.to_str() {
                 Some(string) => string.to_string(),
                 None => {
-                    return Err(format!("continue on line {} at icon theme {:#?}", line!(), pathbuf));
-                },
+                    return Err(format!(
+                        "continue on line {} at icon theme {:#?}",
+                        line!(),
+                        pathbuf
+                    ));
+                }
             },
             None => {
-                return Err(format!("continue on line {} at icon theme {:#?}", line!(), pathbuf));
-            },
+                return Err(format!(
+                    "continue on line {} at icon theme {:#?}",
+                    line!(),
+                    pathbuf
+                ));
+            }
         };
 
         let index_theme: Ini = match Ini::load_from_file(pathbuf.clone()) {
             Ok(ini) => ini,
             Err(err) => {
-                return Err(format!("error on line {} at icon theme {:#?}: {:#?}", line!(), pathbuf, err));
+                return Err(format!(
+                    "error on line {} at icon theme {:#?}: {:#?}",
+                    line!(),
+                    pathbuf,
+                    err
+                ));
             }
         };
 
         let icon_theme_section = match index_theme.section(Some("Icon Theme")) {
             Some(props) => props,
             None => {
-                return Err(format!("continue on line {} at icon theme {:#?}", line!(), pathbuf));
-            },
+                return Err(format!(
+                    "continue on line {} at icon theme {:#?}",
+                    line!(),
+                    pathbuf
+                ));
+            }
         };
 
         icon_theme.display_name = match icon_theme_section.get("Name") {
             Some(value) => value.to_string(),
             None => {
-                return Err(format!("continue on line {} at icon theme {:#?}", line!(), pathbuf));
-            },
+                return Err(format!(
+                    "continue on line {} at icon theme {:#?}",
+                    line!(),
+                    pathbuf
+                ));
+            }
         };
 
         let directories: Vec<String> = match icon_theme_section.get("Directories") {
@@ -170,8 +191,12 @@ impl IconTheme {
                 string.split(",").map(|s| s.to_string()).collect()
             }
             None => {
-                return Err(format!("continue on line {} at icon theme {:#?}", line!(), pathbuf));
-            },
+                return Err(format!(
+                    "continue on line {} at icon theme {:#?}",
+                    line!(),
+                    pathbuf
+                ));
+            }
         };
 
         for dir in &directories {
@@ -182,8 +207,8 @@ impl IconTheme {
                 None => {
                     warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
                     warn!("didn't find section for dir: {:#?}", dir);
-                    continue
-                },
+                    continue;
+                }
             };
             icon_dir.location = dir.clone();
             icon_dir.size = match sect.get("Size") {
@@ -196,8 +221,8 @@ impl IconTheme {
                 },
                 None => {
                     warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                    continue
-                },
+                    continue;
+                }
             };
             icon_dir.scale = match sect.get("Scale") {
                 Some(scale) => match scale.parse::<i32>() {
@@ -241,8 +266,8 @@ impl IconTheme {
                             },
                             None => {
                                 warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                                continue
-                            },
+                                continue;
+                            }
                         },
                         min_size: match sect.get("MinSize") {
                             Some(minsize) => match minsize.parse::<i32>() {
@@ -254,8 +279,8 @@ impl IconTheme {
                             },
                             None => {
                                 warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                                continue
-                            },
+                                continue;
+                            }
                         },
                     }),
                     "Threshold" => Some(IconDirectoryType::Threshold {
@@ -296,8 +321,8 @@ impl IconTheme {
                         Some(string) => string.to_string(),
                         None => {
                             warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                            continue
-                        },
+                            continue;
+                        }
                     };
                     icon_dir.icons.push(ThemeIcon {
                         location: path_str.clone(),
@@ -307,14 +332,22 @@ impl IconTheme {
                                 Some(osstr) => match osstr.to_str() {
                                     Some(string) => string.to_string(),
                                     None => {
-                                        warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                                        continue
-                                    },
+                                        warn!(
+                                            "continue on line {} at icon theme {:#?}",
+                                            line!(),
+                                            pathbuf
+                                        );
+                                        continue;
+                                    }
                                 },
                                 None => {
-                                    warn!("continue on line {} at icon theme {:#?}", line!(), pathbuf);
-                                    continue
-                                },
+                                    warn!(
+                                        "continue on line {} at icon theme {:#?}",
+                                        line!(),
+                                        pathbuf
+                                    );
+                                    continue;
+                                }
                             }
                         },
                     });
@@ -322,7 +355,7 @@ impl IconTheme {
             }
 
             icon_theme.directories.push(icon_dir);
-        };
+        }
 
         Ok(icon_theme)
     }
@@ -339,26 +372,27 @@ impl IconTheme {
         Ok(theme)
     }
 
-    pub fn load_from_name(name: String) -> Result<IconTheme,String> {
+    pub fn load_from_name(name: String) -> Result<IconTheme, String> {
         let search_path = grab_icon_directories();
-        
+
         for path in search_path {
             let pathbuf = PathBuf::from(path.clone());
             match pathbuf.file_name() {
                 Some(osstr) => match osstr.to_str() {
-                    Some(string) => if string == name {
-                        return IconTheme::load_from_path(path);
-                    },
+                    Some(string) => {
+                        if string == name {
+                            return IconTheme::load_from_path(path);
+                        }
+                    }
                     None => continue,
                 },
                 None => continue,
             }
-        };
+        }
 
         Err("No icon theme found".to_string())
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -367,9 +401,9 @@ mod tests {
     #[test]
     pub fn test_new_from_name() {
         use pretty_env_logger;
-    
+
         pretty_env_logger::init();
-    
+
         let icon_themes = IconTheme::load_from_name("oxygen".to_string()).unwrap();
         warn!("{:#?}", icon_themes);
     }

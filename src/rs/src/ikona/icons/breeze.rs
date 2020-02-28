@@ -38,34 +38,13 @@ impl BreezeIcon for Icon {
     fn class_as_dark(&self) -> Result<Icon, String> {
         let mut map = HashMap::new();
 
-        map.insert(
-            "#eff0f1".to_string(),
-            "Text".to_string()
-        );
-        map.insert(
-            "#31363b".to_string(),
-            "Background".to_string()
-        );
-        map.insert(
-            "#232629".to_string(),
-            "ViewBackground".to_string()
-        );
-        map.insert(
-            "#3daee9".to_string(),
-            "ButtonFocus".to_string()
-        );
-        map.insert(
-            "#27ae60".to_string(),
-            "PositiveText".to_string()
-        );
-        map.insert(
-            "#f67400".to_string(),
-            "NeutralText".to_string()
-        );
-        map.insert(
-            "#da4453".to_string(),
-            "NegativeText".to_string()
-        );
+        map.insert("#eff0f1".to_string(), "Text".to_string());
+        map.insert("#31363b".to_string(), "Background".to_string());
+        map.insert("#232629".to_string(), "ViewBackground".to_string());
+        map.insert("#3daee9".to_string(), "ButtonFocus".to_string());
+        map.insert("#27ae60".to_string(), "PositiveText".to_string());
+        map.insert("#f67400".to_string(), "NeutralText".to_string());
+        map.insert("#da4453".to_string(), "NegativeText".to_string());
 
         self.replace_colours_with_classes(map, true, Some("current-color-scheme".to_string()))
     }
@@ -74,34 +53,13 @@ impl BreezeIcon for Icon {
     fn class_as_light(&self) -> Result<Icon, String> {
         let mut map = HashMap::new();
 
-        map.insert(
-            "#232629".to_string(),
-            "Text".to_string(),
-        );
-        map.insert(
-            "#eff0f1".to_string(),
-            "Background".to_string(),
-        );
-        map.insert(
-            "#fcfcfc".to_string(),
-            "ViewBackground".to_string(),
-        );
-        map.insert(
-            "#3daee9".to_string(),
-            "ButtonFocus".to_string(),
-        );
-        map.insert(
-            "#27ae60".to_string(),
-            "PositiveText".to_string(),
-        );
-        map.insert(
-            "#f67400".to_string(),
-            "NeutralText".to_string(),
-        );
-        map.insert(
-            "#da4453".to_string(),
-            "NegativeText".to_string(),
-        );
+        map.insert("#232629".to_string(), "Text".to_string());
+        map.insert("#eff0f1".to_string(), "Background".to_string());
+        map.insert("#fcfcfc".to_string(), "ViewBackground".to_string());
+        map.insert("#3daee9".to_string(), "ButtonFocus".to_string());
+        map.insert("#27ae60".to_string(), "PositiveText".to_string());
+        map.insert("#f67400".to_string(), "NeutralText".to_string());
+        map.insert("#da4453".to_string(), "NegativeText".to_string());
 
         self.replace_colours_with_classes(map, true, Some("current-color-scheme".to_string()))
     }
