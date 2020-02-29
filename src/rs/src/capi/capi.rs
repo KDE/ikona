@@ -20,6 +20,7 @@
 
 extern crate ikona;
 
+use std::convert::TryInto;
 use std::ffi::CStr;
 use std::ffi::CString;
 use std::os::raw::c_char;
@@ -27,6 +28,8 @@ use std::ptr;
 
 use ikona::icons::breeze::BreezeIcon;
 use ikona::icons::Icon;
+
+use ikona::icontheme::*;
 
 /*
  *
@@ -199,4 +202,136 @@ pub unsafe extern "C" fn ikona_icon_free(ptr: *mut Icon) {
     assert!(!ptr.is_null());
 
     Box::from_raw(ptr);
+}
+
+/*
+ *
+ *  Icon Themes
+ *
+ */
+
+#[repr(C)]
+pub struct IconThemeList {
+    pub theme_vec: Vec<IconTheme>
+}
+
+#[repr(C)]
+pub struct IconDirectoryList {
+    pub vec: *const Vec<IconDirectory>
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_list_new() -> *mut IconThemeList {
+    let mut list = match IconTheme::icon_themes() {
+        Ok(res) => {
+            let mut icon_theme_list = IconThemeList {
+                theme_vec: res,
+            };
+            Box::new(icon_theme_list)
+        },
+        Err(err) => return ptr::null_mut::<IconThemeList>()
+    };
+
+    Box::into_raw(list)
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_list_free(ptr: *mut IconThemeList) {
+    assert!(!ptr.is_null());
+
+    Box::from_raw(ptr);
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_list_get_length(ptr: *mut IconThemeList) -> u16 {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    theme.theme_vec.len().try_into().unwrap()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_list_get_index(ptr: *mut IconThemeList, index: u16) -> *const IconTheme {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    let mut pointer: *const IconTheme = &theme.theme_vec[usize::from(index)];
+
+    pointer
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_get_name(ptr: *const IconTheme) -> *const c_char {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    CString::new(theme.name.clone()).expect("Failed to create CString").into_raw()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_get_display_name(ptr: *const IconTheme) -> *const c_char {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    CString::new(theme.display_name.clone()).expect("Failed to create CString").into_raw()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_get_directory_list(ptr: *const IconTheme) -> *mut IconDirectoryList {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    Box::into_raw({
+        Box::new({
+            IconDirectoryList {
+                vec: {
+                    let ptr: *const Vec<IconDirectory> = &theme.directories;
+                    ptr
+                }
+            }
+        })
+    })
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_directory_list_free(ptr: *mut IconDirectoryList) {
+    assert!(!ptr.is_null());
+
+    Box::from_raw(ptr);
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_directory_list_get_length(ptr: *mut IconDirectoryList) -> u16 {
+    assert!(!ptr.is_null());
+
+    let directory = &*ptr;
+    let vec = &*directory.vec;
+
+    vec.len().try_into().unwrap()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_directory_list_get_index(ptr: *mut IconDirectoryList, index: u16) -> *const IconDirectory {
+    assert!(!ptr.is_null());
+
+    let directory = &*ptr;
+    let vec = &*directory.vec;
+
+    let mut pointer: *const IconDirectory = &vec[usize::from(index)];
+
+    pointer
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_directory_get_size(ptr: *const IconDirectory) -> i32 {
+    assert!(!ptr.is_null());
+
+    let directory = &*ptr;
+
+    directory.size
 }
