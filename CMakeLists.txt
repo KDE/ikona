@@ -4,7 +4,7 @@ project(ikona LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOUIC OFF) # ki18n integration needs explicit use of ki18n_wrap_ui
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
