@@ -85,7 +85,7 @@
       <caption xml:lang="uk">Вікно вітання Ikona</caption>
       <caption xml:lang="x-test">xxThe welcome screen of Ikonaxx</caption>
       <caption xml:lang="zh-TW">Ikona 的歡迎畫面</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/home-screenshot.png</image>
+      <image type="source">https://cdn.kde.org/screenshots/ikona/home-screenshot.png</image>
     </screenshot>
     <screenshot>
       <caption>The colorful icon view of Ikona</caption>
@@ -103,7 +103,7 @@
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikonaxx</caption>
       <caption xml:lang="zh-TW">Ikona 的彩色圖示檢視</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot.png</image>
+      <image type="source">https://cdn.kde.org/screenshots/ikona/colour-screenshot.png</image>
     </screenshot>
     <screenshot>
       <caption>The colorful icon view of Ikona in dark mode</caption>
@@ -120,7 +120,7 @@
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona у темному режимі</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikona in dark modexx</caption>
       <caption xml:lang="zh-TW">暗色模式中 Ikona 的彩色圖示檢視</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-screenshot-dark.png</image>
+      <image type="source">https://cdn.kde.org/screenshots/ikona/colour-screenshot-dark.png</image>
     </screenshot>
     <screenshot>
       <caption>The color palette of Ikona</caption>
@@ -138,7 +138,7 @@
       <caption xml:lang="uk">Кольорова палітра в Ikona</caption>
       <caption xml:lang="x-test">xxThe color palette of Ikonaxx</caption>
       <caption xml:lang="zh-TW">Ikona 的調色盤</caption>
-      <image type="source">https://invent.kde.org/kde/ikona/blob/master/data/colour-palette-screenshot.png</image>
+      <image type="source">https://cdn.kde.org/screenshots/ikona/colour-palette-screenshot.png</image>
     </screenshot>
   </screenshots>
   <update_contact>
