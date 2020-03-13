@@ -485,7 +485,9 @@ fn pad() {
 }
 
 fn main() {
-    let _ = TextDomain::new("ikonacli").init();
+    setlocale(LocaleCategory::LcAll, "");
+    bindtextdomain("ikonacli", "/usr/share/locale");
+    textdomain("ikonacli");
 
     match app!().get_matches().subcommand_name() {
         Some("optimize") => optimize(),
