@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
-  <img width="19%" src="https://invent.kde.org/kde/ikona/raw/master/data/home-screenshot.png" />  
-  <img width="19%" src="https://invent.kde.org/kde/ikona/raw/master/data/colour-screenshot.png" />  
-  <img width="19%" src="https://invent.kde.org/kde/ikona/raw/master/data/colour-screenshot-dark.png" />  
-  <img width="19%" src="https://invent.kde.org/kde/ikona/raw/master/data/monochrome-screenshot.png" />  
-  <img width="19%" src="https://invent.kde.org/kde/ikona/raw/master/data/colour-palette-screenshot.png" />  
+  <img width="24%" src=https://origin.cdn.kde.org/screenshots/ikona/home-screenshot.png" />  
+  <img width="24%" src=https://origin.cdn.kde.org/screenshots/ikona/colour-screenshot.png" />  
+  <img width="24%" src=https://origin.cdn.kde.org/screenshots/ikona/colour-screenshot-dark.png" />  
+  <!-- <img width="19%" src=https://origin.cdn.kde.org/screenshots/ikona/monochrome-screenshot.png" />  -->
+  <img width="24%" src=https://origin.cdn.kde.org/screenshots/ikona/colour-palette-screenshot.png" />  
 </p>
