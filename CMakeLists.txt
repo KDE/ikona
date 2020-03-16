@@ -13,6 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(GNUInstallDirs)
 
+set(REQUIRED_QT_VERSION 5.13.0)
+
 find_package(Qt5 COMPONENTS Core Widgets Quick REQUIRED)
 find_package(KF5Kirigami2)
 find_package(KF5ConfigWidgets)
