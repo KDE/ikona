@@ -8,10 +8,10 @@ Dependencies for building:
       - gcc (or clang), rustc, cargo
 
 Using the cargo vendor tarball:
-  Place the tarball in the root of the source, renamed to ikona.cargo.vendor.tar.xz.
-  CMake will handle the rest for you.
+  1. Place the tarball in the root of the source, renamed to ikona.cargo.vendor.tar.xz.
+  2. CMake will handle the rest for you.
   
 Splitting the package:
-  {bindir}/ikona and {libdir}/libikonars.so should absolutely never be split. libikonars is only consumed by ikona, and ikona depends on libikonars.
+  - {bindir}/ikona and {libdir}/libikonars.so should absolutely never be split. libikonars is only consumed by ikona, and ikona depends on libikonars.
 
-  {bindir}/ikona-cli can be split freely.
+  - {bindir}/ikona-cli can be split freely.
