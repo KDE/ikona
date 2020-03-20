@@ -40,7 +40,7 @@
   <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
   <summary xml:lang="zh-TW">Ikona 是個能幫助你設計圖示的設計小幫手</summary>
   <description>
-    <p>Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
+      <p>Ikona is a companion application that help you when designing icons. Ikona lets you visualize your icons in an environment similar to a Plasma desktop, access the Breeze color palette and export your icons in multiple sizes.</p>
     <p xml:lang="ca">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="ca-valencia">L'Ikona és un company de disseny per ajudar-vos a dissenyar les icones. Està dissenyat per integrar-se amb l'escriptori Plasma del KDE.</p>
     <p xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos. Ha sido diseñado para integrarse con el escritorio Plasma de KDE.</p>
