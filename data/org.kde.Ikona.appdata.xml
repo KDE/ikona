@@ -6,6 +6,7 @@
   <name>Ikona</name>
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="ca-valencia">Ikona</name>
+  <name xml:lang="cs">Ikona</name>
   <name xml:lang="es">Ikona</name>
   <name xml:lang="fi">Ikona</name>
   <name xml:lang="fr">Ikona</name>
@@ -64,6 +65,7 @@
       <caption>The welcome screen of Ikona</caption>
       <caption xml:lang="ca">La pantalla de benvinguda a l'Ikona</caption>
       <caption xml:lang="ca-valencia">La pantalla de benvinguda a l'Ikona</caption>
+      <caption xml:lang="cs">Úvodní obrazovka Ikona</caption>
       <caption xml:lang="es">La pantalla de bienvenida de Ikona</caption>
       <caption xml:lang="fi">Ikona tervetulonäkymä</caption>
       <caption xml:lang="fr">L'écran de bienvenue d'Ikona</caption>
@@ -81,6 +83,7 @@
       <caption>The colorful icon view of Ikona</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona</caption>
+      <caption xml:lang="cs">Barevný pohled Ikony</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
@@ -113,6 +116,7 @@
       <caption>The color palette of Ikona</caption>
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="ca-valencia">La paleta de colors de l'Ikona</caption>
+      <caption xml:lang="cs">Barevná paleta Ikona</caption>
       <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="fi">Ikonan väripaletti</caption>
       <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
