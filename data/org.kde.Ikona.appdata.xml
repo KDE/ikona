@@ -35,12 +35,19 @@
   <summary xml:lang="pl">Ikona jest towarzyszem projektu pomagającym w projektowaniu ikon</summary>
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
   <summary xml:lang="pt-BR">Ikona é um assistente de design para criação de ícones</summary>
-  <summary xml:lang="sv">Ikona är en designkompanjon för att hjälpa dig designa ikoner</summary>
+  <summary xml:lang="sv">Ikona är en designföljeslagare för att hjälpa dig designa ikoner</summary>
   <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
   <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
   <summary xml:lang="zh-TW">Ikona 是個能幫助你設計圖示的設計小幫手</summary>
   <description>
     <p>Ikona is a companion application that help you when designing icons. Ikona lets you visualize your icons in an environment similar to a Plasma desktop, access the Breeze color palette and export your icons in multiple sizes.</p>
+    <p xml:lang="ca">L'Ikona és una aplicació d'acompanyament que ajuda a dissenyar icones. L'Ikona permet visualitzar les icones a un entorn similar a un escriptori Plasma, accedir a la paleta de color del Breeze i exportar les icones en diverses mides.</p>
+    <p xml:lang="es">Ikona es una aplicación auxiliar que le ayuda a diseñar iconos. Ikona le permite ver los iconos en un entorno similar a un escritorio Plasma, acceder a la paleta de color Brisa y exportar los iconos en diferentes tamaños.</p>
+    <p xml:lang="nl">Ikona is een companion toepassing die u helpt bij het ontwerpen van pictogrammen. Ikona laat u uw pictogrammen zien in een omgeving gelijk aan een Plasma bureaublad, geeft toegang tot het Breeze kleurenpalet en exporteert uw pictogrammen in meerdere grootten.</p>
+    <p xml:lang="pt">O Ikona é uma aplicação auxiliar que o ajuda no desenho dos ícones. O Ikona permite-lhe visualizar os seus ícones num ambiente semelhante a uma área de trabalho do Plasma, aceder à paleta de cores Brisa e exportar os seus ícones com vários tamanhos.</p>
+    <p xml:lang="sv">Ikona är ett följeslagarprogram som hjälper dig vid design av ikoner. Ikona låter dig visualisera dina ikoner i en miljö som liknar ett Plasma-skrivbord, komma åt färgpaletten Breeze och exportera ikoner med olika storlekar.</p>
+    <p xml:lang="uk">Ikona — допоміжна програма, яка полегшить вам створення піктограм. Ikona візуалізує ваші піктограми у середовищі, яке подібне до стільниці Плазми, надає вам доступ до палітри кольорів Breeze та уможливлює експортування створених піктограму у декількох розмірах.</p>
+    <p xml:lang="x-test">xxIkona is a companion application that help you when designing icons. Ikona lets you visualize your icons in an environment similar to a Plasma desktop, access the Breeze color palette and export your icons in multiple sizes.xx</p>
   </description>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
