@@ -28,9 +28,11 @@ ColumnLayout {
     id: iconRoot
 
     property alias source: icon.source
+    property alias iconVisible: icon.visible
     property int size: 48
     property bool showLabel: false
     property bool showCheckbox: false
+    property bool resetOnDrag: false
     property alias checked: checkbox.checked
     property alias labelColor: label.color
 
@@ -64,14 +66,22 @@ ColumnLayout {
         Drag.mimeData: { "text/uri-list": "file://"+icon.source }
         Drag.dragType: Drag.Automatic
 
+        onSourceChanged: {
+            icon.visible = true
+        }
+
         Drag.onDragStarted: {
             icon.prevX = icon.x
             icon.prevY = icon.y
         }
         Drag.onDragFinished: (dropAction) => {
-            icon.visible = false
-            AppIcon.refreshIcon()
-            icon.visible = true
+            if (iconRoot.resetOnDrag) {
+                icon.visible = false
+            } else {
+                icon.visible = false
+                AppIcon.refreshIcon()
+                icon.visible = true
+            }
         }
     }
     Label {

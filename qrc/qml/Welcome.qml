@@ -70,6 +70,12 @@ Kirigami.OverlayDrawer {
                     IconThemeBrowser.visible = true
                 }
             }
+            Button {
+                text: i18nc("Opens the view allowing users to process icons", "Icon Processor")
+                onClicked: {
+                    Processor.visible = true
+                }
+            }
 
             Layout.fillWidth: true
         }
