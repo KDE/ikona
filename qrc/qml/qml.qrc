@@ -12,5 +12,8 @@
         <file>ColourPalette.qml</file>
         <file>ExportDialogColour.qml</file>
         <file>ColorBlock.qml</file>
+        <file>IconThemeBrowser.qml</file>
+        <file>InfoToolTip.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

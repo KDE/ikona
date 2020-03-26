@@ -64,6 +64,12 @@ Kirigami.OverlayDrawer {
                     drawerRoot.close()
                 }
             }
+            Button {
+                text: i18nc("Opens the view displaying colourful icons", "Icon Theme Browser")
+                onClicked: {
+                    IconThemeBrowser.visible = true
+                }
+            }
 
             Layout.fillWidth: true
         }
