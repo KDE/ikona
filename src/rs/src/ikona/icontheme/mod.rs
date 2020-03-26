@@ -57,6 +57,7 @@ pub struct ThemeIcon {
 pub struct IconTheme {
     pub name: String,
     pub display_name: String,
+    pub root_path: String,
     pub directories: Vec<IconDirectory>,
 }
 
@@ -151,6 +152,7 @@ impl IconTheme {
             }
         };
 
+        icon_theme.root_path = path.clone();
         let index_theme: Ini = match Ini::load_from_file(pathbuf.clone()) {
             Ok(ini) => ini,
             Err(err) => {
@@ -289,10 +291,10 @@ impl IconTheme {
                                 Ok(val) => Some(val),
                                 Err(err) => {
                                     warn!("Error on line {}: {:#?}", line!(), err);
-                                    None
+                                    Some(2)
                                 }
                             },
-                            None => None,
+                            None => Some(2),
                         },
                     }),
                     _ => None,
@@ -365,7 +367,10 @@ impl IconTheme {
         let mut theme: Vec<IconTheme> = Vec::new();
 
         for path in search_path {
-            let icon_theme = IconTheme::load_from_path(path)?;
+            let icon_theme = match IconTheme::load_from_path(path) {
+                Ok(theme) => theme,
+                Err(err) => continue,
+            };
             theme.push(icon_theme);
         }
 

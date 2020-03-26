@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -33,11 +35,26 @@ typedef const void* IkonaThemeDirectory;
 typedef void* IkonaThemeIconList;
 typedef const void* IkonaThemeIcon;
 typedef enum {
-  Scalable,
-  Threshold,
-  Fixed,
-  None,
+  ScalableType,
+  ThresholdType,
+  FixedType,
+  NoType,
 } IkonaDirectoryType;
+typedef enum {
+  ActionsContext,
+  AnimationsContext,
+  AppsContext,
+  CategoriesContext,
+  DevicesContext,
+  EmblemsContext,
+  EmotesContext,
+  FilesystemsContext,
+  InternationalContext,
+  MimetypesContext,
+  PlacesContext,
+  StatusContext,
+  NoContext
+} IkonaDirectoryContext;
 
 void ikona_string_free(char* string);
 
@@ -49,6 +66,7 @@ IkonaTheme ikona_theme_list_get_index(IkonaThemeList list, uint16_t index);
 
 char* ikona_theme_get_name(IkonaTheme theme);
 char* ikona_theme_get_display_name(IkonaTheme theme);
+char* ikona_theme_get_root_path(IkonaTheme theme);
 
 IkonaDirectoryList ikona_theme_get_directory_list(IkonaTheme theme);
 void ikona_theme_directory_list_free(IkonaDirectoryList list);
@@ -59,6 +77,7 @@ IkonaThemeDirectory ikona_theme_directory_list_get_index(IkonaDirectoryList list
 int ikona_theme_directory_get_size(IkonaThemeDirectory directory);
 int ikona_theme_directory_get_scale(IkonaThemeDirectory directory);
 IkonaDirectoryType ikona_theme_directory_get_type(IkonaThemeDirectory directory);
+IkonaDirectoryContext ikona_theme_directory_get_context(IkonaThemeDirectory directory);
 
 int ikona_theme_directory_get_threshold(IkonaThemeDirectory directory);
 

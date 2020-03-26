@@ -30,6 +30,7 @@
 
 #include "icon.h"
 #include "manager.h"
+#include "thememodel.h"
 
 #include "ikonars.h"
 
@@ -82,6 +83,16 @@ auto main(int argc, char *argv[]) -> int
         AppIcon *obj = new AppIcon();
         return obj;
     });
+    qmlRegisterSingletonType<ThemeModel>("org.kde.Ikona", 1, 0, "ThemeModel", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+
+        ThemeModel *obj = new ThemeModel();
+        return obj;
+    });
+    qmlRegisterUncreatableType<Icon>("org.kde.Ikona", 1, 0, "ThemeIcon", "ThemeIcon can only be accessed through the ThemeModel");
+    qmlRegisterUncreatableType<IconTheme>("org.kde.Ikona", 1, 0, "IconTheme", "IconTheme can only be accessed through the ThemeModel");
+    qmlRegisterUncreatableType<IconDirectory>("org.kde.Ikona", 1, 0, "IconDirectory", "IconDirectory can only be accessed through the ThemeModel");
 
     QApplication::setWindowIcon(QIcon::fromTheme(QString("org.kde.Ikona")));
 

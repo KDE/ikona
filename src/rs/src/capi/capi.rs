@@ -234,6 +234,23 @@ pub enum IkonaDirectoryType {
 }
 
 #[repr(C)]
+pub enum IkonaDirectoryContext {
+    Actions,
+    Animations,
+    Apps,
+    Categories,
+    Devices,
+    Emblems,
+    Emotes,
+    Filesystems,
+    International,
+    Mimetypes,
+    Places,
+    Status,
+    None
+}
+
+#[repr(C)]
 pub struct IkonaDirectoryTypeData {
     pub dir_type: *const IconDirectoryType,
 }
@@ -247,7 +264,10 @@ pub unsafe extern "C" fn ikona_theme_list_new() -> *mut IkonaThemeList {
             };
             Box::new(icon_theme_list)
         },
-        Err(err) => return ptr::null_mut::<IkonaThemeList>()
+        Err(err) => {
+            println!("Error: {:?}", err);
+            return ptr::null_mut::<IkonaThemeList>();
+        }
     };
 
     Box::into_raw(list)
@@ -278,6 +298,15 @@ pub unsafe extern "C" fn ikona_theme_list_get_index(ptr: *mut IkonaThemeList, in
     let mut pointer: *const IconTheme = &theme.theme_vec[usize::from(index)];
 
     pointer
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_get_root_path(ptr: *const IconTheme) -> *mut c_char {
+    assert!(!ptr.is_null());
+
+    let theme = &*ptr;
+
+    CString::new(theme.root_path.clone()).expect("Failed to create CString").into_raw()
 }
 
 #[no_mangle]
@@ -432,6 +461,29 @@ pub unsafe extern "C" fn ikona_theme_directory_get_location(ptr: *const IconDire
     let directory = &*ptr;
 
     CString::new(directory.location.clone()).expect("Failed to create CString").into_raw()
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_theme_directory_get_context(ptr: *const IconDirectory) -> IkonaDirectoryContext {
+    assert!(!ptr.is_null());
+
+    let directory = &*ptr;
+
+    match directory.context {
+        Some(IconContext::Actions) => IkonaDirectoryContext::Actions,
+        Some(IconContext::Animations) => IkonaDirectoryContext::Animations,
+        Some(IconContext::Apps) => IkonaDirectoryContext::Apps,
+        Some(IconContext::Categories) => IkonaDirectoryContext::Categories,
+        Some(IconContext::Devices) => IkonaDirectoryContext::Devices,
+        Some(IconContext::Emblems) => IkonaDirectoryContext::Emblems,
+        Some(IconContext::Emotes) => IkonaDirectoryContext::Emotes,
+        Some(IconContext::Filesystems) => IkonaDirectoryContext::Filesystems,
+        Some(IconContext::International) => IkonaDirectoryContext::International,
+        Some(IconContext::Mimetypes) => IkonaDirectoryContext::Mimetypes,
+        Some(IconContext::Places) => IkonaDirectoryContext::Places,
+        Some(IconContext::Status) => IkonaDirectoryContext::Status,
+        None => IkonaDirectoryContext::None,
+    }
 }
 
 #[no_mangle]

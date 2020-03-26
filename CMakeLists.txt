@@ -50,6 +50,7 @@ add_custom_command(
   OUTPUT "${RUST_LIB}"
   COMMAND ${Cargo} build ${RUST_BUILD_FLAG}
   DEPENDS src/rs/src/ikona/icons/mod.rs
+          src/rs/src/ikona/icontheme/mod.rs
           src/rs/src/ikona/icons/tests.rs
           src/rs/src/ikona/lib.rs
           src/rs/src/capi/capi.rs
@@ -76,7 +77,7 @@ FILE(GLOB_RECURSE HEADERS "include/*.h")
 
 include_directories(include)
 
-add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/manip.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
+add_executable(ikona src/main.cpp src/manager.cpp src/icon.cpp src/manip.cpp src/thememodel.cpp qrc/qml/qml.qrc qrc/img/img.qrc ${HEADERS})
 
 add_dependencies(ikona rust_target)
 
