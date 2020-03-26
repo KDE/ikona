@@ -20,12 +20,14 @@ QString IconManipulator::processIconInternal(const QString& inPath, IconKind typ
     if (icon == nullptr) {
         return QString("");
     }
-    auto manip = ikona_icon_extract_subicon_by_id(icon, idToExtractCStr, targetSize);
+    auto transparent = ikona_icon_inject_stylesheet(icon, "#layer2 { opacity: 0; }");
+    auto manip = ikona_icon_crop_to_subicon(transparent, idToExtractCStr, targetSize);
     auto classed = ikona_icon_class_as_light(manip);
     const char* manipulated = ikona_icon_read_to_string(classed);
     
     QString manipulatedString(manipulated);
 
+    ikona_icon_free(transparent);
     ikona_icon_free(icon);
     ikona_icon_free(manip);
     ikona_icon_free(classed);

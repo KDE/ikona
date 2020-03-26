@@ -23,6 +23,8 @@ IkonaIcon ikona_icon_class_as_dark(IkonaIcon icon);
 char* ikona_icon_read_to_string(IkonaIcon icon);
 
 IkonaIcon ikona_icon_extract_subicon_by_id(IkonaIcon icon, const char* id, int target_size);
+IkonaIcon ikona_icon_crop_to_subicon(IkonaIcon icon, const char* id, int target_size);
+IkonaIcon ikona_icon_inject_stylesheet(IkonaIcon icon, const char* stylesheet);
 
 void ikona_icon_free(IkonaIcon icon);
 

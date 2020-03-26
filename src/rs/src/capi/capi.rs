@@ -198,6 +198,51 @@ pub unsafe extern "C" fn ikona_icon_extract_subicon_by_id(
 }
 
 #[no_mangle]
+pub unsafe extern "C" fn ikona_icon_crop_to_subicon(
+    ptr: *mut Icon,
+    id: *mut c_char,
+    target_size: i32,
+) -> *mut Icon {
+    assert!(!ptr.is_null());
+    assert!(!id.is_null());
+
+    let id_string = CStr::from_ptr(id).to_str().unwrap();
+
+    let icon = &*ptr;
+
+    let proc = match icon.crop_to_subicon(id_string, target_size) {
+        Ok(icon) => icon,
+        Err(_) => return ptr::null_mut::<Icon>(),
+    };
+    
+    let boxed: Box<Icon> = Box::new(proc);
+
+    Box::into_raw(boxed)
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn ikona_icon_inject_stylesheet(
+    ptr: *mut Icon,
+    stylesheet: *mut c_char,
+) -> *mut Icon {
+    assert!(!ptr.is_null());
+    assert!(!stylesheet.is_null());
+
+    let stylesheet_string = CStr::from_ptr(stylesheet).to_str().unwrap();
+
+    let icon = &*ptr;
+
+    let proc = match icon.inject_stylesheet(stylesheet_string.to_string(), None) {
+        Ok(icon) => icon,
+        Err(_) => return ptr::null_mut::<Icon>(),
+    };
+    
+    let boxed: Box<Icon> = Box::new(proc);
+
+    Box::into_raw(boxed)
+}
+
+#[no_mangle]
 pub unsafe extern "C" fn ikona_icon_free(ptr: *mut Icon) {
     assert!(!ptr.is_null());
 
