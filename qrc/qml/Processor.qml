@@ -31,6 +31,12 @@ Kirigami.ApplicationWindow {
     height: 150
     width: 300
 
+    maximumHeight: height
+    maximumWidth: width
+
+    minimumHeight: height
+    minimumWidth: width
+
     title: i18n("Icon Processor")
 
     ColumnLayout {
@@ -51,7 +57,7 @@ Kirigami.ApplicationWindow {
 
                     anchors.centerIn: parent
 
-                    source: Manipulator.input
+                    source: Manipulator.plural ? "folder" : Manipulator.input
                 }
 
                 Rectangle {
@@ -80,7 +86,14 @@ Kirigami.ApplicationWindow {
                     }
                     onDropped: (s) => {
                         if (s.hasUrls) {
-                            Manipulator.input = s.urls[0]
+                            if (s.urls.length > 1) {
+                                Manipulator.plural = true
+                                Manipulator.inputs = s.urls.map(x => x.toString())
+                                output.iconVisible = false
+                            } else {
+                                Manipulator.plural = false
+                                Manipulator.input = s.urls[0]
+                            }
                         }
                     }
                 }
@@ -124,7 +137,7 @@ Kirigami.ApplicationWindow {
                     anchors.centerIn: parent
 
                     resetOnDrag: true
-                    source: Manipulator.output
+                    source: Manipulator.plural ? "folder" : Manipulator.output
                 }
                 BusyIndicator {
                     id: indicator
@@ -142,6 +155,12 @@ Kirigami.ApplicationWindow {
             target: Manipulator
             onOutputChanged: {
                 indicator.visible = false
+                output.multipleSources = []
+            }
+            onOutputsChanged: {
+                indicator.visible = false
+                output.iconVisible = true
+                output.multipleSources = Manipulator.outputs
             }
         }
         ComboBox {
