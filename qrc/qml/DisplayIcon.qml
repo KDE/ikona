@@ -73,9 +73,7 @@ ColumnLayout {
         Drag.dragType: Drag.Automatic
 
         onSourceChanged: {
-            if (multipleSources.length != 0) {
-                icon.visible = true
-            }
+            icon.visible = true
         }
 
         Drag.onDragStarted: {
