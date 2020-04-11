@@ -31,6 +31,7 @@
 #include "icon.h"
 #include "manager.h"
 #include "thememodel.h"
+#include "manip.h"
 
 #include "ikonars.h"
 
@@ -90,6 +91,7 @@ auto main(int argc, char *argv[]) -> int
         ThemeModel *obj = new ThemeModel();
         return obj;
     });
+    qmlRegisterSingletonType<IconManipulator>("org.kde.Ikona", 1, 0, "Manipulator", [](QQmlEngine*, QJSEngine*) -> QObject* { return new IconManipulator; });
     qmlRegisterUncreatableType<Icon>("org.kde.Ikona", 1, 0, "ThemeIcon", "ThemeIcon can only be accessed through the ThemeModel");
     qmlRegisterUncreatableType<IconTheme>("org.kde.Ikona", 1, 0, "IconTheme", "IconTheme can only be accessed through the ThemeModel");
     qmlRegisterUncreatableType<IconDirectory>("org.kde.Ikona", 1, 0, "IconDirectory", "IconDirectory can only be accessed through the ThemeModel");

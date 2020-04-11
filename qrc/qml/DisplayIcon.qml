@@ -28,9 +28,12 @@ ColumnLayout {
     id: iconRoot
 
     property alias source: icon.source
+    property alias iconVisible: icon.visible
     property int size: 48
     property bool showLabel: false
     property bool showCheckbox: false
+    property bool resetOnDrag: false
+    property var multipleSources: []
     property alias checked: checkbox.checked
     property alias labelColor: label.color
 
@@ -47,7 +50,7 @@ ColumnLayout {
         MouseArea {
             id: mouseArea
             anchors.fill: parent
-            enabled: icon.source.startsWith("/")
+            enabled: icon.source.startsWith("/") || iconRoot.multipleSources.length != 0
 
             drag.target: parent
             onPressed: parent.grabToImage(function(result) {
@@ -61,17 +64,30 @@ ColumnLayout {
         
         Drag.supportedActions: Qt.CopyAction
         
-        Drag.mimeData: { "text/uri-list": "file://"+icon.source }
+        Drag.mimeData: {
+            if (iconRoot.multipleSources.length == 0)
+                return { "text/uri-list": "file://"+icon.source }
+            else
+                return { "text/uri-list": iconRoot.multipleSources.map(x => "file://%1".arg(x)) }
+        }
         Drag.dragType: Drag.Automatic
+
+        onSourceChanged: {
+            icon.visible = true
+        }
 
         Drag.onDragStarted: {
             icon.prevX = icon.x
             icon.prevY = icon.y
         }
         Drag.onDragFinished: (dropAction) => {
-            icon.visible = false
-            AppIcon.refreshIcon()
-            icon.visible = true
+            if (iconRoot.resetOnDrag) {
+                icon.visible = false
+            } else {
+                icon.visible = false
+                AppIcon.refreshIcon()
+                icon.visible = true
+            }
         }
     }
     Label {
