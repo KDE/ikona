@@ -15,7 +15,7 @@ include(GNUInstallDirs)
 
 set(REQUIRED_QT_VERSION 5.13.0)
 
-find_package(Qt5 COMPONENTS Core Widgets Quick REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets Quick Concurrent REQUIRED)
 find_package(KF5Kirigami2)
 find_package(KF5ConfigWidgets)
 find_package(KF5I18n)
@@ -84,7 +84,7 @@ add_dependencies(ikona rust_target)
 target_compile_definitions(ikona
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(ikona
-  PRIVATE Qt5::Core Qt5::Widgets Qt5::Quick KF5::I18n KF5::Kirigami2 KF5::ConfigWidgets ${RUST_LIB})
+  PRIVATE Qt5::Core Qt5::Widgets Qt5::Quick Qt5::Concurrent KF5::I18n KF5::Kirigami2 KF5::ConfigWidgets ${RUST_LIB})
 
 install(TARGETS ikona DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${RUST_LIB} DESTINATION ${CMAKE_INSTALL_LIBDIR})

@@ -39,6 +39,7 @@ Kirigami.ApplicationWindow {
     Welcome { id: welc }
 
     Component.onCompleted: {
+        Manipulator.plural = false
         AppIcon.setIcon("qrc:/ikona.svg")
     }
 

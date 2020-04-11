@@ -1,1 +1,2 @@
 singleton IconThemeBrowser 1.0 IconThemeBrowser.qml
+singleton Processor 1.0 Processor.qml
