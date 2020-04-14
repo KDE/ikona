@@ -14,6 +14,7 @@
   <name xml:lang="fr">Ikona</name>
   <name xml:lang="id">Ikona</name>
   <name xml:lang="it">Ikona</name>
+  <name xml:lang="ko">Ikona</name>
   <name xml:lang="nl">Ikona</name>
   <name xml:lang="pl">Ikona</name>
   <name xml:lang="pt">Ikona</name>
@@ -33,6 +34,7 @@
   <summary xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
   <summary xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone</summary>
+  <summary xml:lang="ko">Ikona는 아이콘 디자인 도우미입니다</summary>
   <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
   <summary xml:lang="pl">Ikona jest towarzyszem projektu pomagającym w projektowaniu ikon</summary>
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
@@ -48,6 +50,8 @@
     <p xml:lang="en-GB">Ikona is a companion application that help you when designing icons. Ikona lets you visualise your icons in an environment similar to a Plasma desktop, access the Breeze colour palette and export your icons in multiple sizes.</p>
     <p xml:lang="es">Ikona es una aplicación auxiliar que le ayuda a diseñar iconos. Ikona le permite ver los iconos en un entorno similar a un escritorio Plasma, acceder a la paleta de color Brisa y exportar los iconos en diferentes tamaños.</p>
     <p xml:lang="et">Ikona on abirakendus hõlbustamaks ikoonide kujundamist. Ikona võimaldab ikoone visualiseerida Plasma töölauale sarnanevas keskkonnas, kasutada Breeze'i värvipaletti ja eksportida ikoone mitmes suuruses.</p>
+    <p xml:lang="it">Ikona è un'applicazione di utilità che ti aiuta nella progettazione di icone. Ti consente di visualizzare le tue icone in un ambiente simile ad un desktop Plasma, di accedere alla tavolozza dei colori Breeze e di esportare le tue icone in più dimensioni.</p>
+    <p xml:lang="ko">Ikona는 아이콘 디자인 도우미 프로그램입니다. Plasma 데스크톱과 같은 환경에서의 아이콘을 볼 수 있으며, Breeze 색 팔레트에 접근하고 다양한 크기로 아이콘을 내보냅니다.</p>
     <p xml:lang="nl">Ikona is een companion toepassing die u helpt bij het ontwerpen van pictogrammen. Ikona laat u uw pictogrammen zien in een omgeving gelijk aan een Plasma bureaublad, geeft toegang tot het Breeze kleurenpalet en exporteert uw pictogrammen in meerdere grootten.</p>
     <p xml:lang="pt">O Ikona é uma aplicação auxiliar que o ajuda no desenho dos ícones. O Ikona permite-lhe visualizar os seus ícones num ambiente semelhante a uma área de trabalho do Plasma, aceder à paleta de cores Brisa e exportar os seus ícones com vários tamanhos.</p>
     <p xml:lang="pt-BR">O Ikona é um aplicativo complementar que ajuda você na criação de ícones. O Ikona permite visualizar seus ícones em um ambiente semelhante a uma área de trabalho Plasma, acessar a paleta de cores Breeze e exportar seus ícones em vários tamanhos.</p>
@@ -77,6 +81,7 @@
       <caption xml:lang="fi">Ikona tervetulonäkymä</caption>
       <caption xml:lang="fr">L'écran de bienvenue d'Ikona</caption>
       <caption xml:lang="it">La schermata di benvenuto di Ikona</caption>
+      <caption xml:lang="ko">Ikona 환영 화면</caption>
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="pt-BR">A tela de boas-vindas do Ikona</caption>
@@ -96,6 +101,7 @@
       <caption xml:lang="et">Ikona värviline ikoonivaade</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
+      <caption xml:lang="ko">Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona</caption>
@@ -114,6 +120,7 @@
       <caption xml:lang="et">Ikona värviline ikoonivaade tumedas režiimis</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä tummassa tilassa</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona in modalità scura</caption>
+      <caption xml:lang="ko">어두운 모드에서의 Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona no modo escuro</caption>
@@ -133,6 +140,7 @@
       <caption xml:lang="et">Ikona värvipalett</caption>
       <caption xml:lang="fi">Ikonan väripaletti</caption>
       <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
+      <caption xml:lang="ko">Ikona 색 팔레트</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="pt-BR">A paleta de cores do Ikona</caption>
