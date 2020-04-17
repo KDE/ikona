@@ -19,6 +19,22 @@ find_package(Qt5 COMPONENTS Core Widgets Quick Concurrent REQUIRED)
 find_package(KF5Kirigami2)
 find_package(KF5ConfigWidgets)
 find_package(KF5I18n)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(cairo REQUIRED IMPORTED_TARGET cairo)
+pkg_check_modules(cairo-png REQUIRED IMPORTED_TARGET cairo-png)
+pkg_check_modules(cairo-gobject REQUIRED IMPORTED_TARGET cairo-gobject)
+pkg_check_modules(fontconfig REQUIRED IMPORTED_TARGET fontconfig)
+pkg_check_modules(freetype2 REQUIRED IMPORTED_TARGET freetype2)
+pkg_check_modules(gdk-pixbuf-2.0 REQUIRED IMPORTED_TARGET gdk-pixbuf-2.0)
+pkg_check_modules(gio-2.0 REQUIRED IMPORTED_TARGET gio-2.0)
+pkg_check_modules(gio-unix-2.0 REQUIRED IMPORTED_TARGET gio-unix-2.0)
+pkg_check_modules(glib-2.0 REQUIRED IMPORTED_TARGET glib-2.0)
+pkg_check_modules(gmodule-2.0 REQUIRED IMPORTED_TARGET gmodule-2.0)
+pkg_check_modules(gthread-2.0 REQUIRED IMPORTED_TARGET gthread-2.0)
+pkg_check_modules(libxml-2.0 REQUIRED IMPORTED_TARGET libxml-2.0)
+pkg_check_modules(pangocairo REQUIRED IMPORTED_TARGET pangocairo)
+pkg_check_modules(pangoft2 REQUIRED IMPORTED_TARGET pangoft2)
 
 # rust
 
@@ -38,7 +54,7 @@ if(withsvgcleaner)
 endif()
 
 SET(RUST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/rs")
-SET(RUST_LIB "${RUST_DIR}/${RUST_TARGET_DIR}/libikonars.so")
+SET(RUST_LIB "${RUST_DIR}/${RUST_TARGET_DIR}/libikonars.a")
 SET(RUST_BIN "${RUST_DIR}/${RUST_TARGET_DIR}/ikona-cli")
 SET(ZSH_COMPL "${RUST_DIR}/${RUST_TARGET_DIR}/_ikona-cli")
 SET(BASH_COMPL "${RUST_DIR}/${RUST_TARGET_DIR}/ikona-cli.bash")
@@ -84,7 +100,15 @@ add_dependencies(ikona rust_target)
 target_compile_definitions(ikona
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(ikona
-  PRIVATE Qt5::Core Qt5::Widgets Qt5::Quick Qt5::Concurrent KF5::I18n KF5::Kirigami2 KF5::ConfigWidgets ${RUST_LIB})
+  PRIVATE dl pthread 
+    Qt5::Core Qt5::Widgets Qt5::Quick Qt5::Concurrent
+    KF5::I18n KF5::Kirigami2 KF5::ConfigWidgets PkgConfig::cairo
+    PkgConfig::cairo-png PkgConfig::cairo-gobject PkgConfig::fontconfig
+    PkgConfig::freetype2 PkgConfig::gdk-pixbuf-2.0 PkgConfig::gio-2.0
+    PkgConfig::gio-unix-2.0 PkgConfig::glib-2.0 PkgConfig::gmodule-2.0
+    PkgConfig::gthread-2.0 PkgConfig::libxml-2.0 PkgConfig::pangocairo
+    PkgConfig::pangoft2 
+  ${RUST_LIB})
 
 install(TARGETS ikona DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${RUST_LIB} DESTINATION ${CMAKE_INSTALL_LIBDIR})
