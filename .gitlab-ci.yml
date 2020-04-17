@@ -2,23 +2,49 @@ image: "rust:latest"
 
 before_script:
   - apt-get update -yqq
-  - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev oxygen-icon-theme
+  - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev oxygen-icon-theme cmake clang-tidy
+  - apt-get install -yqq --no-install-recommends libkf5configwidgets-dev libkf5kirigami-dev libkf5plasma-dev libkf5i18n-dev
   - rustup component add clippy
 
 stages:
+  - build
   - test
   - lint
+  
+cargo_build:
+  stage: build
+  script:
+    - pushd src/rs
+    - cargo build
+    - popd
+    
+cmake_build:
+  stage: build
+  script:
+    - mkdir _build
+    - pushd _build
+    - cmake ..
+    - make -j8
+    - popd
 
 cargo_test:
   stage: test
   script:
-    - cd src/rs
+    - pushd src/rs
     - rustc --version && cargo --version  # Print version info for debugging
     - cargo test --all --verbose
+    - popd
+
+clang_tidy:
+  allow_failure: true
+  stage: lint
+  script:
+  - clang-tidy src/* -p _build -warnings-as-errors=\*
 
 clippy:
   allow_failure: true
   stage: lint
   script:
-  - cd src/rs
+  - pushd src/rs
   - cargo clippy -- -D warnings
+  - popd
