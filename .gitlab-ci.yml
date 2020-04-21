@@ -3,7 +3,7 @@ image: "rust:latest"
 before_script:
   - apt-get update -yqq
   - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev oxygen-icon-theme cmake clang-tidy
-  - apt-get install -yqq --no-install-recommends libkf5configwidgets-dev kirigami2-dev libkf5plasma-dev libkf5i18n-dev
+  - apt-get install -yqq --no-install-recommends qt5base-dev qtdeclarative5-dev libkf5configwidgets-dev kirigami2-dev libkf5plasma-dev libkf5i18n-dev libcairo2-dev libfontconfig1-dev libfreetype6-dev libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-dev libpango1.0-dev
   - rustup component add clippy
 
 stages:
