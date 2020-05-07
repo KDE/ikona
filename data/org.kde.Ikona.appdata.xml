@@ -29,6 +29,7 @@
   <summary xml:lang="en-GB">Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos</summary>
   <summary xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita</summary>
+  <summary xml:lang="fr">Ikona est un outil de conception pour vous aider dans la conception d'icônes.</summary>
   <summary xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon</summary>
   <summary xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone</summary>
   <summary xml:lang="ko">Ikona는 아이콘 디자인 도우미입니다</summary>
@@ -46,6 +47,7 @@
     <p xml:lang="en-GB">Ikona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.</p>
     <p xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos. Ha sido diseñado para integrarse con el escritorio Plasma de KDE.</p>
     <p xml:lang="fi">Ikona on suunnitteluavustaja suunnitellessasi kuvakkeita. Se on tehty integroitumaan KDE Plasma -työpöydälle.</p>
+    <p xml:lang="fr">Ikona est un outil de conception pour vous aider dans la conception d'icônes. Il est conçu pour s'intégrer avec le bureau KDE Plasma.</p>
     <p xml:lang="id">Ikona adalah sebuah pendamping desain untuk membantu kamu mendesain ikon-ikon. Ini dirancang untuk mengintegrasikan dengan desktop KDE Plasma.</p>
     <p xml:lang="it">Ikona è un compagno di disegno che ti aiuta a disegnare le icone. È progettato per integrarsi con il desktop KDE Plasma.</p>
     <p xml:lang="ko">Ikona는 아이콘 디자인 도우미입니다. KDE Plasma 데스크톱과 통합됩니다.</p>
@@ -96,6 +98,7 @@
       <caption xml:lang="en-GB">The colourful icon view of Ikona</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä</caption>
+      <caption xml:lang="fr">L'affichage des icônes colorées d'Ikona</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
       <caption xml:lang="ko">Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
@@ -114,6 +117,7 @@
       <caption xml:lang="en-GB">The colourful icon view of Ikona in dark mode</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="fi">Ikonan värikäs kuvakenäkymä tummassa tilassa</caption>
+      <caption xml:lang="fr">L'affichage des icônes colorées d'Ikona en mode sombre</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona in modalità scura</caption>
       <caption xml:lang="ko">어두운 모드에서의 Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
@@ -133,6 +137,7 @@
       <caption xml:lang="en-GB">The colour palette of Ikona</caption>
       <caption xml:lang="es">La paleta de colores de Ikona</caption>
       <caption xml:lang="fi">Ikonan väripaletti</caption>
+      <caption xml:lang="fr">La palette de couleurs d'Ikona</caption>
       <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
       <caption xml:lang="ko">Ikona 색 팔레트</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
