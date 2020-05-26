@@ -23,11 +23,11 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.13
 import QtQuick.Dialogs 1.3
 
-import org.kde.kirigami 2.12 as Kirigami
+import org.kde.kirigami 2.13 as Kirigami
 
 import org.kde.Ikona 1.0
 
-Kirigami.ApplicationWindow {
+Kirigami.RouterWindow {
     id: browseRoot
     visible: false
 
@@ -119,13 +119,13 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    Component {
-        id: iconComponent
+    Kirigami.PageRoute {
+        name: "folder"
 
         Kirigami.ScrollablePage {
             id: iconComponentRoot
 
-            property var directory
+            property var directory: Kirigami.PageRouter.data
 
             topPadding: 0
             leftPadding: 0
@@ -387,13 +387,19 @@ Kirigami.ApplicationWindow {
                             implicitWidth: iconComponentRoot.directory.displaySize()+(Kirigami.Units.largeSpacing*2)
 
                             Kirigami.Icon {
+                                id: icon
                                 source: modelData.location
                                 anchors.centerIn: parent
                                 width: iconComponentRoot.directory.displaySize()
                                 height: iconComponentRoot.directory.displaySize()
                             }
 
-                            color: "#8f8f8f"
+                            Kirigami.ImageColors {
+                                id: palette
+                                source: icon
+                            }
+
+                            color: palette.paletteBrightness == Kirigami.ColorUtils.Light ? "#101114" : "#fcffff"
                             Layout.alignment: Qt.AlignHCenter
                         }
 
@@ -411,32 +417,20 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    Component {
-        id: directoryComponent
+    Kirigami.PageRoute {
+        name: "folders"
 
         Kirigami.ScrollablePage {
-            id: componentRoot
-
-            property var theme
-
-            title: i18nc("theme name (folder name)", "%1 (%2)").arg(theme.displayName).arg(theme.name)
-
-            onThemeChanged: {
-                componentRoot.title = i18nc("theme name (folder name)", "%1 (%2)").arg(componentRoot.theme.displayName).arg(componentRoot.theme.name)
-                listView.model = theme.iconDirectories
-                listView.forceLayout()
-            }
+            title: i18nc("theme name (folder name)", "%1 (%2)").arg(Kirigami.PageRouter.data.displayName).arg(Kirigami.PageRouter.data.name)
 
             Kirigami.CardsListView {
                 id: listView
+                model: Kirigami.PageRouter.data.iconDirectories
+
                 delegate: Kirigami.AbstractCard {
                     showClickFeedback: true
                     down: browseRoot.pageStack.lastItem.directory == modelData
-                    onClicked: {
-                        let obj = iconComponent.createObject()
-                        obj.directory = modelData
-                        pageStack.push(obj)
-                    }
+                    onClicked: Kirigami.PageRouter.pushFromHere({"route": "folder", "data": modelData})
                     contentItem: Item {
                         implicitWidth: delegateLayout.implicitWidth
                         implicitHeight: delegateLayout.implicitHeight
@@ -504,43 +498,31 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    pageStack.defaultColumnWidth: Kirigami.Units.gridUnit*35
+    initialRoute: "home"
 
-    pageStack.initialPage: Kirigami.ScrollablePage {
-        id: initial
-        title: i18n("Icon Themes")
+    Kirigami.PageRoute {
+        name: "home"
+        Kirigami.ScrollablePage {
+            title: i18n("Icon Themes")
 
-        ListView {
-            model: ThemeModel
-            delegate: Kirigami.SwipeListItem {
-                checked: {
-                    if (browseRoot.pageStack.lastItem == initial) {
-                        return false
+            ListView {
+                model: ThemeModel
+                delegate: Kirigami.SwipeListItem {
+                    Kirigami.PageRouter.watchedRoute: ["home", {"route": "folders", "data": iconTheme}]
+                    checked: Kirigami.PageRouter.watchedRouteActive
+
+                    Label {
+                        text: i18nc("theme name (folder name)", "%1 (%2)").arg(iconTheme.displayName).arg(iconTheme.name)
                     }
-                    if (browseRoot.pageStack.lastItem.hasOwnProperty('directory')) {
-                        return browseRoot.pageStack.lastItem.directory.parentTheme() == iconTheme
-                    }
-                    if (browseRoot.pageStack.lastItem.hasOwnProperty('theme')) {
-                        return browseRoot.pageStack.lastItem.theme == iconTheme
-                    }
-                    return false
-                }
 
-                Label {
-                    text: i18nc("theme name (folder name)", "%1 (%2)").arg(iconTheme.displayName).arg(iconTheme.name)
-                }
+                    actions: [
+                        Kirigami.Action {
+                            icon.name: "document-open"
+                            onTriggered: Qt.openUrlExternally("file://"+iconTheme.rootPath)
+                        }
+                    ]
 
-                actions: [
-                    Kirigami.Action {
-                        icon.name: "document-open"
-                        onTriggered: Qt.openUrlExternally("file://"+iconTheme.rootPath)
-                    }
-                ]
-
-                onClicked: {
-                    let obj = directoryComponent.createObject()
-                    obj.theme = iconTheme
-                    pageStack.push(obj)
+                    onClicked: Kirigami.PageRouter.pushFromHere({"route": "folders", "data": iconTheme})
                 }
             }
         }
