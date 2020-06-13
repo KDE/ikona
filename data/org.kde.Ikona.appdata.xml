@@ -21,6 +21,7 @@
   <name xml:lang="pt-BR">Ikona</name>
   <name xml:lang="ru">Ikona</name>
   <name xml:lang="sk">Ikona</name>
+  <name xml:lang="sl">Ikona</name>
   <name xml:lang="sv">Ikona</name>
   <name xml:lang="uk">Ikona</name>
   <name xml:lang="x-test">xxIkonaxx</name>
@@ -41,6 +42,7 @@
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
   <summary xml:lang="pt-BR">Ikona é um assistente de design para criação de ícones</summary>
   <summary xml:lang="sk">Ikona je dizajnový sprievodca, ktorý vám pomôže navrhovať ikony</summary>
+  <summary xml:lang="sl">Ikona je spremljevalka oblikovanja, ki vam pomaga oblikovati ikone</summary>
   <summary xml:lang="sv">Ikona är en designföljeslagare för att hjälpa dig designa ikoner</summary>
   <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
   <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
@@ -59,6 +61,7 @@
     <p xml:lang="pt">O Ikona é uma aplicação auxiliar que o ajuda no desenho dos ícones. O Ikona permite-lhe visualizar os seus ícones num ambiente semelhante a uma área de trabalho do Plasma, aceder à paleta de cores Brisa e exportar os seus ícones com vários tamanhos.</p>
     <p xml:lang="pt-BR">O Ikona é um aplicativo complementar que ajuda você na criação de ícones. O Ikona permite visualizar seus ícones em um ambiente semelhante a uma área de trabalho Plasma, acessar a paleta de cores Breeze e exportar seus ícones em vários tamanhos.</p>
     <p xml:lang="sk">Ikona je sprievodná aplikácia, ktorá vám pomôže pri navrhovaní ikon. Ikona umožňuje vizualizovať vaše ikony v prostredí podobnom pracovnej ploche Plasma, pristupovať k farebným paletám ako Vánok a exportovať ikony do viacerých veľkostí.</p>
+    <p xml:lang="sl">Ikona je spremljevalna aplikacija, ki vam pomaga pri oblikovanju ikon. Ikona vam omogoča vizualizacijo ikon v okolju, podobnem namizju Plasma, kjer nudi tudi dostop do barvne palete Sapica in izvoz svojih ikon v več velikostih.</p>
     <p xml:lang="sv">Ikona är ett följeslagarprogram som hjälper dig vid design av ikoner. Ikona låter dig visualisera dina ikoner i en miljö som liknar ett Plasma-skrivbord, komma åt färgpaletten Breeze och exportera ikoner med olika storlekar.</p>
     <p xml:lang="uk">Ikona — допоміжна програма, яка полегшить вам створення піктограм. Ikona візуалізує ваші піктограми у середовищі, яке подібне до стільниці Плазми, надає вам доступ до палітри кольорів Breeze та уможливлює експортування створених піктограму у декількох розмірах.</p>
     <p xml:lang="x-test">xxIkona is a companion application that help you when designing icons. Ikona lets you visualize your icons in an environment similar to a Plasma desktop, access the Breeze color palette and export your icons in multiple sizes.xx</p>
@@ -90,6 +93,7 @@
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="pt-BR">A tela de boas-vindas do Ikona</caption>
       <caption xml:lang="sk">Uvítacia obrazovka Ikona</caption>
+      <caption xml:lang="sl">Zaslon dobrodošlice v Ikoni</caption>
       <caption xml:lang="sv">Välkomstskärmen i Ikona</caption>
       <caption xml:lang="uk">Вікно вітання Ikona</caption>
       <caption xml:lang="x-test">xxThe welcome screen of Ikonaxx</caption>
@@ -112,6 +116,7 @@
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona</caption>
       <caption xml:lang="sk">Farebný pohľad na ikony</caption>
+      <caption xml:lang="sl">Barvita ikona Ikone</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikonaxx</caption>
@@ -133,6 +138,7 @@
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona no modo escuro</caption>
       <caption xml:lang="sk">Farebný pohľad na ikony v tmavom režime</caption>
+      <caption xml:lang="sl">Barvit pogled na Ikono v temnem načinu</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona med mörkt läge</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona у темному режимі</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikona in dark modexx</caption>
@@ -155,6 +161,7 @@
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="pt-BR">A paleta de cores do Ikona</caption>
       <caption xml:lang="sk">Farebná paleta z Ikona</caption>
+      <caption xml:lang="sl">Barvna paleta Ikone</caption>
       <caption xml:lang="sv">Färgpaletten i Ikona</caption>
       <caption xml:lang="uk">Кольорова палітра в Ikona</caption>
       <caption xml:lang="x-test">xxThe color palette of Ikonaxx</caption>
