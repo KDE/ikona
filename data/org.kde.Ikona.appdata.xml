@@ -36,6 +36,7 @@
   <summary xml:lang="nl">Ikona is een ontwerphulp om te u te helpen pictogrammen te ontwerpen</summary>
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
   <summary xml:lang="pt-BR">Ikona é um assistente de design para criação de ícones</summary>
+  <summary xml:lang="sk">Ikona je dizajnový sprievodca, ktorý vám pomôže navrhovať ikony</summary>
   <summary xml:lang="sv">Ikona är en designkompanjon för att hjälpa dig designa ikoner</summary>
   <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
   <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
@@ -84,6 +85,7 @@
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="pt-BR">A tela de boas-vindas do Ikona</caption>
+      <caption xml:lang="sk">Uvítacia obrazovka Ikona</caption>
       <caption xml:lang="sv">Välkomstskärmen i Ikona</caption>
       <caption xml:lang="uk">Вікно вітання Ikona</caption>
       <caption xml:lang="x-test">xxThe welcome screen of Ikonaxx</caption>
@@ -104,6 +106,7 @@
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona</caption>
+      <caption xml:lang="sk">Farebný pohľad na ikony</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikonaxx</caption>
@@ -123,6 +126,7 @@
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona no modo escuro</caption>
+      <caption xml:lang="sk">Farebný pohľad na ikony v tmavom režime</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona med mörkt läge</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona у темному режимі</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikona in dark modexx</caption>
@@ -143,6 +147,7 @@
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="pt-BR">A paleta de cores do Ikona</caption>
+      <caption xml:lang="sk">Farebná paleta z Ikona</caption>
       <caption xml:lang="sv">Färgpaletten i Ikona</caption>
       <caption xml:lang="uk">Кольорова палітра в Ikona</caption>
       <caption xml:lang="x-test">xxThe color palette of Ikonaxx</caption>
