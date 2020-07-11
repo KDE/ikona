@@ -61,6 +61,9 @@ theme "breeze" {
         }
     }
     variant "dark" {
+        name = "Breeze Dark"
+        type = "scalable"
+
         inherit "light" {
             preprocess "convert-breeze-light-to-breeze-dark" {}
         }

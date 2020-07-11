@@ -43,12 +43,19 @@ func (f *FSVariant) ReadDirAll(context.Context) (ret []fuse.Dirent, err error) {
 			Name: dir.Directory,
 		})
 	}
+	ret = append(ret, fuse.Dirent{
+		Type: fuse.DT_File,
+		Name: "index.theme",
+	})
 	return
 }
 
 var _ = fs.NodeRequestLookuper(&FSVariant{})
 
 func (f *FSVariant) Lookup(ctx context.Context, req *fuse.LookupRequest, resp *fuse.LookupResponse) (fs.Node, error) {
+	if req.Name == "index.theme" {
+		return &FSIndexNode{f.Theme, f.Variant}, nil
+	}
 	for _, inherit := range f.Variant.Inherits {
 		variant := f.Theme.LookupVariant(inherit.From)
 		if variant == nil {
