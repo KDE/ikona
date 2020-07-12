@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"strings"
 	"theme/app/conf"
 
 	"bazil.org/fuse"
@@ -118,14 +119,41 @@ type FSHandle struct {
 }
 
 var _ = fs.HandleReader(&FSHandle{})
+var _ = fs.HandleReleaser(&FSHandle{})
 
-func (f *FSHandle) Release(req *fuse.ReleaseRequest) error {
+func (f *FSHandle) Release(ctx context.Context, req *fuse.ReleaseRequest) error {
 	return f.r.Close()
 }
 
 func (f *FSHandle) Read(ctx context.Context, req *fuse.ReadRequest, resp *fuse.ReadResponse) error {
 	buf := make([]byte, req.Size)
 	n, err := f.r.Read(buf)
+	resp.Data = buf[:n]
+	return err
+}
+
+type FSStringHandle struct {
+	str    string
+	reader *strings.Reader
+}
+
+func FSStringHandleFromString(str string) FSStringHandle {
+	return FSStringHandle{
+		str,
+		strings.NewReader(str),
+	}
+}
+
+var _ = fs.HandleReader(&FSStringHandle{})
+var _ = fs.HandleReleaser(&FSStringHandle{})
+
+func (f *FSStringHandle) Release(ctx context.Context, req *fuse.ReleaseRequest) error {
+	return nil
+}
+
+func (f *FSStringHandle) Read(ctx context.Context, req *fuse.ReadRequest, resp *fuse.ReadResponse) error {
+	buf := make([]byte, req.Size)
+	n, err := f.reader.Read(buf)
 	resp.Data = buf[:n]
 	return err
 }
