@@ -10,7 +10,7 @@ path = "lib.rs"
 
 [dependencies]
 # This commit was tagged as v2.47.3
-librsvg = { git="https://gitlab.gnome.org/GNOME/librsvg", rev="4590b7c7e43b54de88f179841b41e3e67108b760" }
+librsvg = { git="https://gitlab.gnome.org/GNOME/librsvg", rev="969e9bd82451e79bf40a21b5447bcf788953ba85" }
 cairo-rs = "0.8.0"
 glib = "0.8.0"
 gio = { version="0.7.0", features=["v2_48"] } 

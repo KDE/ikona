@@ -139,12 +139,18 @@ impl Icon {
 
         let width = match renderer.intrinsic_dimensions().width {
             Some(val) => val.length,
-            None => return Err("Failed to get width".to_string()),
+            None => match renderer.intrinsic_dimensions().vbox {
+                Some(val) => val.width,
+                None => return Err("Failed to get width".to_string()),
+            },
         };
 
         let height = match renderer.intrinsic_dimensions().height {
             Some(val) => val.length,
-            None => return Err("Failed to get height".to_string()),
+            None => match renderer.intrinsic_dimensions().vbox {
+                Some(val) => val.height,
+                None => return Err("Failed to get height".to_string()),
+            },
         };
 
         let svg_surface = cairo_err!(cairo::SvgSurface::new(
