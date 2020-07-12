@@ -2,17 +2,38 @@ package filesys
 
 import (
 	"context"
+	"crypto/sha256"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path"
 	"strings"
+	"sync"
 	"theme/app/conf"
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
 )
+
+func AsSha256(o interface{}) string {
+	h := sha256.New()
+	h.Write([]byte(fmt.Sprintf("%v", o)))
+
+	return fmt.Sprintf("%x", h.Sum(nil))
+}
+
+var processedFiles = map[string]string{}
+var processedMutex sync.Mutex
+var processedFileSizes = map[string]uint64{}
+var processedSizeMutex sync.Mutex
+
+func accessFiles(f func(map[string]string)) {
+	processedMutex.Lock()
+	defer processedMutex.Unlock()
+	f(processedFiles)
+}
 
 type FSNode struct {
 	Path    PreprocPath
@@ -23,7 +44,24 @@ type FSNode struct {
 }
 
 func (f *FSNode) Attr(ctx context.Context, a *fuse.Attr) error {
+	processedSizeMutex.Lock()
+	defer processedSizeMutex.Unlock()
+
+	if _, ok := processedFileSizes[AsSha256(*f)]; !ok {
+		path, err := Preprocess(*f, f.Path.Path, f.Preprocessors()...)
+		if err != nil {
+			println(err.Error())
+			return err
+		}
+		fi, err := os.Stat(path)
+		if err != nil {
+			return err
+		}
+		processedFileSizes[AsSha256(*f)] = uint64(fi.Size())
+	}
+
 	a.Mode = 0755
+	a.Size = processedFileSizes[AsSha256(*f)]
 	return nil
 }
 
@@ -49,7 +87,14 @@ func Copy(src, dst string) error {
 	return out.Close()
 }
 
-func Preprocess(inputPath string, processors ...conf.Preprocessor) (string, error) {
+func Preprocess(f FSNode, inputPath string, processors ...conf.Preprocessor) (string, error) {
+	var ret string
+	accessFiles(func(m map[string]string) {
+		ret, _ = m[AsSha256(f)]
+	})
+	if ret != "" {
+		return ret, nil
+	}
 	outputPath := path.Join(os.TempDir(), RandStr())
 
 	err := Copy(inputPath, outputPath)
@@ -78,6 +123,9 @@ func Preprocess(inputPath string, processors ...conf.Preprocessor) (string, erro
 		}
 	}
 
+	accessFiles(func(m map[string]string) {
+		m[AsSha256(f)] = outputPath
+	})
 	return outputPath, nil
 }
 
@@ -99,8 +147,10 @@ func (f FSNode) Preprocessors() (ret []conf.Preprocessor) {
 	return
 }
 
+var _ = fs.NodeOpener(&FSNode{})
+
 func (f *FSNode) Open(ctx context.Context, req *fuse.OpenRequest, resp *fuse.OpenResponse) (fs.Handle, error) {
-	path, err := Preprocess(f.Path.Path, f.Preprocessors()...)
+	path, err := Preprocess(*f, f.Path.Path, f.Preprocessors()...)
 	if err != nil {
 		println(err.Error())
 		return nil, err
@@ -111,7 +161,7 @@ func (f *FSNode) Open(ctx context.Context, req *fuse.OpenRequest, resp *fuse.Ope
 		return nil, err
 	}
 	resp.Flags |= fuse.OpenNonSeekable
-	return FSHandle{file}, nil
+	return &FSHandle{file}, nil
 }
 
 type FSHandle struct {
@@ -119,16 +169,24 @@ type FSHandle struct {
 }
 
 var _ = fs.HandleReader(&FSHandle{})
+var _ = fs.HandleReadAller(&FSHandle{})
 var _ = fs.HandleReleaser(&FSHandle{})
 
 func (f *FSHandle) Release(ctx context.Context, req *fuse.ReleaseRequest) error {
 	return f.r.Close()
 }
 
+func (f *FSHandle) ReadAll(ctx context.Context) ([]byte, error) {
+	return ioutil.ReadAll(f.r)
+}
+
 func (f *FSHandle) Read(ctx context.Context, req *fuse.ReadRequest, resp *fuse.ReadResponse) error {
 	buf := make([]byte, req.Size)
 	n, err := f.r.Read(buf)
 	resp.Data = buf[:n]
+	if err != nil {
+		println(err.Error())
+	}
 	return err
 }
 
