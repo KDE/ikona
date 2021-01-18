@@ -29,7 +29,7 @@ import org.kde.Ikona 1.0
 Kirigami.ApplicationWindow {
     id: exportColour
 
-    title: "Export Icon"
+    title: i18n("Export Icon")
     width: 500
     height: 500
     minimumWidth: 500
