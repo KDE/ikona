@@ -65,6 +65,7 @@
     <p xml:lang="eu">Ikona ikonoak diseinatzean laguntzen dizun aplikazio osagarri bat da. Ikonak zure ikonoak Plasma mahaiganaren antzeko ingurune batean irudikatzen, Breeze-n kolore paleta atzitzen eta zure ikonoak neurri aniztunetan esportatzen uzten dizu.</p>
     <p xml:lang="fr">Ikona est un outil de conception pour vous aider dans la conception d'icônes. Il vous permet d'afficher vos icônes dans un environnement similaire au bureau KDE Plasma.</p>
     <p xml:lang="ia">Ikona es un application companion que te adjuta quando tu designa icones. Ikona te permitte visualisar tu icones in un ambiente similar a un scriptorio de Plasma, accede al paletta de color Breeze (Brisa) e exporta tu icones in  dimensiones multiple.</p>
+    <p xml:lang="id">Ikona adalah aplikasi pendamping yang membantu kamu saat mendesain ikon. Ikona memungkinkan kamu memvisualisasikan ikonmu di environment yang mirip dengan desktop Plasma, mengakses palet warna Breeze dan mengekspor ikonmu dalam berbagai ukuran.</p>
     <p xml:lang="it">Ikona è un'applicazione di utilità che ti aiuta nella progettazione di icone. Ti consente di visualizzare le tue icone in un ambiente simile ad un desktop Plasma, di accedere alla tavolozza dei colori Breeze e di esportare le tue icone in più dimensioni.</p>
     <p xml:lang="ko">Ikona는 아이콘 디자인 도우미 프로그램입니다. Plasma 데스크톱과 같은 환경에서의 아이콘을 볼 수 있으며, Breeze 색 팔레트에 접근하고 다양한 크기로 아이콘을 내보냅니다.</p>
     <p xml:lang="nl">Ikona is een companion toepassing die u helpt bij het ontwerpen van pictogrammen. Ikona laat u uw pictogrammen zien in een omgeving gelijk aan een Plasma bureaublad, geeft toegang tot het Breeze kleurenpalet en exporteert uw pictogrammen in meerdere grootten.</p>
@@ -101,6 +102,7 @@
       <caption xml:lang="fr">L'écran de bienvenue d'Ikona</caption>
       <caption xml:lang="gl">A pantalla de benvida de Ikona</caption>
       <caption xml:lang="ia">Le schermo de benvenite de Ikona</caption>
+      <caption xml:lang="id">Layar selamatdatang pada Ikona</caption>
       <caption xml:lang="it">La schermata di benvenuto di Ikona</caption>
       <caption xml:lang="ko">Ikona 환영 화면</caption>
       <caption xml:lang="nl">Het welkomstscherm van Ikona</caption>
@@ -128,6 +130,7 @@
       <caption xml:lang="fr">L'affichage des icônes colorées d'Ikona</caption>
       <caption xml:lang="gl">A vista de icona de moitas cores de Ikona</caption>
       <caption xml:lang="ia">Le vista de icone picoresc de Ikona</caption>
+      <caption xml:lang="id">Tampilan ikon warna-warni pada Ikona</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona</caption>
       <caption xml:lang="ko">Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona</caption>
@@ -154,6 +157,7 @@
       <caption xml:lang="fr">L'affichage des icônes colorées d'Ikona en mode sombre</caption>
       <caption xml:lang="gl">A vista de icona de moitas cores de Ikona no modo escuro</caption>
       <caption xml:lang="ia">Le vista de icone pictoresc de Ikona  in modo obscure</caption>
+      <caption xml:lang="id">Tampilan ikon warna-warni pada Ikona dalam mode gelap</caption>
       <caption xml:lang="it">La vista a icone colorata di Ikona in modalità scura</caption>
       <caption xml:lang="ko">어두운 모드에서의 Ikona 다색 아이콘 보기</caption>
       <caption xml:lang="nl">De kleurrijke pictogramweergave van Ikona in donkere modus</caption>
@@ -181,6 +185,7 @@
       <caption xml:lang="fr">La palette de couleurs d'Ikona</caption>
       <caption xml:lang="gl">A paleta de cores de Ikona</caption>
       <caption xml:lang="ia">Le paletta de color de Ikona</caption>
+      <caption xml:lang="id">Palet warna pada Ikona</caption>
       <caption xml:lang="it">La tavolozza dei colori di Ikona</caption>
       <caption xml:lang="ko">Ikona 색 팔레트</caption>
       <caption xml:lang="nl">Het kleurpalet van Ikona</caption>
