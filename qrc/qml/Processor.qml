@@ -166,7 +166,7 @@ Kirigami.ApplicationWindow {
         ComboBox {
             id: combo
 
-            model: ["Optimize with all methods", "Optimize using librsvg", "Optimize using scour", "Inject stylesheet/convert to light", "Inject stylesheet/convert to dark"]
+            model: [i18n("Optimize with all methods"), i18n("Optimize using librsvg"), i18n("Optimize using scour"), i18n("Inject stylesheet/convert to light"), i18n("Inject stylesheet/convert to dark")]
 
             Layout.fillWidth: true
         }

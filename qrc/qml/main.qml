@@ -106,7 +106,7 @@ Kirigami.ApplicationWindow {
             onAccepted: {
                 tock.running = !AppIcon.setIcon(picker.fileUrl)
             }
-            nameFilters: ["Icon SVGs (*.svg)"]
+            nameFilters: [i18n("Icon SVGs (*.svg)")]
         }
         FileDialog {
             id: savePicker
@@ -114,7 +114,7 @@ Kirigami.ApplicationWindow {
             onAccepted: {
                 AppIcon.exportTemplate(savePicker.fileUrl)
             }
-            nameFilters: ["Ikona App SVGs (*.ikona.app.svg)"]
+            nameFilters: [i18n("Ikona App SVGs (*.ikona.app.svg)")]
         }
         ColourView {
             Layout.fillWidth: true
