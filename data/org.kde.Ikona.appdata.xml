@@ -26,6 +26,7 @@
   <name xml:lang="pt-BR">Ikona</name>
   <name xml:lang="ru">Ikona</name>
   <name xml:lang="sk">Ikona</name>
+  <name xml:lang="sl">Ikona</name>
   <name xml:lang="sv">Ikona</name>
   <name xml:lang="uk">Ikona</name>
   <name xml:lang="x-test">xxIkonaxx</name>
@@ -51,6 +52,7 @@
   <summary xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones</summary>
   <summary xml:lang="pt-BR">Ikona é um assistente de design para criação de ícones</summary>
   <summary xml:lang="sk">Ikona je dizajnový sprievodca, ktorý vám pomôže navrhovať ikony</summary>
+  <summary xml:lang="sl">Ikona je spremljevalka oblikovanja, ki vam pomaga oblikovati ikone</summary>
   <summary xml:lang="sv">Ikona är en designkompanjon för att hjälpa dig designa ikoner</summary>
   <summary xml:lang="uk">Ikona — допоміжна програма для створення піктограм</summary>
   <summary xml:lang="x-test">xxIkona is a design companion to help you design iconsxx</summary>
@@ -77,6 +79,7 @@
     <p xml:lang="pt">O Ikona é um assistente de desenho que o ajuda a desenhar ícones. Está desenhado para se integrar com o ambiente de trabalho Plasma do KDE.</p>
     <p xml:lang="pt-BR">Ikona é um assistente de design para criação de ícones. Foi projetado para se integrar ao ambiente de trabalho KDE Plasma.</p>
     <p xml:lang="sk">Ikona je dizajnový pomocník, ktorý vám pomôže s návrhom ikon. Je navrhnutý na integráciu s pracovnou plochou KDE Plasma.</p>
+    <p xml:lang="sl">Ikona je spremljevalka oblikovanja, ki vam pomaga oblikovati ikone. Oblikovana je za integracijo z namizjem KDE Plasma.</p>
     <p xml:lang="sv">Ikona är en designkompanjon för att hjälpa dig designa ikoner. Den är avsedd att integreras med KDE:s Plasma-skrivbord.</p>
     <p xml:lang="uk">Ikona — допоміжна програма для створення піктограм. Її інтегровано із стільничним середовищем Плазми KDE.</p>
     <p xml:lang="x-test">xxIkona is a design companion to help you design icons. It is designed to integrate with the KDE Plasma desktop.xx</p>
@@ -116,6 +119,7 @@
       <caption xml:lang="pt">O ecrã de boas-vindas do Ikona</caption>
       <caption xml:lang="pt-BR">A tela de boas-vindas do Ikona</caption>
       <caption xml:lang="sk">Uvítacia obrazovka Ikona</caption>
+      <caption xml:lang="sl">Zaslon dobrodošlice v Ikoni</caption>
       <caption xml:lang="sv">Välkomstskärmen i Ikona</caption>
       <caption xml:lang="uk">Вікно вітання Ikona</caption>
       <caption xml:lang="x-test">xxThe welcome screen of Ikonaxx</caption>
@@ -145,6 +149,7 @@
       <caption xml:lang="pt">A vista do ícone a cores do Ikona</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona</caption>
       <caption xml:lang="sk">Farebný pohľad na ikony</caption>
+      <caption xml:lang="sl">Barvita ikona Ikone</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikonaxx</caption>
@@ -173,6 +178,7 @@
       <caption xml:lang="pt">A vista do ícone a cores do Ikona no modo escuro</caption>
       <caption xml:lang="pt-BR">A visualização em cores do ícone do Ikona no modo escuro</caption>
       <caption xml:lang="sk">Farebný pohľad na ikony v tmavom režime</caption>
+      <caption xml:lang="sl">Barvit pogled na Ikono v temnem načinu</caption>
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona med mörkt läge</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona у темному режимі</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikona in dark modexx</caption>
@@ -202,6 +208,7 @@
       <caption xml:lang="pt">A paleta de cores do Ikona</caption>
       <caption xml:lang="pt-BR">A paleta de cores do Ikona</caption>
       <caption xml:lang="sk">Farebná paleta z Ikona</caption>
+      <caption xml:lang="sl">Barvna paleta Ikone</caption>
       <caption xml:lang="sv">Färgpaletten i Ikona</caption>
       <caption xml:lang="uk">Кольорова палітра в Ikona</caption>
       <caption xml:lang="x-test">xxThe color palette of Ikonaxx</caption>
