@@ -46,8 +46,8 @@ Kirigami.OverlayDrawer {
         Kirigami.Icon {
             source: "org.kde.Ikona"
 
-            height: 128
-            width: 128
+            implicitWidth: 128
+            implicitHeight: 128
 
             Layout.alignment: Qt.AlignHCenter
         }
