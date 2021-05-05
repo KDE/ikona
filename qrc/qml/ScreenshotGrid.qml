@@ -33,8 +33,8 @@ GridLayout {
         delegate: Kirigami.Icon {
             Layout.alignment: Qt.AlignBottom
             source: AppIcon["icon"+modelData+"path"]
-            width: modelData
-            height: modelData
+            implicitWidth: modelData
+            implicitHeight: modelData
         }
     }
     Repeater {
