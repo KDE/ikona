@@ -41,8 +41,8 @@ ColumnLayout {
     Kirigami.Icon {
         Layout.alignment: Qt.AlignHCenter
         id: icon
-        width: iconRoot.size
-        height: iconRoot.size
+        implicitWidth: iconRoot.size
+        implicitHeight: iconRoot.size
 
         property var prevX: 0
         property var prevY: 0
