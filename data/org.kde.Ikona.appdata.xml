@@ -36,6 +36,7 @@
   <summary>Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="ca">L'Ikona és un company de disseny per a ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="ca-valencia">L'Ikona és un company de disseny per a ajudar-vos a dissenyar les icones</summary>
+  <summary xml:lang="de">Ikona ist ein Assistent für die Gestaltung von Symbolen</summary>
   <summary xml:lang="en-GB">Ikona is a design companion to help you design icons</summary>
   <summary xml:lang="es">Ikona es un complemento de diseño que le ayuda a crear iconos</summary>
   <summary xml:lang="et">Ikona on abivahend, mis aitab ikoone kujundada</summary>
@@ -134,6 +135,7 @@
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="cs">Barevný pohled Ikony</caption>
+      <caption xml:lang="de">Die farbenfrohe Symbolansicht von Ikona</caption>
       <caption xml:lang="en-GB">The colourful icon view of Ikona</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade</caption>
@@ -163,6 +165,7 @@
       <caption>The colorful icon view of Ikona in dark mode</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
       <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
+      <caption xml:lang="de">Die farbenfrohe Symbolansicht von Ikona im dunklen Modus</caption>
       <caption xml:lang="en-GB">The colourful icon view of Ikona in dark mode</caption>
       <caption xml:lang="es">La vista de iconos a todo color de Ikona en modo oscuro</caption>
       <caption xml:lang="et">Ikona värviline ikoonivaade tumedas režiimis</caption>
