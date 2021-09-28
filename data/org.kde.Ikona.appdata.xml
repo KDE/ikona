@@ -185,7 +185,7 @@
       <caption xml:lang="sv">Den färgade ikonvyn i Ikona med mörkt läge</caption>
       <caption xml:lang="uk">Перегляд кольорових піктограм в Ikona у темному режимі</caption>
       <caption xml:lang="x-test">xxThe colorful icon view of Ikona in dark modexx</caption>
-      <caption xml:lang="zh-CN">Ikona 在暗色模式下的彩色图标视图</caption>
+      <caption xml:lang="zh-CN">Ikona 在深色模式下的彩色图标视图</caption>
       <caption xml:lang="zh-TW">暗色模式中 Ikona 的彩色圖示檢視</caption>
       <image type="source">https://cdn.kde.org/screenshots/ikona/colour-screenshot-dark.png</image>
     </screenshot>
