@@ -421,7 +421,7 @@ Kirigami.RouterWindow {
         name: "folders"
 
         Kirigami.ScrollablePage {
-            title: i18nc("theme name (folder name)", "%1 (%2)").arg(Kirigami.PageRouter.data.displayName).arg(Kirigami.PageRouter.data.name)
+            title: i18nc("theme name (folder name)", "%1 (%2)", Kirigami.PageRouter.data.displayName, Kirigami.PageRouter.data.name)
 
             Kirigami.CardsListView {
                 id: listView
@@ -449,25 +449,21 @@ Kirigami.RouterWindow {
                             RowLayout {
                                 Label {
                                     opacity: 0.8
-                                    text: i18n("Context: %1").arg(contextToString(modelData.context))
+                                    text: i18n("Context: %1", contextToString(modelData.context))
                                     InfoToolTip {
                                         title: i18n("The type of icon this directory has.")
 
-                                        subtitle: i18n("%1: %2")
-                                                   .arg(contextToString(modelData.context))
-                                                   .arg(contextToDescription(modelData.context))
+                                        subtitle: i18n("%1: %2", contextToString(modelData.context), contextToDescription(modelData.context))
                                     }
                                 }
                                 Kirigami.Separator { Layout.fillHeight: true }
                                 Label {
                                     opacity: 0.8
-                                    text: i18n("Type: %1").arg(typeToString(modelData.type))
-                                    InfoToolTip { 
+                                    text: i18n("Type: %1", typeToString(modelData.type))
+                                    InfoToolTip {
                                         title: i18n ("How this icon can change size.")
-                                        
-                                        subtitle: i18n("%1: %2")
-                                                   .arg(typeToString(modelData.type))
-                                                   .arg(typeToDescription(modelData.type))
+
+                                        subtitle: i18n("%1: %2", typeToString(modelData.type), typeToDescription(modelData.type))
                                     }
                                 }
                                 Kirigami.Separator {
@@ -477,17 +473,17 @@ Kirigami.RouterWindow {
                                 Label {
                                     opacity: 0.8
                                     visible: modelData.type == IconDirectory.Threshold
-                                    text: i18n("Threshold: %1").arg(modelData.threshold)
-                                    InfoToolTip { 
-                                        subtitle: i18n("The icons in this directory can be used if the size differs at most by a factor of <b>%1</b> from the source size.").arg(modelData.threshold)
+                                    text: i18n("Threshold: %1", modelData.threshold)
+                                    InfoToolTip {
+                                        subtitle: i18n("The icons in this directory can be used if the size differs at most by a factor of <b>%1</b> from the source size.", modelData.threshold)
                                     }
                                 }
                                 Label {
                                     opacity: 0.8
                                     visible: modelData.type == IconDirectory.Scalable
-                                    text: i18n("Size Range: <b>%1</b> to <b>%2</b>").arg(modelData.minSize).arg(modelData.maxSize)
-                                    InfoToolTip { 
-                                        subtitle: i18n("The icons in this directory can be used at sizes from <b>%1</b>dp to <b>%2</b>dp.").arg(modelData.minSize).arg(modelData.maxSize)
+                                    text: i18n("Size Range: <b>%1</b> to <b>%2</b>", modelData.minSize, modelData.maxSize)
+                                    InfoToolTip {
+                                        subtitle: i18n("The icons in this directory can be used at sizes from <b>%1</b>dp to <b>%2</b>dp.", modelData.minSize, modelData.maxSize)
                                     }
                                 }
                             }
@@ -512,7 +508,7 @@ Kirigami.RouterWindow {
                     checked: Kirigami.PageRouter.watchedRouteActive
 
                     Label {
-                        text: i18nc("theme name (folder name)", "%1 (%2)").arg(iconTheme.displayName).arg(iconTheme.name)
+                        text: i18nc("theme name (folder name)", "%1 (%2)", iconTheme.displayName, iconTheme.name)
                     }
 
                     actions: [
