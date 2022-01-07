@@ -2,7 +2,7 @@
 <!-- Copyright 2019 Carson Black -->
 <component type="desktop-application">
   <id>org.kde.Ikona</id>
-  <icon type="remote" width="48" height="48">https://invent.kde.org/kde/ikona/raw/master/data/org.kde.Ikona.svg</icon>
+  <icon type="remote" width="48" height="48">https://invent.kde.org/sdk/ikona/raw/master/data/org.kde.Ikona.svg</icon>
   <name>Ikona</name>
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="ca-valencia">Ikona</name>
@@ -224,7 +224,7 @@
   <update_contact>
         uhhadd@gmail.com
   </update_contact>
-  <url type="homepage">https://invent.kde.org/kde/ikona</url>
+  <url type="homepage">https://invent.kde.org/sdk/ikona</url>
   <categories>
     <category>Graphics</category>
   </categories>
