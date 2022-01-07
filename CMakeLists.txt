@@ -108,7 +108,7 @@ target_link_libraries(ikona
     PkgConfig::gio-unix-2.0 PkgConfig::glib-2.0 PkgConfig::gmodule-2.0
     PkgConfig::gthread-2.0 PkgConfig::libxml-2.0 PkgConfig::pangocairo
     PkgConfig::pangoft2 
-  ${RUST_LIB})
+  ${RUST_LIB} -ldl)
 
 install(TARGETS ikona DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${RUST_LIB} DESTINATION ${CMAKE_INSTALL_LIBDIR})
