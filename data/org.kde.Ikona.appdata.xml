@@ -4,6 +4,7 @@
   <id>org.kde.Ikona</id>
   <icon type="remote" width="48" height="48">https://invent.kde.org/sdk/ikona/raw/master/data/org.kde.Ikona.svg</icon>
   <name>Ikona</name>
+  <name xml:lang="ar">أيقونة</name>
   <name xml:lang="ca">Ikona</name>
   <name xml:lang="ca-valencia">Ikona</name>
   <name xml:lang="cs">Ikona</name>
@@ -33,6 +34,7 @@
   <name xml:lang="zh-CN">Ikona</name>
   <name xml:lang="zh-TW">Ikona</name>
   <summary>Ikona is a design companion to help you design icons</summary>
+  <summary xml:lang="ar">أيقونة هي مساعدك في تصميم الأيقونات</summary>
   <summary xml:lang="ca">L'Ikona és un company de disseny per a ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="ca-valencia">L'Ikona és un company de disseny per a ajudar-vos a dissenyar les icones</summary>
   <summary xml:lang="de">Ikona ist ein Assistent für die Gestaltung von Symbolen</summary>
@@ -61,6 +63,7 @@
   <summary xml:lang="zh-TW">Ikona 是個能幫助你設計圖示的設計小幫手</summary>
   <description>
     <p>Ikona is a companion application that help you when designing icons. Ikona lets you visualize your icons in an environment similar to a Plasma desktop, access the Breeze color palette and export your icons in multiple sizes.</p>
+    <p xml:lang="ar">تطبيق أيقونة هو تطبيق مصاحب يساعدك عند تصميم الأيقونات. يتيح لك أيقونة تصور أيقوناتك في بيئة مشابهة لسطح مكتب بلازما ، والوصول إلى لوحة ألوان بريز وتصدير أيقوناتك بأحجام متعددة.</p>
     <p xml:lang="ca">L'Ikona és una aplicació d'acompanyament que ajuda a dissenyar icones. L'Ikona permet visualitzar les icones a un entorn similar a un escriptori Plasma, accedir a la paleta de color del Brisa i exportar les icones en diverses mides.</p>
     <p xml:lang="ca-valencia">L'Ikona és una aplicació d'acompanyament que ajuda a dissenyar icones. L'Ikona permet visualitzar les icones a un entorn similar a un escriptori Plasma, accedir a la paleta de color del Brisa i exportar les icones en diverses mides.</p>
     <p xml:lang="de">Ikona ist ein Assistent, die Sie beim Entwerfen von Symbolen unterstützt. Ikona ermöglicht Ihnen die Visualisierung Ihrer Symbole in einer Umgebung, die einer Plasma-Arbeitsfläche ähnelt. Sie können auf die Breeze-Farbpalette zugreifen und Ihre Symbole in verschiedenen Größen exportieren.</p>
@@ -99,6 +102,7 @@
   <screenshots>
     <screenshot>
       <caption>The welcome screen of Ikona</caption>
+      <caption xml:lang="ar">شاشة الترحيب لأيقونة</caption>
       <caption xml:lang="ca">La pantalla de benvinguda a l'Ikona</caption>
       <caption xml:lang="ca-valencia">La pantalla de benvinguda a l'Ikona</caption>
       <caption xml:lang="cs">Úvodní obrazovka Ikona</caption>
@@ -130,6 +134,7 @@
     </screenshot>
     <screenshot>
       <caption>The colorful icon view of Ikona</caption>
+      <caption xml:lang="ar">عرض الأيقونات الملونة</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona</caption>
       <caption xml:lang="cs">Barevný pohled Ikony</caption>
@@ -161,6 +166,7 @@
     </screenshot>
     <screenshot>
       <caption>The colorful icon view of Ikona in dark mode</caption>
+      <caption xml:lang="ar">عرض الأيقونات الملونة في نمط المعتم</caption>
       <caption xml:lang="ca">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
       <caption xml:lang="ca-valencia">L'acolorida vista d'icones de l'Ikona en mode fosc</caption>
       <caption xml:lang="de">Die farbenfrohe Symbolansicht von Ikona im dunklen Modus</caption>
@@ -191,6 +197,7 @@
     </screenshot>
     <screenshot>
       <caption>The color palette of Ikona</caption>
+      <caption xml:lang="ar">لوحة ألوان أيقونة</caption>
       <caption xml:lang="ca">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="ca-valencia">La paleta de colors de l'Ikona</caption>
       <caption xml:lang="cs">Barevná paleta Ikona</caption>
