@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Ikona
+Name[ar]=أيقونة
 Name[ca]=Ikona
 Name[ca@valencia]=Ikona
 Name[cs]=Ikona
@@ -32,6 +33,7 @@ Name[zh_CN]=Ikona
 Name[zh_TW]=Ikona
 Exec=ikona
 Comment=Utility for viewing Icons
+Comment[ar]=أداة لعرض الأيقونات
 Comment[ca]=Utilitat per a visualitzar icones
 Comment[ca@valencia]=Utilitat per a visualitzar icones
 Comment[cs]=Nástroj pro prohlížení ikon
@@ -62,6 +64,7 @@ Comment[zh_CN]=图标查看工具
 Comment[zh_TW]=圖示檢視工具
 Categories=Qt;System;Documentation
 GenericName=Icon Preview Utility
+GenericName[ar]=أداة لمعاينة الأيقونات
 GenericName[ca]=Utilitat de vista prèvia de les icones
 GenericName[ca@valencia]=Utilitat de vista prèvia de les icones
 GenericName[cs]=Nástroj pro prohlížení ikon
