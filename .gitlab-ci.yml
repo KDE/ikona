@@ -1,10 +1,11 @@
 image: "rust:latest"
 
-before_script:
-  - apt-get update -yqq
-  - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev oxygen-icon-theme cmake clang-tidy
-  - apt-get install -yqq --no-install-recommends qtbase5-dev qtdeclarative5-dev libkf5configwidgets-dev kirigami2-dev libkf5plasma-dev libkf5i18n-dev libcairo2-dev libfontconfig1-dev libfreetype6-dev libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-dev libpango1.0-dev
-  - rustup component add clippy
+default:
+  before_script:
+    - apt-get update -yqq
+    - apt-get install -yqq --no-install-recommends build-essential gettext libpango1.0-dev oxygen-icon-theme cmake clang-tidy
+    - apt-get install -yqq --no-install-recommends qtbase5-dev qtdeclarative5-dev libkf5configwidgets-dev kirigami2-dev libkf5plasma-dev libkf5i18n-dev libcairo2-dev libfontconfig1-dev libfreetype6-dev libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-dev libpango1.0-dev
+    - rustup component add clippy
 
 stages:
   - commitlint
@@ -15,6 +16,8 @@ stages:
 commit_lint:
   stage: commitlint
   image: node:latest
+  before_script:
+    - "true"
   rules:
     - if: '$CI_MERGE_REQUEST_IID'
       when: always
@@ -25,8 +28,8 @@ commit_lint:
     UPSTREAM: https://invent.kde.org/sdk/ikona
   script:
     - if [ -n "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" ]; then export COMPARE_BRANCH=$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; else export COMPARE_BRANCH=master; fi
-    - yarn global add @commitlint/cli
-    - yarn add conventional-changelog-conventionalcommits
+    - yarn global add @commitlint/cli @commitlint/config-conventional
+    - yarn add @commitlint/config-conventional
     - git remote add _upstream $UPSTREAM || git remote set-url _upstream $UPSTREAM
     - git fetch -q _upstream $COMPARE_BRANCH
     - commitlint --verbose --from=_upstream/$COMPARE_BRANCH
