@@ -2,7 +2,6 @@
 <!-- Copyright 2019 Carson Black -->
 <component type="desktop-application">
   <id>org.kde.Ikona</id>
-  <icon type="remote" width="48" height="48">https://invent.kde.org/sdk/ikona/raw/master/data/org.kde.Ikona.svg</icon>
   <name>Ikona</name>
   <name xml:lang="ar">أيقونة</name>
   <name xml:lang="ca">Ikona</name>
