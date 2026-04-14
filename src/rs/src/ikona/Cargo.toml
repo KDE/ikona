@@ -14,7 +14,7 @@ librsvg = { git="https://gitlab.gnome.org/GNOME/librsvg", rev="4590b7c7e43b54de8
 cairo-rs = "0.8.0"
 glib = "0.8.0"
 gio = { version="0.7.0", features=["v2_48"] } 
-rand = "0.7.3"
+rand = "0.9.3"
 regex = "1"
 svgcleaner = { version="0.9.5", optional=true }
 svgdom = { version="0.10.5", optional=true }
